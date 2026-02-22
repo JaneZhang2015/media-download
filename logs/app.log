@@ -636,3 +636,40 @@ javax.net.ssl.SSLPeerUnverifiedException: Hostname api.mymemory.translated.net n
 2026-02-22 15:05:15 [INFO ] com.media.VsCodeDocsTranslator - 开始翻译文件: vscode-docs\docs\azure\aksextensions.txt
 2026-02-22 15:07:16 [INFO ] com.media.VsCodeDocsTranslator - 文件翻译完成: vscode-docs-zh\docs\azure\aksextensions.txt
 2026-02-22 15:07:16 [INFO ] com.media.VsCodeDocsTranslator - 开始翻译文件: vscode-docs\docs\azure\containers.txt
+2026-02-22 17:00:55 [ERROR] com.media.VSCodeDocumentDownloader - 获取页面异常: https://code.visualstudio.com/mcp
+java.net.ConnectException: Failed to connect to github.com/20.205.243.166:443
+	at okhttp3.internal.connection.RealConnection.connectSocket(RealConnection.kt:297)
+	at okhttp3.internal.connection.RealConnection.connect(RealConnection.kt:207)
+	at okhttp3.internal.connection.ExchangeFinder.findConnection(ExchangeFinder.kt:226)
+	at okhttp3.internal.connection.ExchangeFinder.findHealthyConnection(ExchangeFinder.kt:106)
+	at okhttp3.internal.connection.ExchangeFinder.find(ExchangeFinder.kt:74)
+	at okhttp3.internal.connection.RealCall.initExchange$okhttp(RealCall.kt:255)
+	at okhttp3.internal.connection.ConnectInterceptor.intercept(ConnectInterceptor.kt:32)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109)
+	at okhttp3.internal.cache.CacheInterceptor.intercept(CacheInterceptor.kt:95)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109)
+	at okhttp3.internal.http.BridgeInterceptor.intercept(BridgeInterceptor.kt:83)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109)
+	at okhttp3.internal.http.RetryAndFollowUpInterceptor.intercept(RetryAndFollowUpInterceptor.kt:76)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109)
+	at okhttp3.internal.connection.RealCall.getResponseWithInterceptorChain$okhttp(RealCall.kt:201)
+	at okhttp3.internal.connection.RealCall.execute(RealCall.kt:154)
+	at com.media.VSCodeDocumentDownloader.fetchPage(VSCodeDocumentDownloader.java:683)
+	at com.media.VSCodeDocumentDownloader.downloadVideos(VSCodeDocumentDownloader.java:93)
+	at com.media.VSCodeDocumentDownloader.main(VSCodeDocumentDownloader.java:49)
+Caused by: java.net.ConnectException: Connection timed out: connect
+	at java.base/java.net.PlainSocketImpl.waitForConnect(Native Method)
+	at java.base/java.net.PlainSocketImpl.socketConnect(PlainSocketImpl.java:107)
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:399)
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:242)
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:224)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:403)
+	at java.base/java.net.Socket.connect(Socket.java:591)
+	at okhttp3.internal.platform.Platform.connectSocket(Platform.kt:128)
+	at okhttp3.internal.connection.RealConnection.connectSocket(RealConnection.kt:295)
+	... 18 common frames omitted
+2026-02-22 17:05:00 [WARN ] com.media.VSCodeDocumentDownloader - 获取页面失败: https://code.visualstudio.com/docs/copilot (404)
+2026-02-22 17:05:00 [ERROR] com.media.VSCodeDocumentDownloader - 下载失败
+java.lang.RuntimeException: 无法获取主页面内容
+	at com.media.VSCodeDocumentDownloader.downloadVideos(VSCodeDocumentDownloader.java:78)
+	at com.media.VSCodeDocumentDownloader.main(VSCodeDocumentDownloader.java:49)
