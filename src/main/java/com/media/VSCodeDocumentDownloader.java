@@ -42,15 +42,94 @@ public class VSCodeDocumentDownloader {
 
         String url = args[0];
         String outputDir = args.length > 1 ? args[1] : "./vscode-docs";
+        boolean downloadVideos = args.length > 2 && args[2].equalsIgnoreCase("--videos");
 
         try {
-            downloadDocumentation(url, outputDir);
+            if (downloadVideos) {
+                downloadVideos(url, outputDir);
+            } else {
+                downloadDocumentation(url, outputDir);
+            }
         } catch (Exception e) {
-            logger.error("文档下载失败", e);
+            logger.error("下载失败", e);
             System.err.println("错误: " + e.getMessage());
             e.printStackTrace();
             System.exit(1);
         }
+    }
+
+    /**
+     * 下载VS Code文档中的所有MP4视频
+     */
+    public static void downloadVideos(String startUrl, String outputDir) throws Exception {
+        System.out.println("╔══════════════════════════════════════════╗");
+        System.out.println("║      VS Code 视频下载 v1.0               ║");
+        System.out.println("╚══════════════════════════════════════════╝");
+        System.out.println();
+        System.out.println("开始爬取视频: " + startUrl);
+
+        // 创建输出目录
+        Path outputPath = Paths.get(outputDir);
+        Files.createDirectories(outputPath);
+
+        // 获取主页面
+        String html = fetchPage(startUrl);
+        if (html == null) {
+            throw new RuntimeException("无法获取主页面内容");
+        }
+
+        // 解析主页面，获取所有文档链接
+        Document doc = Jsoup.parse(html);
+        Set<String> docUrls = extractDocumentLinks(doc, startUrl);
+
+        System.out.println("✓ 找到 " + docUrls.size() + " 个文档章节，开始扫描视频...");
+        System.out.println();
+
+        // 扫描每个文档以找到视频
+        Map<String, Set<String>> videosByPage = new HashMap<>();
+        int docCount = 1;
+        for (String docUrl : docUrls) {
+            try {
+                String docHtml = fetchPage(docUrl);
+                if (docHtml != null) {
+                    Set<String> videos = extractVideoLinks(docHtml, docUrl);
+                    if (!videos.isEmpty()) {
+                        videosByPage.put(docUrl, videos);
+                        System.out.println("[" + docCount + "/" + docUrls.size() + "] " + docUrl + 
+                                         " - 找到 " + videos.size() + " 个视频");
+                    }
+                }
+                docCount++;
+            } catch (Exception e) {
+                System.err.println("✗ 扫描失败 (" + docUrl + "): " + e.getMessage());
+            }
+        }
+
+        System.out.println();
+        int totalVideos = videosByPage.values().stream().mapToInt(Set::size).sum();
+        System.out.println("✓ 总共找到 " + totalVideos + " 个MP4视频");
+        System.out.println();
+
+        // 下载视频
+        int downloadCount = 1;
+        for (Map.Entry<String, Set<String>> entry : videosByPage.entrySet()) {
+            String pageUrl = entry.getKey();
+            for (String videoUrl : entry.getValue()) {
+                try {
+                    System.out.println("[" + downloadCount + "/" + totalVideos + "] 下载视频...");
+                    downloadVideoFile(videoUrl, pageUrl, outputPath);
+                    downloadCount++;
+                } catch (Exception e) {
+                    System.err.println("✗ 下载失败: " + e.getMessage());
+                }
+            }
+        }
+
+        System.out.println();
+        System.out.println("╔══════════════════════════════════════════╗");
+        System.out.println("✓ 视频下载完成!");
+        System.out.println("  保存路径: " + outputPath.toAbsolutePath());
+        System.out.println("╚══════════════════════════════════════════╝");
     }
 
     /**
@@ -139,9 +218,234 @@ public class VSCodeDocumentDownloader {
     }
 
     /**
+     * 从HTML中提取所有视频链接（MP4格式）
+     */
+    private static Set<String> extractVideoLinks(String html, String pageUrl) {
+        Set<String> videoUrls = new LinkedHashSet<>();
+        
+        try {
+            Document doc = Jsoup.parse(html);
+            
+            // 从video标签中提取src
+            Elements videoTags = doc.select("video source[src], video[src]");
+            for (Element videoTag : videoTags) {
+                String src = videoTag.attr("src");
+                if (src != null && src.toLowerCase().endsWith(".mp4")) {
+                    String absoluteUrl = resolveUrl(src, pageUrl);
+                    videoUrls.add(absoluteUrl);
+                }
+            }
+            
+            // 从iframe中提取视频链接
+            Elements iframes = doc.select("iframe[src]");
+            for (Element iframe : iframes) {
+                String src = iframe.attr("src");
+                if (src != null && src.contains("mp4")) {
+                    String absoluteUrl = resolveUrl(src, pageUrl);
+                    videoUrls.add(absoluteUrl);
+                }
+            }
+            
+            // 从a标签中提取MP4链接
+            Elements links = doc.select("a[href*='.mp4'], a[href*='.MP4']");
+            for (Element link : links) {
+                String href = link.attr("href");
+                if (href != null && (href.toLowerCase().endsWith(".mp4") || href.contains(".mp4"))) {
+                    String absoluteUrl = resolveUrl(href, pageUrl);
+                    videoUrls.add(absoluteUrl);
+                }
+            }
+            
+            // 从img标签的data-video属性中提取
+            Elements imgs = doc.select("img[data-video]");
+            for (Element img : imgs) {
+                String video = img.attr("data-video");
+                if (video != null && video.toLowerCase().contains(".mp4")) {
+                    String absoluteUrl = resolveUrl(video, pageUrl);
+                    videoUrls.add(absoluteUrl);
+                }
+            }
+            
+            // 从script中提取视频链接（JSON格式）
+            Elements scripts = doc.select("script");
+            for (Element script : scripts) {
+                String content = script.html();
+                extractVideoLinksFromJson(content, pageUrl, videoUrls);
+            }
+            
+        } catch (Exception e) {
+            logger.warn("提取视频链接失败: " + pageUrl, e);
+        }
+        
+        return videoUrls;
+    }
+
+    /**
+     * 从JSON数据中提取视频链接
+     */
+    private static void extractVideoLinksFromJson(String json, String pageUrl, Set<String> videoUrls) {
+        // 正则表达式匹配MP4链接
+        Pattern pattern = Pattern.compile("(https?://[^\"\\s]+\\.mp4[^\"\\s]*)");
+        var matcher = pattern.matcher(json);
+        while (matcher.find()) {
+            String url = matcher.group(1).replace("\\", "");
+            if (url.lastIndexOf("\"") > 0) {
+                url = url.substring(0, url.lastIndexOf("\""));
+            }
+            if (url.endsWith(".mp4")) {
+                videoUrls.add(url);
+            }
+        }
+    }
+
+    /**
+     * 下载单个视频文件
+     */
+    private static void downloadVideoFile(String videoUrl, String sourcePageUrl, Path outputDir) throws Exception {
+        System.out.println("  URL: " + videoUrl);
+        
+        try {
+            Request request = new Request.Builder()
+                    .url(videoUrl)
+                    .header("User-Agent", USER_AGENT)
+                    .build();
+
+            Response response = client.newCall(request).execute();
+
+            if (!response.isSuccessful()) {
+                throw new RuntimeException("下载失败 (HTTP " + response.code() + ")");
+            }
+
+            // 确定文件保存路径
+            Path filePath = generateVideoFilePath(videoUrl, sourcePageUrl, outputDir);
+            Files.createDirectories(filePath.getParent());
+
+            // 下载文件
+            try (InputStream is = response.body().byteStream();
+                 OutputStream os = Files.newOutputStream(filePath)) {
+                
+                byte[] buffer = new byte[8192];
+                int bytesRead;
+                long totalBytes = 0;
+                long fileSize = response.body().contentLength();
+                
+                while ((bytesRead = is.read(buffer)) != -1) {
+                    os.write(buffer, 0, bytesRead);
+                    totalBytes += bytesRead;
+                    
+                    // 显示下载进度
+                    if (fileSize > 0) {
+                        int progress = (int) ((totalBytes * 100) / fileSize);
+                        System.out.print("\r  进度: " + progress + "%");
+                    }
+                }
+                System.out.println("\r  ✓ 已保存: " + outputDir.relativize(filePath) + 
+                                 " (" + formatFileSize(totalBytes) + ")");
+            }
+
+            response.close();
+
+        } catch (Exception e) {
+            logger.error("下载视频失败: " + videoUrl, e);
+            throw e;
+        }
+    }
+
+    /**
+     * 生成视频文件保存路径
+     */
+    private static Path generateVideoFilePath(String videoUrl, String sourcePageUrl, Path outputDir) {
+        try {
+            // 获取视频原始文件名
+            String videoFileName = videoUrl.substring(videoUrl.lastIndexOf("/") + 1);
+            // 移除查询参数
+            if (videoFileName.contains("?")) {
+                videoFileName = videoFileName.substring(0, videoFileName.indexOf("?"));
+            }
+            
+            // 确保以.mp4结尾
+            if (!videoFileName.toLowerCase().endsWith(".mp4")) {
+                videoFileName += ".mp4";
+            }
+
+            // 根据源页面URL生成目录结构
+            Path pageDir = extractPageDirectory(sourcePageUrl, outputDir);
+            Files.createDirectories(pageDir);
+
+            // 避免重名
+            Path filePath = pageDir.resolve(videoFileName);
+            int counter = 1;
+            while (Files.exists(filePath)) {
+                String nameWithoutExt = videoFileName.substring(0, videoFileName.lastIndexOf(".mp4"));
+                String newFilename = nameWithoutExt + "_" + counter + ".mp4";
+                filePath = pageDir.resolve(newFilename);
+                counter++;
+            }
+
+            return filePath;
+
+        } catch (Exception e) {
+            // 异常情况下保存到根目录
+            String videoFileName = videoUrl.substring(videoUrl.lastIndexOf("/") + 1);
+            if (videoFileName.contains("?")) {
+                videoFileName = videoFileName.substring(0, videoFileName.indexOf("?"));
+            }
+            return outputDir.resolve(videoFileName.isEmpty() ? "video.mp4" : videoFileName);
+        }
+    }
+
+    /**
+     * 从页面URL提取目录结构
+     */
+    private static Path extractPageDirectory(String pageUrl, Path outputDir) {
+        try {
+            java.net.URL url = new java.net.URL(pageUrl);
+            String path = url.getPath();
+            
+            // 移除起始的 "/" 和末尾的 "/"
+            path = path.replaceAll("^/+", "").replaceAll("/+$", "");
+            
+            // 移除文件扩展名（如果有）
+            if (path.contains(".")) {
+                path = path.substring(0, path.lastIndexOf("/"));
+            }
+            
+            if (path.isEmpty() || path.equals("docs")) {
+                return outputDir.resolve("videos");
+            }
+            
+            // 生成目录路径
+            Path currentPath = outputDir;
+            String[] pathParts = path.split("/");
+            for (String part : pathParts) {
+                String sanitized = sanitizeFilename(part);
+                if (!sanitized.isEmpty()) {
+                    currentPath = currentPath.resolve(sanitized);
+                }
+            }
+            
+            return currentPath;
+
+        } catch (Exception e) {
+            return outputDir.resolve("videos");
+        }
+    }
+
+    /**
+     * 格式化文件大小
+     */
+    private static String formatFileSize(long bytes) {
+        if (bytes <= 0) return "0 B";
+        final String[] units = new String[]{"B", "KB", "MB", "GB"};
+        int digitGroups = (int) (Math.log10(bytes) / Math.log10(1024));
+        return String.format("%.2f %s", bytes / Math.pow(1024, digitGroups), units[digitGroups]);
+    }
+
+    /**
      * 检查是否是有效的文档链接
      */
     private static boolean isValidDocumentLink(String href, String baseUrl) {
+
         if (href == null || href.isEmpty()) {
             return false;
         }
@@ -490,14 +794,19 @@ public class VSCodeDocumentDownloader {
         System.out.println("║     VS Code 文档爬虫 v1.0                ║");
         System.out.println("╚══════════════════════════════════════════╝");
         System.out.println();
-        System.out.println("用法: java VSCodeDocumentDownloader <URL> [输出目录]");
+        System.out.println("用法: java VSCodeDocumentDownloader <URL> [输出目录] [选项]");
         System.out.println();
         System.out.println("参数:");
         System.out.println("  <URL>        - VS Code文档URL，例如: https://code.visualstudio.com/docs");
         System.out.println("  [输出目录]   - 文档保存的目录，默认为 ./vscode-docs");
+        System.out.println("  [选项]       - 可选项: --videos 表示下载MP4视频而非文档");
         System.out.println();
         System.out.println("示例:");
+        System.out.println("  # 下载文档");
         System.out.println("  java VSCodeDocumentDownloader https://code.visualstudio.com/docs ./my-docs");
+        System.out.println();
+        System.out.println("  # 下载视频");
+        System.out.println("  java VSCodeDocumentDownloader https://code.visualstudio.com/docs ./my-docs --videos");
         System.out.println();
     }
 }
