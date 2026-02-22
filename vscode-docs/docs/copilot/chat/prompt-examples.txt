@@ -1,0 +1,174 @@
+Prompt examples
+===============
+
+
+Try this
+--------
+Get started with agents
+Follow a hands-on tutorial to experience local, background, and cloud agents in VS Code.
+
+Start tutorial (/docs/copilot/agents/agents-tutorial)Prompt examples
+This article provides example prompts for chat in Visual Studio Code across different scenarios and agents. Use these examples as inspiration to craft effective prompts for your own development tasks.
+
+If you are new to using chat in VS Code, learn more about getting started with chat or review best practices for prompt crafting.
+
+
+General coding and technology questions
+---------------------------------------
+Use the Ask agent to get quick answers about coding concepts, technology topics, and general programming questions.
+
+[代码]
+What is a linked list?
+[/代码]
+[代码]
+Provide 3 ways to implement a search feature in React.
+[/代码]
+[代码]
+Explain the difference between async/await and promises.
+[/代码]
+
+Understanding and exploring your codebase
+-----------------------------------------
+Use the Ask agent with #codebase to understand how your project works, locate specific functionality, or explore code relationships.
+
+[代码]
+Explain how authentication works in #codebase
+[/代码]
+[代码]
+Where is the database connection string configured? #codebase
+[/代码]
+[代码]
+How do I build this #codebase?
+[/代码]
+[代码]
+Which testing framework is used for #calculator.test.js?
+[/代码]
+
+Code generation and editing
+---------------------------
+Use Agent for multi-file creation and inline chat (⌘I (Windows, Linux Ctrl+I)) for targeted, in-place edits.
+
+[代码]
+Add a login button and style it based on #styles.css
+[/代码]
+[代码]
+Create a meal-planning web app using React and Node.js
+[/代码]
+[代码]
+Refactor this code to use async/await
+[/代码]
+
+Testing and quality assurance
+-----------------------------
+Use Agent to generate tests or fix failing tests.
+
+[代码]
+Add unit tests for the user service.
+[/代码]
+[代码]
+Fix the failing tests #testFailure
+[/代码]
+
+Debugging and fixing issues
+---------------------------
+Use Agent for fixing issues across files, or Ask to understand the root cause first.
+
+[代码]
+Fix the issues in #problems
+[/代码]
+[代码]
+Why is this function returning undefined?
+[/代码]
+
+Working with source control
+---------------------------
+Use chat to work with your pending changes and generate release documentation.
+
+[代码]
+Summarize the #changes
+[/代码]
+[代码]
+Generate release notes based on the #changes
+[/代码]
+
+Working with external resources
+-------------------------------
+Use #fetch and #githubRepo to reference content from the web or GitHub repositories.
+
+[代码]
+How do I use the 'useState' hook in react 18? #fetch https://18.react.dev/reference/react/useState#usage
+[/代码]
+[代码]
+Build an API endpoint to fetch address info, use the template from #githubRepo contoso/api-templates
+[/代码]
+[代码]
+What are the top #extensions for this workspace?
+[/代码]
+
+Terminal and command-line tasks
+-------------------------------
+Use terminal inline chat to get help with shell commands and terminal operations.
+
+[代码]
+How do I install npm packages?
+[/代码]
+[代码]
+List the top 5 largest files in the src directory
+[/代码]
+[代码]
+undo the last git commit
+[/代码]
+
+Working with Jupyter notebooks
+------------------------------
+Use Agent to create, edit, and work with Jupyter notebooks.
+
+[代码]
+/newNotebook use pandas and seaborn to read and visualize the titanic dataset. Show key information from the dataset.
+[/代码]
+[代码]
+Create a notebook to read data from #housing.csv and plot the distribution of prices
+[/代码]
+[代码]
+Make sure the data is cleaned before visualizing and processing it
+[/代码]
+[代码]
+Show the correlation between different features in the dataset
+[/代码]
+
+Multi-turn conversation examples
+--------------------------------
+Chat supports follow-up prompts within the same session. Use multi-turn conversations to iterate on results and refine the AI's output.
+
+First prompt:
+
+[代码]
+Create a REST API with Express.js that has endpoints for users and products
+[/代码]
+Follow-up prompts:
+
+[代码]
+Add input validation and error handling to both endpoints
+[/代码]
+[代码]
+Now add unit tests for the validation logic
+[/代码]
+By building on earlier responses, the AI maintains context from the previous steps and generates more coherent code.
+
+
+Tips for crafting effective prompts
+-----------------------------------
+• Be specific: Include details about what you want to accomplish, the technologies to use, and the expected output format.
+• Add context: Use #-mentions to reference files, symbols, or context variables like #codebase, #changes, or #problems.
+• Iterate: Start with a simple prompt and refine it based on the response. Ask follow-up questions to improve the results.
+• Break down complex tasks: Instead of asking for everything at once, break large tasks into smaller, manageable steps.
+Learn more about best practices for crafting prompts and adding context to your prompts.
+
+
+Related resources
+-----------------
+• Chat overview
+• Add context to your chat prompt
+• Inline chat
+• Copilot Chat Cookbook in the GitHub documentation
+02/04/2026

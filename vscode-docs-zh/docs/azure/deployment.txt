@@ -1,0 +1,31 @@
+将应用程序部署到Azure
+===============================
+
+将应用程序部署到Azure
+Visual Studio Code可以使用Azure轻松地将应用程序部署到云中，我们还创建了演练来帮助你入门。
+
+无论您是全栈、后端、API开发人员还是DevOps工程师，您都可以找到所需的部署步骤。
+
+部署教程
+--------------------
+以下教程和主题介绍了通过Visual Studio Code创建应用并将其部署到Azure的不同方法：
+
+Tutorial(s)
+Description
+Framework / Language
+Deploy a static website (https://learn.microsoft.com/azure/static-web-apps/getting-started)Create, deploy, and update a static website
+Angular, Blazor, React, or Vue
+Deploy Node.js apps (/docs/nodejs/nodejs-deployment)Deploy web apps, containerized apps, or serverless code
+Node.js
+Deploy Python apps (/docs/python/python-on-azure)Deploy web apps, containerized apps, or serverless code
+Python
+Deploy Java apps (/docs/java/java-on-azure)Deploy web apps, Spring Boot apps, or serverless code
+Java
+You can find additional tutorials and walkthroughs on the Azure Developer Center, including language-specific articles for JavaScript and Node.js, Python, Java, and .NET.
+
+后续步骤
+----------
+•部署到Azure容器应用程序-在无服务器平台上运行微服务和容器化应用程序。
+• Visual Studio Code Azure扩展- Azure工具扩展包旨在在几分钟内将应用程序部署到Azure。
+•使用Docker -将您的应用程序放在Docker容器中，以便于重用和部署。
+2024年2月1日

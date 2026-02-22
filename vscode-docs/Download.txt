@@ -1,0 +1,30 @@
+Download Visual Studio Code
+===========================
+
+Download Visual Studio Code
+Free and built on open source. Integrated Git, debugging and extensions.
+
+User Installer
+x64 (#)Arm64 (#)System Installer
+x64 (#)Arm64 (#).zip
+x64 (#)Arm64 (#)CLI
+x64 (#)Arm64 (#).deb
+x64 (#)Arm32 (#)Arm64 (#).rpm
+x64 (#)Arm32 (#)Arm64 (#).tar.gz
+x64 (#)Arm32 (#)Arm64 (#)Snap
+Snap Store (https://snapcraft.io/code)CLI
+x64 (#)Arm32 (#)Arm64 (#).dmg
+Intel chip (#)Apple silicon (#)Universal (#)CLI
+Intel chip (#)Apple silicon (#)By downloading and using Visual Studio Code, you agree to the license terms and privacy statement.
+
+
+Want new features sooner?
+-------------------------
+Get the Insiders build instead.
+
+
+Use vscode.dev for quick edits online!
+--------------------------------------
+GitHub, Azure Repos, and local files.
+
+Get previous versions

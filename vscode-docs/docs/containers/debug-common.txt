@@ -1,0 +1,321 @@
+Debug containerized apps
+========================
+
+Debug containerized apps
+The Container Tools extension provides more support for debugging applications within containers, such as scaffolding launch.json configurations for attaching a debugger to applications running within a container.
+
+The Container Tools extension provides a docker debug configuration provider that manages how VS Code will launch an application and/or attach a debugger to the application in a running container. This provider is configured via entries within launch.json, with configuration being specific to each application platform supported by the provider.
+
+The Container Tools extension currently supports debugging Node.js, Python, and .NET applications within containers.
+
+
+Requirements
+------------
+Scaffolding or pasting a launch configuration into launch.json is not sufficient to build and debug a container. To successfully run a container launch configuration, you must have:
+
+• A Dockerfile.
+• docker-build and docker-run tasks in tasks.json.
+• A launch configuration that invokes these tasks.
+We recommend using the Containers: Add Docker Files to Workspace... command to create these items, if none of these assets already exist. If you already have a functional Dockerfile, we recommend using the Containers: Initialize for container debugging command to scaffold a launch configuration and container-related tasks.
+
+
+Node.js
+-------
+More information about debugging Node.js applications within containers can be found at Debug Node.js within a container.
+
+Example launch.json configuration for debugging a Node.js application:
+
+[代码]
+{
+  "configurations": [
+    {
+      "name": "Containers: Node.js Launch",
+      "type": "docker",
+      "request": "launch",
+      "preLaunchTask": "docker-run: debug",
+      "platform": "node"
+    }
+  ]
+}
+[/代码]
+
+Python
+------
+More information about debugging Python applications within containers can be found at Debug Python within a container.
+
+Example launch.json configuration for debugging a Python application:
+
+[代码]
+{
+  "configurations": [
+    {
+      "name": "Containers: Python - Django",
+      "type": "docker",
+      "request": "launch",
+      "preLaunchTask": "docker-run: debug",
+      "python": {
+        "pathMappings": [
+          {
+            "localRoot": "${workspaceFolder}",
+            "remoteRoot": "/app"
+          }
+        ],
+        "projectType": "django"
+      }
+    }
+  ]
+}
+[/代码]
+
+.NET
+----
+You can choose between two ways of building and debugging your project within containers:
+
+• With .NET SDK: If you are familiar with MSBuild or want to containerize your project without a Dockerfile, this is the recommended choice. Note: This option is only available for .NET SDK 7 and above and uses the dotnet publish command to build the image.
+• With a Dockerfile: If you prefer customizing your project with a Dockerfile, choose this option.
+For more details about these two options, refer to Debug .NET within containers.
+
+Example launch.json configuration for debugging a .NET application using Dockerfile:
+
+[代码]
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Containers: .NET Launch",
+      "type": "docker",
+      "request": "launch",
+      "preLaunchTask": "Run Container",
+      "netCore": {
+        "appProject": "${workspaceFolder}/project.csproj"
+      }
+    }
+  ]
+}
+[/代码]
+
+Configuration reference
+-----------------------
+Property
+Description
+[代码]
+containerName
+[/代码]
+Name of the container used for debugging.
+[代码]
+dockerServerReadyAction
+[/代码]
+Options for launching a browser to the container. Similar to serverReadyAction, but replaces container ports with host ports.
+[代码]
+removeContainerAfterDebug
+[/代码]
+Whether to remove the debug container after debugging.
+[代码]
+platform
+[/代码]
+The target platform for the application. Can be
+[代码]
+netCore
+[/代码]
+or
+[代码]
+node
+[/代码]
+.
+[代码]
+netCore
+[/代码]
+Options for debugging .NET projects in containers.
+[代码]
+node
+[/代码]
+Options for debugging Node.js projects in containers.
+[代码]
+python
+[/代码]
+Options for debugging Python projects in containers.
+
+dockerServerReadyAction object properties
+-----------------------------------------
+Property
+Description
+[代码]
+action
+[/代码]
+The action to take when the pattern is found. Can be
+[代码]
+debugWithChrome
+[/代码]
+or
+[代码]
+openExternally
+[/代码]
+.
+[代码]
+containerName
+[/代码]
+The container name to match the host port.
+[代码]
+pattern
+[/代码]
+The regex pattern to look for in Debug console output.
+[代码]
+uriFormat
+[/代码]
+The URI format to launch.
+[代码]
+webRoot
+[/代码]
+The root folder from which web pages are served. Used only when
+[代码]
+action
+[/代码]
+is set to
+[代码]
+debugWithChrome
+[/代码]
+.
+
+node object properties
+----------------------
+These properties are the same as those described in the VS Code documentation for attaching a debugger to Node.js applications. All properties passed in the node object will be passed on to the Node.js debug adaptor, even if not specifically listed below.
+
+Property
+Description
+Default
+[代码]
+port
+[/代码]
+Optional. The debug port to use.
+[代码]
+9229
+[/代码]
+[代码]
+address
+[/代码]
+Optional. TCP/IP address of the debug port.
+[代码]
+sourceMaps
+[/代码]
+Optional. Enable source maps by setting this to
+[代码]
+true
+[/代码]
+.
+[代码]
+outFiles
+[/代码]
+Optional. Array of glob patterns for locating generated JavaScript files.
+[代码]
+autoAttachChildProcesses
+[/代码]
+Optional. Track all subprocesses of debuggee and automatically attach to those that are launched in debug mode.
+[代码]
+timeout
+[/代码]
+Optional. When restarting a session, give up after this number of milliseconds.
+[代码]
+stopOnEntry
+[/代码]
+Optional. Break immediately when the program launches.
+[代码]
+localRoot
+[/代码]
+Optional. VS Code's root directory.
+The root workspace folder.
+[代码]
+remoteRoot
+[/代码]
+Optional. Node's root directory within the container.
+[代码]
+/usr/src/app
+[/代码]
+[代码]
+smartStep
+[/代码]
+Optional. Try to automatically step over code that doesn't map to source files.
+[代码]
+skipFiles
+[/代码]
+Optional. Automatically skip files covered by these glob patterns.
+[代码]
+trace
+[/代码]
+Optional. Enable diagnostic output.
+
+python object properties
+------------------------
+Property
+Description
+Default
+[代码]
+host
+[/代码]
+The host for remote debugging.
+[代码]
+port
+[/代码]
+The port for remote debugging.
+[代码]
+5678
+[/代码]
+[代码]
+pathMappings
+[/代码]
+Maps the project path between local machine and remote host.
+[代码]
+projectType
+[/代码]
+The type of your Python project,
+[代码]
+flask
+[/代码]
+for Flask projects,
+[代码]
+django
+[/代码]
+for Django,
+[代码]
+fastapi
+[/代码]
+for FastAPI, and general for others. The project type will be used to set the port and commands used for debugging.
+[代码]
+justMyCode
+[/代码]
+Debug only user-written code.
+[代码]
+django
+[/代码]
+Django debugging.
+[代码]
+false
+[/代码]
+[代码]
+jinja
+[/代码]
+Jinja template debugging (such as Flask).
+[代码]
+false
+[/代码]
+
+netCore object properties
+-------------------------
+Properties passed in the netCore object are generally passed on to the .NET debug adaptor, even if not specifically listed below. The complete list of debugger properties is in the OmniSharp VS Code extension documentation.
+
+Property
+Description
+[代码]
+appProject
+[/代码]
+The .NET project (.csproj, .fsproj, etc.) to debug.
+
+Next steps
+----------
+Read on to learn more about:
+
+• Debugging Node.js within containers
+• Debugging Python within containers
+• Debugging .NET within containers
+• Debugging with Docker Compose
+• Troubleshooting
+12/14/2023

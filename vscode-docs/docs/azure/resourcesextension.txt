@@ -1,0 +1,85 @@
+Azure Resources for Visual Studio Code
+======================================
+
+Azure Resources for Visual Studio Code
+The Azure Resources extension allows you to seamlessly view and manage your Azure resources directly within VS Code. It also provides the ability to authenticate and manage your Azure accounts and tenants.
+
+
+How to sign in to your Azure account
+------------------------------------
+The Azure Resources extension uses the built-in VS Code Microsoft authentication provider to authenticate with Azure. Sign in by selecting the Sign in to Azure… item in the Azure Resources view.
+
+
+
+You can also sign in using the Azure: Sign in command contributed by the Azure Resources extension.
+
+
+
+
+How to sign out
+---------------
+Sign out in the Accounts menu, located in the bottom left of your VS Code window.
+
+
+
+
+Filter subscriptions
+--------------------
+You can filter the displayed subscriptions, by selecting the filter icon on any subscription.
+
+
+
+The filtered subscriptions are stored in the
+
+azureResourceGroups.selectedSubscriptions
+• Open in VS Code
+• Open in VS Code Insiders
+setting.
+
+
+
+Accounts & Tenants view
+-----------------------
+Within the Azure Resources extension you can use the Accounts & Tenants view to manage and authenticate accounts and tenants.
+
+
+
+
+Filter out tenants
+------------------
+You can also filter out tenants by checking and unchecking tenants. This causes subscriptions within the Resources view and subscription filter to be filtered out, based on which tenants are checked/unchecked within the tenant’s view.
+
+
+Authenticate tenants
+--------------------
+In the Accounts & Tenants view, you can view all tenants associated with your accounts. Many tenants require multi-factor authentication (MFA) in order to access them. Tenants that require multi-factor authentication will have a sign-in button located to the right of the tenant when hovering over the tenant.
+
+
+
+You can authenticate specific tenants by navigating to the Accounts & Tenants view and either selecting the sign-in button located to the right of the tenant, or by simply checking an unauthenticated tenant.
+
+
+Multi-account support
+---------------------
+With the Accounts & Tenants view, you can sign into a new account by selecting the + icon in the right corner of the view.
+
+
+
+
+Using sovereign clouds
+----------------------
+To connect to a sovereign cloud, you can select the gear icon on the right side of the Accounts & Tenants view.
+
+This brings up a list of sovereign clouds to choose from.
+
+
+
+Once chosen, the
+
+Microsoft-sovereign-cloud.environment
+• Open in VS Code
+• Open in VS Code Insiders
+setting is automatically set. The Resources and Accounts & Tenants view also refreshes, allowing you to sign into your sovereign cloud account.
+
+
+5/5/2025

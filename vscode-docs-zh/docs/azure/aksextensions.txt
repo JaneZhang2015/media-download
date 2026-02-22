@@ -1,0 +1,159 @@
+VS Code中的AKS工具和诊断
+====================================
+
+VS Code中的AKS工具和诊断
+本文档将引导您了解可直接从Visual Studio Code与AKS群集交互的一些方法。 Azure Kubernetes服务是一项完全托管的Kubernetes服务。 Azure Kubernetes服务(AKS)提供无服务器的Kubernetes ，这是一种持续集成和持续交付(CI/CD)体验，具有企业级安全性和治理。 Azure Kubernetes服务(AKS)是一个用于自动部署、扩展和管理容器化应用程序的开源系统。
+
+我们将向您展示如何在AKS群集上运行诊断运行状况检查、启动AKS Periscope以进行更深入的故障排除、部署Azure Service Operator或生成GitHub Actions Starter Workflows。
+
+开始之前
+----------------
+AKS VS代码扩展对Kubernetes VS代码扩展有父级依赖。
+
+您需要下载Kubernetes VS Code扩展。
+
+您可以在现有AKS集群上遵循本指南，也可以创建AKS集群。
+
+安装Azure Kubernetes服务扩展
+-----------------------------------------------
+为了获得完全集成的Azure Kubernetes诊断体验，您可以安装Azure Kubernetes服务工具扩展。
+
+借助该扩展，您可以从VS Code环境中轻松查看和管理AKS集群。
+
+要安装Azure Kubernetes服务VS代码扩展，请打开扩展视图（⇧ ⌘ X （ Windows ， Linux Ctrl + Shift + X ） ）并搜索“AKS”。选择Microsoft Azure Kubernetes服务扩展。
+
+
+
+安装
+------------
+•下载并安装适用于VS Code的Azure Kubernetes服务扩展。
+•等待扩展完成安装，然后在出现提示时重新加载VS Code。
+•安装完成后，您将在“云”下看到一个名为“Azure”的部分。
+•通过选择“登录到Azure…”登录到Azure帐户
+
+
+
+功能
+--------
+使用Azure帐户成功登录后，可以在Azure订阅中名为Azure的部分下查看所有AKS群集。 右键单击AKS集群并选择菜单项以执行以下操作。
+
+在群集上运行AKS诊断：
+
+
+
+启动GitHub工作流程：
+
+
+
+运行Kubectl命令：
+
+
+
+合并到Kubeconfig
+---------------------
+右键单击AKS集群，然后选择Merge into Kubeconfig （合并到Kubeconfig ） ，将选定的AKS集群添加到活动的kubeconfig文件中。
+
+保存Kubeconfig
+---------------
+右键单击AKS集群并选择保存Kubeconfig ，将所选AKS集群的kubeconfig保存为新文件。
+
+AKS诊断
+---------------
+右键单击AKS群集并选择运行AKS诊断，以根据AKS群集的后端遥测显示诊断信息：
+
+•最佳实践
+•创建、升级、删除和缩放问题
+•身份与安全
+•网络和连接问题
+•节点健康状况
+要对AKS群集执行进一步检查以排除故障并获得推荐的解决方案，请选择页面顶部的AKS诊断链接，以打开选定群集的AKS诊断链接。 有关AKS诊断的更多信息，请访问AKS诊断概述。
+
+
+
+在Azure门户中导航到群集
+----------------------------------------------
+右键单击AKS群集并选择“在Azure门户中显示” ，以在Azure门户中打开群集的“概述”页面。
+
+显示AKS群集属性
+---------------------------
+右键单击AKS集群并选择显示属性，以显示AKS集群和代理池属性，如配置状态、fqdn、k8s版本，以及节点属性，如节点版本、vm类型、vm大小、o/s类型、o/s磁盘大小和节点配置状态。
+
+AKS潜望镜
+-------------
+右键单击AKS群集并选择运行AKS Periscope以从AKS群集提取详细诊断信息并将其导出到Azure存储帐户。 当您选择该选项时，将加载一个网络视图，您可以选择为收集的日志生成一个可下载的链接，以及一个7天到期的可共享链接。
+
+如果您没有看到所有节点的日志，则可能日志仍在上传。再次按生成链接按钮加载更多日志。
+
+有关更多信息，请访问AKS Periscope。
+
+
+
+配置存储帐户
+
+运行AKS Periscope要求您拥有与AKS群集的诊断设置关联的存储帐户。
+
+如果只有一个存储帐户与AKS集群的诊断设置关联，则默认情况下，收集的日志将存储在关联的存储帐户中。
+
+如果您有多个存储帐户与AKS群集的诊断设置相关联，则扩展程序将提示您选择用于保存收集日志的存储帐户。
+
+如果您没有在诊断设置中配置存储帐户，您可以按照以下说明启用它：
+
+•右键单击AKS群集，然后选择在Azure门户中显示。
+•在左侧导航栏的“监控”下选择“诊断设置”。
+•选择添加诊断设置。
+•输入名称，例如myAKSClusterLogs ，然后选择“存档到存储帐户”选项。
+•选择您选择的存储帐户。
+•在可用日志列表中，选择要启用的日志。 注意：产生的成本取决于你的存储帐户使用情况和Azure存储策略。 •准备就绪后，选择保存以启用所选日志的收集。
+有关诊断设置的更多信息，请访问创建诊断设置，将平台日志和指标发送到不同的目的地。
+
+安装Azure Service Operator
+------------------------------
+右键单击AKS群集，然后选择安装Azure服务运营商，以便在AKS群集上轻松部署最新版本的Azure服务运营商(ASO) ，并在Kubernetes中配置Azure资源。 选择此选项时，将提示你输入ASO在执行Azure资源操作时使用的服务主体。 此服务主体必须具有适当的权限（通常是合适范围内的参与者）。填写服务主体详细信息，然后选择“提交”以启动Azure Service Operator的安装。
+
+安装Azure Service Operator只能在从未安装ASO的AKS群集上执行。如果已手动启动安装，请按照Azure Service Operator上的说明完成。
+
+有关Azure Service Operator的详细信息，请访问Azure Service Operator （适用于Kubernetes ）。如果遇到有关Azure Service Operator的问题，请访问Azure Service Operator (ASO)疑难解答。
+
+
+
+创建GitHub工作流程
+----------------------
+右键单击AKS集群，然后选择创建GitHub工作流，轻松打开并创建工作流启动模板。 这有助于快速生成具有预填充资源组和群集名称的工作流模板：
+
+•入门工作流程
+• Helm工作流程
+• Kompose工作流程
+•自定义工作流程
+
+从Azure门户创建群集
+--------------------------------
+右键单击AKS订阅，然后选择从Azure门户创建群集，以轻松导航到Azure门户中的AKS创建群集页面。
+
+
+
+启动或停止AKS群集
+----------------------------
+右键单击AKS群集并选择显示属性以显示AKS群集属性。 在页面上，有一个停止/启动群集按钮来启动或停止群集。
+
+
+
+从AKS集群运行Kubectl命令
+------------------------------------------
+右键单击AKS集群，然后选择运行KubectlCommands以在集群上运行Kubectl命令。 目前，以下Kubectl命令可用：
+
+•描述服务
+•获取所有Pod
+• API资源
+•获取集群信息
+•获取节点
+•获取所有活动
+恭喜！您现在知道如何导航此VS代码扩展。
+
+后续步骤
+----------
+• Azure扩展- VS Code Marketplace为Azure和云提供了数百个扩展。
+• Azure Kubernetes服务诊断（预览）概述
+• Azure服务运营商-了解Azure服务运营商。
+• AKS潜望镜
+• GitHub AKS入门工作流程
+2022年12月2日

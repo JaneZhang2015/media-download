@@ -1,0 +1,34 @@
+Deploy Java Web Apps
+====================
+
+Deploy Java Web Apps
+The Azure Tools extension pack contains a rich set of extensions that make it easy to discover and interact with the cloud services that power your Java applications.
+
+The extension pack supports the following development workflows:
+
+• Deploy Java applications (including containers) to Azure App Service.
+• Deploy Spring microservices to Azure Spring Cloud.
+• Deploy serverless code to Azure Functions.
+
+
+If you are interested in a specific Azure service, you can also directly search for it on the Visual Studio Code Marketplace to see if there's an available extension.
+
+
+Deployment tutorials
+--------------------
+The following tutorials below walk you through the details. You can also check the Java Azure Developer's Center for all things on Azure for Java developers.
+
+Tutorial
+Description
+Related Tools
+Deploy Java web apps to Azure App Service (/docs/java/java-webapp)Deploy a web app to the cloud
+Apache Maven (https://maven.apache.org/download.cgi)
+Azure App Service (https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureappservice)Deploy Spring Boot apps to Azure Spring Apps (/docs/java/java-spring-apps)Deploy a Spring Boot application
+
+to Azure Spring Apps
+Apache Maven (https://maven.apache.org/download.cgi)
+Azure Spring Apps (https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-azurespringcloud)Create an Azure Functions project using Visual Studio Code (https://learn.microsoft.com/azure/azure-functions/create-first-function-vs-code-java)Deploy serverless code
+
+using Azure Functions
+Apache Maven (https://maven.apache.org/download.cgi)
+Azure Functions (https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions)10/18/2022

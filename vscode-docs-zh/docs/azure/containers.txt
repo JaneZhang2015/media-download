@@ -1,0 +1,96 @@
+Visual Studio Code中的容器
+================================
+
+Visual Studio Code中的容器
+使用容器工具扩展，可以轻松地在Visual Studio Code中生成、管理和部署容器化应用程序。
+
+此页面提供容器工具扩展功能的概述；使用侧面菜单了解有关感兴趣主题的更多信息。如果您刚刚开始进行容器开发，请先尝试使用Docker教程来了解Docker的关键概念。
+
+安装
+------------
+在您的计算机上安装Docker ，并将其添加到系统路径中。
+
+在Linux上，您还应为将用于运行VS Code的非root用户帐户启用Docker CLI。
+
+要安装扩展，请打开“扩展”视图（⇧ ⌘ X （ Windows、Linux Ctrl + Shift + X ） ） ，搜索用于筛选结果的容器工具，然后选择Microsoft编写的“容器工具”扩展。
+
+
+
+编辑Docker文件
+--------------------
+您可以在编辑Dockerfile和docker-compose.yml文件时单击“Space” （ Windows ， Linux Ctrl + Space ）来获取IntelliSense ，其中包含常见命令的完成和语法帮助。
+
+
+
+此外，还可以使用“问题”面板（⇧ ⌘ M （ Windows、Linux Ctrl + Shift + M ） ）查看Dockerfile和docker-compose.yml文件的常见错误。
+
+正在生成Docker文件
+-----------------------
+您可以通过打开命令面板(⇧⌘ P (Windows, Linux Ctrl + Shift + P))并使用Containers: Add Docker Files to Workspace命令将Docker文件添加到工作区。 该命令将生成Dockerfile和.dockerignore文件，并将它们添加到您的工作区。 该命令还会询问您是否也要添加Docker Compose文件，但这是可选的。
+
+扩展可以为大多数流行的开发语言（ C #、Node.js、Python、Ruby、Go和Java ）构建Docker文件，并相应地自定义生成的Docker文件。创建这些文件时，我们还会创建必要的工件，为Node.js、Python和.NET (C #)提供调试支持。
+
+容器资源管理器
+------------------
+Container Tools扩展将Container Explorer视图提供给VS Code。 容器资源管理器允许您检查和管理容器资产：容器、映像、卷、网络和容器注册表。 如果你已登录到Microsoft帐户，并且该帐户有权访问Azure订阅，则还可以浏览Azure容器注册表。
+
+右键单击菜单可访问每种资源类型的常用命令。
+
+
+
+您可以使用鼠标向上或向下拖动“容器资源管理器”窗格，并使用上下文菜单隐藏或显示它们。
+
+
+
+容器命令
+------------------
+许多最常见的与容器相关的命令都直接内置在命令面板中：
+
+
+
+您可以运行命令来管理镜像、网络、卷、镜像注册表和Docker Compose。此外， “容器：修剪系统”命令将删除停止的容器、悬挂的映像以及未使用的网络和卷。
+
+Docker Compose
+--------------
+Docker Compose允许您使用Docker定义和运行多容器应用程序。 我们的容器工具扩展中的撰写语言服务在创作docker-compose.yml文件时为您提供IntelliSense和选项卡完成功能。 按空格键（ Windows、Linux Ctrl +空格键）可查看有效的Compose指令列表。
+
+
+
+当您将鼠标悬停在Docker Compose YAML属性上时，我们还提供工具提示。
+
+
+
+虽然Compose Up允许您一次运行所有服务，但我们的新功能Compose Up - Select Services允许您选择要运行的服务的任意组合。
+
+
+
+撰写命令完成后，导航到容器资源管理器，以撰写组的形式查看服务。这允许您作为一个组启动、停止和查看每个服务的日志。
+
+
+
+使用图像注册表
+----------------------
+您可以从Azure容器注册表、Docker Hub、GitHub等显示内容并推送、拉取或删除图像：
+
+
+
+Azure容器注册表中的映像可以直接从VS Code部署到Azure应用服务或Azure容器应用。请参阅部署到Azure以开始使用。有关如何对注册表进行身份验证和使用注册表的详细信息，请参阅使用容器注册表。
+
+在容器内运行的调试服务
+---------------------------------------------
+可以调试使用在容器内运行的.NET (C #)和Node.js生成的服务。 该扩展提供了自定义任务，有助于在调试器下启动服务，并将调试器附加到正在运行的服务实例。 有关详细信息，请参阅调试容器化应用和自定义容器工具扩展。
+
+Azure CLI集成
+---------------------
+可以使用Container Images: Run Azure CLI命令在独立的基于Linux的容器中启动Azure CLI （命令行界面）。 这使您可以访问隔离环境中的完整Azure CLI命令集。 有关可用命令的详细信息，请参阅开始使用Azure CLI。
+
+后续步骤
+----------
+请继续阅读以了解更多信息
+
+•选择您的开发环境
+•在容器中构建和运行Node.js应用
+•在容器中构建和运行.NET应用
+•在Docker容器中调试应用
+•故障排除
+2023/12/1

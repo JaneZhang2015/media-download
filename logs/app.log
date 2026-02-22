@@ -1,0 +1,624 @@
+2026-02-22 14:07:41 [WARN ] i.g.b.wdm.versions.VersionDetector - Exception reading CfT URL ('https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json') to get version of chromedriver (Connection reset)
+2026-02-22 14:07:42 [WARN ] i.g.b.wdm.versions.VersionDetector - Exception reading https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_145 to get latest version of chromedriver (Connection reset)
+2026-02-22 14:08:03 [WARN ] i.g.b.wdm.versions.VersionDetector - Error reading versions.properties, using local instead
+2026-02-22 14:08:04 [WARN ] i.g.b.wdm.versions.VersionDetector - Exception reading CfT URL ('https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json') to get version of chromedriver (Connection reset)
+2026-02-22 14:08:04 [INFO ] i.g.bonigarcia.wdm.online.Downloader - Downloading https://storage.googleapis.com/chrome-for-testing-public/145.0.7632.77/win64/chromedriver-win64.zip
+2026-02-22 14:08:26 [INFO ] i.g.b.wdm.cache.ResolutionCache - Clearing WebDriverManager resolution cache
+2026-02-22 14:08:26 [WARN ] i.g.bonigarcia.wdm.WebDriverManager - There was an error managing chromedriver 145.0.7632.77 (Connection reset) ... trying again avoiding reading release from repository
+2026-02-22 14:08:26 [WARN ] i.g.bonigarcia.wdm.WebDriverManager - There was an error managing chromedriver (latest version) (For input string: "public") ... trying again using latest driver stored in cache
+2026-02-22 14:08:26 [INFO ] i.g.bonigarcia.wdm.WebDriverManager - Using chromedriver public (resolved driver for Chrome 145)
+2026-02-22 14:08:26 [ERROR] i.g.bonigarcia.wdm.WebDriverManager - There was an error managing chromedriver public (For input string: "public")
+java.lang.NumberFormatException: For input string: "public"
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.base/java.lang.Integer.parseInt(Integer.java:652)
+	at java.base/java.lang.Integer.parseInt(Integer.java:770)
+	at io.github.bonigarcia.wdm.managers.ChromeDriverManager.buildUrl(ChromeDriverManager.java:178)
+	at io.github.bonigarcia.wdm.managers.ChromeDriverManager.buildUrl(ChromeDriverManager.java:155)
+	at io.github.bonigarcia.wdm.WebDriverManager.download(WebDriverManager.java:1282)
+	at io.github.bonigarcia.wdm.WebDriverManager.manage(WebDriverManager.java:1199)
+	at io.github.bonigarcia.wdm.WebDriverManager.fallback(WebDriverManager.java:1461)
+	at io.github.bonigarcia.wdm.WebDriverManager.handleException(WebDriverManager.java:1442)
+	at io.github.bonigarcia.wdm.WebDriverManager.manage(WebDriverManager.java:1205)
+	at io.github.bonigarcia.wdm.WebDriverManager.handleException(WebDriverManager.java:1435)
+	at io.github.bonigarcia.wdm.WebDriverManager.manage(WebDriverManager.java:1205)
+	at io.github.bonigarcia.wdm.WebDriverManager.setup(WebDriverManager.java:427)
+	at com.media.MediaDownloaderPro.downloadMediaWithSelenium(MediaDownloaderPro.java:60)
+	at com.media.MediaDownloaderPro.main(MediaDownloaderPro.java:44)
+2026-02-22 14:14:26 [INFO ] i.g.bonigarcia.wdm.WebDriverManager - Using chromedriver public (resolved driver for Chrome 145)
+2026-02-22 14:14:26 [WARN ] i.g.bonigarcia.wdm.WebDriverManager - There was an error managing chromedriver public (For input string: "public") ... trying again using latest driver stored in cache
+2026-02-22 14:14:26 [INFO ] i.g.bonigarcia.wdm.WebDriverManager - Using chromedriver public (resolved driver for Chrome 145)
+2026-02-22 14:14:26 [ERROR] i.g.bonigarcia.wdm.WebDriverManager - There was an error managing chromedriver public (For input string: "public")
+java.lang.NumberFormatException: For input string: "public"
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.base/java.lang.Integer.parseInt(Integer.java:652)
+	at java.base/java.lang.Integer.parseInt(Integer.java:770)
+	at io.github.bonigarcia.wdm.managers.ChromeDriverManager.buildUrl(ChromeDriverManager.java:177)
+	at io.github.bonigarcia.wdm.managers.ChromeDriverManager.buildUrl(ChromeDriverManager.java:154)
+	at io.github.bonigarcia.wdm.WebDriverManager.download(WebDriverManager.java:1262)
+	at io.github.bonigarcia.wdm.WebDriverManager.manage(WebDriverManager.java:1183)
+	at io.github.bonigarcia.wdm.WebDriverManager.fallback(WebDriverManager.java:1430)
+	at io.github.bonigarcia.wdm.WebDriverManager.handleException(WebDriverManager.java:1408)
+	at io.github.bonigarcia.wdm.WebDriverManager.manage(WebDriverManager.java:1189)
+	at io.github.bonigarcia.wdm.WebDriverManager.setup(WebDriverManager.java:426)
+	at com.media.MediaDownloaderPro.downloadMediaWithSelenium(MediaDownloaderPro.java:63)
+	at com.media.MediaDownloaderPro.main(MediaDownloaderPro.java:44)
+2026-02-22 14:14:27 [WARN ] i.g.b.wdm.versions.VersionDetector - Exception reading CfT URL ('https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json') to get version of chromedriver (Connection reset)
+2026-02-22 14:14:27 [WARN ] i.g.b.wdm.versions.VersionDetector - Exception reading https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_145 to get latest version of chromedriver (Connection reset)
+2026-02-22 14:14:28 [WARN ] i.g.b.wdm.versions.VersionDetector - Exception reading CfT URL ('https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json') to get version of chromedriver (Connection reset)
+2026-02-22 14:14:28 [WARN ] i.g.b.wdm.versions.VersionDetector - Exception reading https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_STABLE to get latest version of chromedriver (Connection reset)
+2026-02-22 14:14:28 [INFO ] i.g.bonigarcia.wdm.online.Downloader - Downloading https://storage.googleapis.com/chrome-for-testing-public/145.0.7632.77/win64/chromedriver-win64.zip
+2026-02-22 14:14:30 [INFO ] i.g.bonigarcia.wdm.online.Downloader - Extracting driver from compressed file chromedriver-win64.zip
+2026-02-22 14:14:30 [INFO ] i.g.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\zhang\.cache\selenium\chromedriver\win64\145.0.7632.77\chromedriver.exe
+2026-02-22 14:19:32 [INFO ] i.g.bonigarcia.wdm.WebDriverManager - Using chromedriver public (resolved driver for Chrome 145)
+2026-02-22 14:19:32 [WARN ] i.g.bonigarcia.wdm.WebDriverManager - There was an error managing chromedriver public (For input string: "public") ... trying again using latest driver stored in cache
+2026-02-22 14:19:32 [INFO ] i.g.bonigarcia.wdm.WebDriverManager - Using chromedriver public (resolved driver for Chrome 145)
+2026-02-22 14:19:32 [ERROR] i.g.bonigarcia.wdm.WebDriverManager - There was an error managing chromedriver public (For input string: "public")
+java.lang.NumberFormatException: For input string: "public"
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.base/java.lang.Integer.parseInt(Integer.java:652)
+	at java.base/java.lang.Integer.parseInt(Integer.java:770)
+	at io.github.bonigarcia.wdm.managers.ChromeDriverManager.buildUrl(ChromeDriverManager.java:177)
+	at io.github.bonigarcia.wdm.managers.ChromeDriverManager.buildUrl(ChromeDriverManager.java:154)
+	at io.github.bonigarcia.wdm.WebDriverManager.download(WebDriverManager.java:1262)
+	at io.github.bonigarcia.wdm.WebDriverManager.manage(WebDriverManager.java:1183)
+	at io.github.bonigarcia.wdm.WebDriverManager.fallback(WebDriverManager.java:1430)
+	at io.github.bonigarcia.wdm.WebDriverManager.handleException(WebDriverManager.java:1408)
+	at io.github.bonigarcia.wdm.WebDriverManager.manage(WebDriverManager.java:1189)
+	at io.github.bonigarcia.wdm.WebDriverManager.setup(WebDriverManager.java:426)
+	at com.media.MediaDownloaderPro.downloadMediaWithSelenium(MediaDownloaderPro.java:63)
+	at com.media.MediaDownloaderPro.main(MediaDownloaderPro.java:44)
+2026-02-22 14:19:52 [WARN ] i.g.b.wdm.versions.VersionDetector - Error reading commands.properties, using local instead
+2026-02-22 14:19:52 [WARN ] i.g.b.wdm.versions.VersionDetector - Exception reading CfT URL ('https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json') to get version of chromedriver (Connection reset)
+2026-02-22 14:19:52 [INFO ] i.g.bonigarcia.wdm.WebDriverManager - Using chromedriver 145.0.7632.77 (resolved driver for Chrome 145)
+2026-02-22 14:19:53 [INFO ] i.g.bonigarcia.wdm.online.Downloader - Downloading https://storage.googleapis.com/chrome-for-testing-public/145.0.7632.77/win64/chromedriver-win64.zip
+2026-02-22 14:20:13 [INFO ] i.g.bonigarcia.wdm.online.Downloader - Extracting driver from compressed file chromedriver-win64.zip
+2026-02-22 14:20:14 [INFO ] i.g.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\zhang\.cache\selenium\chromedriver\win64\145.0.7632.77\chromedriver.exe
+2026-02-22 14:24:55 [ERROR] com.media.VSCodeDocumentDownloader - ªÒ»°“≥√Ê“Ï≥£: https://code.visualstudio.com/mcp
+java.net.SocketTimeoutException: Read timed out
+	at java.base/java.net.SocketInputStream.socketRead0(Native Method)
+	at java.base/java.net.SocketInputStream.socketRead(SocketInputStream.java:115)
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:168)
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:140)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(SSLSocketInputRecord.java:448)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.bytesInCompletePacket(SSLSocketInputRecord.java:68)
+	at java.base/sun.security.ssl.SSLSocketImpl.readApplicationRecord(SSLSocketImpl.java:1104)
+	at java.base/sun.security.ssl.SSLSocketImpl$AppInputStream.read(SSLSocketImpl.java:823)
+	at okio.InputStreamSource.read(JvmOkio.kt:94)
+	at okio.AsyncTimeout$source$1.read(AsyncTimeout.kt:125)
+	at okio.RealBufferedSource.request(RealBufferedSource.kt:206)
+	at okio.RealBufferedSource.require(RealBufferedSource.kt:199)
+	at okhttp3.internal.http2.Http2Reader.nextFrame(Http2Reader.kt:89)
+	at okhttp3.internal.http2.Http2Reader.readConnectionPreface(Http2Reader.kt:73)
+	at okhttp3.internal.http2.Http2Connection$ReaderRunnable.invoke(Http2Connection.kt:617)
+	at okhttp3.internal.http2.Http2Connection$ReaderRunnable.invoke(Http2Connection.kt:609)
+	at okhttp3.internal.concurrent.TaskQueue$execute$1.runOnce(TaskQueue.kt:98)
+	at okhttp3.internal.concurrent.TaskRunner.runTask(TaskRunner.kt:116)
+	at okhttp3.internal.concurrent.TaskRunner.access$runTask(TaskRunner.kt:42)
+	at okhttp3.internal.concurrent.TaskRunner$runnable$1.run(TaskRunner.kt:65)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2026-02-22 14:27:46 [ERROR] com.media.VSCodeDocumentDownloader - ªÒ»°“≥√Ê“Ï≥£: https://code.visualstudio.com/docs/cpp/build-with-cmake
+java.net.ConnectException: Failed to connect to github.com/20.205.243.166:443
+	at okhttp3.internal.connection.RealConnection.connectSocket(RealConnection.kt:297)
+	at okhttp3.internal.connection.RealConnection.connect(RealConnection.kt:207)
+	at okhttp3.internal.connection.ExchangeFinder.findConnection(ExchangeFinder.kt:226)
+	at okhttp3.internal.connection.ExchangeFinder.findHealthyConnection(ExchangeFinder.kt:106)
+	at okhttp3.internal.connection.ExchangeFinder.find(ExchangeFinder.kt:74)
+	at okhttp3.internal.connection.RealCall.initExchange$okhttp(RealCall.kt:255)
+	at okhttp3.internal.connection.ConnectInterceptor.intercept(ConnectInterceptor.kt:32)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109)
+	at okhttp3.internal.cache.CacheInterceptor.intercept(CacheInterceptor.kt:95)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109)
+	at okhttp3.internal.http.BridgeInterceptor.intercept(BridgeInterceptor.kt:83)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109)
+	at okhttp3.internal.http.RetryAndFollowUpInterceptor.intercept(RetryAndFollowUpInterceptor.kt:76)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109)
+	at okhttp3.internal.connection.RealCall.getResponseWithInterceptorChain$okhttp(RealCall.kt:201)
+	at okhttp3.internal.connection.RealCall.execute(RealCall.kt:154)
+	at com.media.VSCodeDocumentDownloader.fetchPage(VSCodeDocumentDownloader.java:374)
+	at com.media.VSCodeDocumentDownloader.downloadSingleDocument(VSCodeDocumentDownloader.java:171)
+	at com.media.VSCodeDocumentDownloader.downloadDocumentation(VSCodeDocumentDownloader.java:88)
+	at com.media.VSCodeDocumentDownloader.main(VSCodeDocumentDownloader.java:47)
+Caused by: java.net.ConnectException: Connection timed out: connect
+	at java.base/java.net.PlainSocketImpl.waitForConnect(Native Method)
+	at java.base/java.net.PlainSocketImpl.socketConnect(PlainSocketImpl.java:107)
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:399)
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:242)
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:224)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:403)
+	at java.base/java.net.Socket.connect(Socket.java:591)
+	at okhttp3.internal.platform.Platform.connectSocket(Platform.kt:128)
+	at okhttp3.internal.connection.RealConnection.connectSocket(RealConnection.kt:295)
+	... 19 common frames omitted
+2026-02-22 14:29:49 [ERROR] com.media.VSCodeDocumentDownloader - ªÒ»°“≥√Ê“Ï≥£: https://code.visualstudio.com/mcp
+java.net.ConnectException: Failed to connect to github.com/20.205.243.166:443
+	at okhttp3.internal.connection.RealConnection.connectSocket(RealConnection.kt:297)
+	at okhttp3.internal.connection.RealConnection.connect(RealConnection.kt:207)
+	at okhttp3.internal.connection.ExchangeFinder.findConnection(ExchangeFinder.kt:226)
+	at okhttp3.internal.connection.ExchangeFinder.findHealthyConnection(ExchangeFinder.kt:106)
+	at okhttp3.internal.connection.ExchangeFinder.find(ExchangeFinder.kt:74)
+	at okhttp3.internal.connection.RealCall.initExchange$okhttp(RealCall.kt:255)
+	at okhttp3.internal.connection.ConnectInterceptor.intercept(ConnectInterceptor.kt:32)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109)
+	at okhttp3.internal.cache.CacheInterceptor.intercept(CacheInterceptor.kt:95)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109)
+	at okhttp3.internal.http.BridgeInterceptor.intercept(BridgeInterceptor.kt:83)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109)
+	at okhttp3.internal.http.RetryAndFollowUpInterceptor.intercept(RetryAndFollowUpInterceptor.kt:76)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109)
+	at okhttp3.internal.connection.RealCall.getResponseWithInterceptorChain$okhttp(RealCall.kt:201)
+	at okhttp3.internal.connection.RealCall.execute(RealCall.kt:154)
+	at com.media.VSCodeDocumentDownloader.fetchPage(VSCodeDocumentDownloader.java:379)
+	at com.media.VSCodeDocumentDownloader.downloadSingleDocument(VSCodeDocumentDownloader.java:171)
+	at com.media.VSCodeDocumentDownloader.downloadDocumentation(VSCodeDocumentDownloader.java:88)
+	at com.media.VSCodeDocumentDownloader.main(VSCodeDocumentDownloader.java:47)
+Caused by: java.net.ConnectException: Connection timed out: connect
+	at java.base/java.net.PlainSocketImpl.waitForConnect(Native Method)
+	at java.base/java.net.PlainSocketImpl.socketConnect(PlainSocketImpl.java:107)
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:399)
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:242)
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:224)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:403)
+	at java.base/java.net.Socket.connect(Socket.java:591)
+	at okhttp3.internal.platform.Platform.connectSocket(Platform.kt:128)
+	at okhttp3.internal.connection.RealConnection.connectSocket(RealConnection.kt:295)
+	... 19 common frames omitted
+2026-02-22 14:30:36 [ERROR] com.media.VSCodeDocumentDownloader - ªÒ»°“≥√Ê“Ï≥£: https://code.visualstudio.com/docs/cpp/build-with-cmake
+java.net.ConnectException: Failed to connect to github.com/20.205.243.166:443
+	at okhttp3.internal.connection.RealConnection.connectSocket(RealConnection.kt:297)
+	at okhttp3.internal.connection.RealConnection.connect(RealConnection.kt:207)
+	at okhttp3.internal.connection.ExchangeFinder.findConnection(ExchangeFinder.kt:226)
+	at okhttp3.internal.connection.ExchangeFinder.findHealthyConnection(ExchangeFinder.kt:106)
+	at okhttp3.internal.connection.ExchangeFinder.find(ExchangeFinder.kt:74)
+	at okhttp3.internal.connection.RealCall.initExchange$okhttp(RealCall.kt:255)
+	at okhttp3.internal.connection.ConnectInterceptor.intercept(ConnectInterceptor.kt:32)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109)
+	at okhttp3.internal.cache.CacheInterceptor.intercept(CacheInterceptor.kt:95)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109)
+	at okhttp3.internal.http.BridgeInterceptor.intercept(BridgeInterceptor.kt:83)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109)
+	at okhttp3.internal.http.RetryAndFollowUpInterceptor.intercept(RetryAndFollowUpInterceptor.kt:76)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109)
+	at okhttp3.internal.connection.RealCall.getResponseWithInterceptorChain$okhttp(RealCall.kt:201)
+	at okhttp3.internal.connection.RealCall.execute(RealCall.kt:154)
+	at com.media.VSCodeDocumentDownloader.fetchPage(VSCodeDocumentDownloader.java:379)
+	at com.media.VSCodeDocumentDownloader.downloadSingleDocument(VSCodeDocumentDownloader.java:171)
+	at com.media.VSCodeDocumentDownloader.downloadDocumentation(VSCodeDocumentDownloader.java:88)
+	at com.media.VSCodeDocumentDownloader.main(VSCodeDocumentDownloader.java:47)
+Caused by: java.net.ConnectException: Connection timed out: connect
+	at java.base/java.net.PlainSocketImpl.waitForConnect(Native Method)
+	at java.base/java.net.PlainSocketImpl.socketConnect(PlainSocketImpl.java:107)
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:399)
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:242)
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:224)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:403)
+	at java.base/java.net.Socket.connect(Socket.java:591)
+	at okhttp3.internal.platform.Platform.connectSocket(Platform.kt:128)
+	at okhttp3.internal.connection.RealConnection.connectSocket(RealConnection.kt:295)
+	... 19 common frames omitted
+2026-02-22 14:35:11 [WARN ] com.media.TextTranslator - ∑≠“Î ß∞‹£¨◊¥Ã¨¬Î: 403
+2026-02-22 14:35:14 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:14 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:15 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:15 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:15 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:15 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:16 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:16 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:16 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:16 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:16 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:17 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:17 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:17 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:17 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:18 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:18 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:19 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:19 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:19 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:19 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:20 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:20 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:20 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:20 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:21 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:21 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:21 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:21 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:22 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:22 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:22 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:22 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:22 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:23 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:23 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:23 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:23 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:24 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:24 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:25 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:25 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:25 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:25 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:26 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:26 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:26 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:26 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:27 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:27 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:27 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:27 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:28 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:28 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:29 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:29 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:29 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:29 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:29 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:30 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:30 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:30 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:30 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:31 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:31 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:31 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:31 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:32 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:32 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:32 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:32 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:33 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:33 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:33 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:33 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:34 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:34 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:34 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:34 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:35 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:36 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:36 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:36 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:36 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:36 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:37 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:37 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:37 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:37 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:38 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:38 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:38 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:39 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:39 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:39 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:40 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:40 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:40 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:40 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:41 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:41 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:41 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:41 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:42 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:42 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:42 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:42 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:42 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:43 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:43 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:44 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:44 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:44 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:44 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:45 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:45 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:45 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:45 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:46 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:46 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:46 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:46 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:47 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:47 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:47 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:47 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:48 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:48 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:48 [ERROR] com.media.TextTranslator - ∑≠“Îπ˝≥Ã÷–≥ˆ¥Ì
+javax.net.ssl.SSLPeerUnverifiedException: Hostname api.mymemory.translated.net not verified (no certificates)
+	at okhttp3.internal.connection.RealConnection.connectTls(RealConnection.kt:396)
+	at okhttp3.internal.connection.RealConnection.establishProtocol(RealConnection.kt:337)
+	at okhttp3.internal.connection.RealConnection.connect(RealConnection.kt:209)
+	at okhttp3.internal.connection.ExchangeFinder.findConnection(ExchangeFinder.kt:226)
+	at okhttp3.internal.connection.ExchangeFinder.findHealthyConnection(ExchangeFinder.kt:106)
+	at okhttp3.internal.connection.ExchangeFinder.find(ExchangeFinder.kt:74)
+	at okhttp3.internal.connection.RealCall.initExchange$okhttp(RealCall.kt:255)
+	at okhttp3.internal.connection.ConnectInterceptor.intercept(ConnectInterceptor.kt:32)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109)
+	at okhttp3.internal.cache.CacheInterceptor.intercept(CacheInterceptor.kt:95)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109)
+	at okhttp3.internal.http.BridgeInterceptor.intercept(BridgeInterceptor.kt:83)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109)
+	at okhttp3.internal.http.RetryAndFollowUpInterceptor.intercept(RetryAndFollowUpInterceptor.kt:76)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109)
+	at okhttp3.internal.connection.RealCall.getResponseWithInterceptorChain$okhttp(RealCall.kt:201)
+	at okhttp3.internal.connection.RealCall.execute(RealCall.kt:154)
+	at com.media.TextTranslator.translateChunk(TextTranslator.java:203)
+	at com.media.TextTranslator.translateLongText(TextTranslator.java:183)
+	at com.media.TextTranslator.translateText(TextTranslator.java:147)
+	at com.media.TextTranslator.translateFile(TextTranslator.java:117)
+	at com.media.TextTranslator$1.visitFile(TextTranslator.java:82)
+	at com.media.TextTranslator$1.visitFile(TextTranslator.java:77)
+	at java.base/java.nio.file.Files.walkFileTree(Files.java:2724)
+	at java.base/java.nio.file.Files.walkFileTree(Files.java:2796)
+	at com.media.TextTranslator.translateFilesInDirectory(TextTranslator.java:77)
+	at com.media.TextTranslator.main(TextTranslator.java:44)
+2026-02-22 14:35:49 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:50 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:50 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:50 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:50 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:51 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:51 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:51 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:51 [WARN ] com.media.TextTranslator - ∑≠“Î ß∞‹£¨◊¥Ã¨¬Î: 403
+2026-02-22 14:35:52 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:52 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:52 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:52 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:53 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:53 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:53 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:53 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:53 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:54 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:54 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:54 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:55 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:55 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:55 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:56 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:56 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:56 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:56 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:57 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:57 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:57 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:57 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:58 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:58 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:58 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:58 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:58 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:59 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:59 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:59 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:35:59 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:00 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:00 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:00 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:00 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:01 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:01 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:01 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:01 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:02 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:02 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:02 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:02 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:02 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:03 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:03 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:03 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:03 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:04 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:04 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:04 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:04 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:05 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:05 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:05 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:06 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:06 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:06 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:06 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:06 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:07 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:07 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:07 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:07 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:08 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:08 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:08 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:08 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:09 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:09 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:09 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:10 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:10 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:10 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:10 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:10 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:11 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:11 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:11 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:11 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:12 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:12 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:12 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:12 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:13 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:13 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:13 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:13 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:14 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:14 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:15 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:15 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:15 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:15 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:15 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:16 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:16 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:16 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:16 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:17 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:17 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:17 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:17 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:18 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:18 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:18 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:18 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:19 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:19 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:19 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:20 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:20 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:20 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:20 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:21 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:21 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:21 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:21 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:22 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:22 [ERROR] com.media.TextTranslator - ∑≠“Îπ˝≥Ã÷–≥ˆ¥Ì
+javax.net.ssl.SSLPeerUnverifiedException: Hostname api.mymemory.translated.net not verified (no certificates)
+	at okhttp3.internal.connection.RealConnection.connectTls(RealConnection.kt:396)
+	at okhttp3.internal.connection.RealConnection.establishProtocol(RealConnection.kt:337)
+	at okhttp3.internal.connection.RealConnection.connect(RealConnection.kt:209)
+	at okhttp3.internal.connection.ExchangeFinder.findConnection(ExchangeFinder.kt:226)
+	at okhttp3.internal.connection.ExchangeFinder.findHealthyConnection(ExchangeFinder.kt:106)
+	at okhttp3.internal.connection.ExchangeFinder.find(ExchangeFinder.kt:74)
+	at okhttp3.internal.connection.RealCall.initExchange$okhttp(RealCall.kt:255)
+	at okhttp3.internal.connection.ConnectInterceptor.intercept(ConnectInterceptor.kt:32)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109)
+	at okhttp3.internal.cache.CacheInterceptor.intercept(CacheInterceptor.kt:95)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109)
+	at okhttp3.internal.http.BridgeInterceptor.intercept(BridgeInterceptor.kt:83)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109)
+	at okhttp3.internal.http.RetryAndFollowUpInterceptor.intercept(RetryAndFollowUpInterceptor.kt:76)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.kt:109)
+	at okhttp3.internal.connection.RealCall.getResponseWithInterceptorChain$okhttp(RealCall.kt:201)
+	at okhttp3.internal.connection.RealCall.execute(RealCall.kt:154)
+	at com.media.TextTranslator.translateChunk(TextTranslator.java:203)
+	at com.media.TextTranslator.translateLongText(TextTranslator.java:175)
+	at com.media.TextTranslator.translateText(TextTranslator.java:147)
+	at com.media.TextTranslator.translateFile(TextTranslator.java:117)
+	at com.media.TextTranslator$1.visitFile(TextTranslator.java:82)
+	at com.media.TextTranslator$1.visitFile(TextTranslator.java:77)
+	at java.base/java.nio.file.Files.walkFileTree(Files.java:2724)
+	at java.base/java.nio.file.Files.walkFileTree(Files.java:2796)
+	at com.media.TextTranslator.translateFilesInDirectory(TextTranslator.java:77)
+	at com.media.TextTranslator.main(TextTranslator.java:44)
+2026-02-22 14:36:23 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:23 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:23 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:24 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:24 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:24 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:24 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:24 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:25 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:25 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:25 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:25 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:26 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:26 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:26 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:26 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:26 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:27 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:27 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:27 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:27 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:27 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:28 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:28 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:28 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:28 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:28 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:28 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:29 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:29 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:29 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:29 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:29 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:30 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:30 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:30 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:30 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:30 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:31 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:31 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:31 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:31 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:31 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:32 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:32 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:32 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:32 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:32 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:33 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:33 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:33 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:33 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:33 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:34 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:34 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:34 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:34 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:34 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:34 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:35 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:35 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:35 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:36 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:36 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:36 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:36 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:37 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:37 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:37 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:37 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:37 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:38 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:38 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:38 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:38 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:38 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:38 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:39 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:39 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:39 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:39 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:39 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:40 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:40 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:40 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:40 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:40 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:41 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:41 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:41 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:41 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:41 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:42 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:42 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:42 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:42 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:42 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:43 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:43 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:43 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:43 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:43 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:44 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:44 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:45 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:45 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:45 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:45 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429
+2026-02-22 14:36:45 [WARN ] com.media.TextTranslator - ∑≠“ÎAPI∑µªÿ¥ÌŒÛ: 429

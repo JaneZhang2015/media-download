@@ -1,0 +1,160 @@
+Build agents and prompts in AI Toolkit
+======================================
+
+Build agents and prompts in AI Toolkit
+Note
+Agent Builder was previously known as Prompt Builder. The updated name better reflects the feature's capabilities and its focus on building agents.
+
+Agent Builder in AI Toolkit streamlines the engineering workflow for building agents, including prompt engineering and integration with tools, such as MCP servers. It helps with common prompt engineering tasks:
+
+• Iterate and refine in real-time
+• Provide easy access to code for seamless Large Language Model (LLM) integration via APIs
+Agent Builder also enhances intelligent app's capabilities with tool use:
+
+• Connect to existing MCP servers
+• Build new MCP servers from scaffolds
+• Use function calling to connect to external APIs and services
+
+
+
+Create, edit, and test prompts
+------------------------------
+To access Agent Builder, use either of these options:
+
+• In the AI Toolkit view, select Agent Builder
+• Select Try in Agent Builder from a model card in the model catalog
+• In the My Resources view, under Models, right-select a model and choose Load in Agent Builder
+To test a prompt in Agent Builder, follow these steps:
+
+• If you haven't chosen a model, select one from the Model dropdown list in Agent Builder. You can also select Browse models to add a different model from the model catalog.
+• Enter the agent instructions. Use the Instructions field to tell your agent exactly what to do and how to do it. List the specific tasks, put them in order, and add any special instructions like tone or how to engage.
+• Iterate over your instructions by observing the model response and making changes to the instructions.
+• Use the syntax to add a dynamic value in instructions. For example, add a variable called user_name and use it in your instructions like this: Greet the user by their name: .
+• Provide a value for the variable in the Variables section.
+• Enter a prompt in the text box and select the send icon to test your agent.
+• Observe the model's response and make any necessary adjustments to your instructions.
+
+Use MCP servers
+---------------
+An MCP server is a tool that allows you to connect to external APIs and services, enabling your agent to perform actions beyond just generating text. For example, you can use an MCP server to access databases, call web services, or interact with other applications.
+
+Use the agent builder to discover and configure featured MCP servers, connect to existing MCP servers, or build a new MCP server from scaffold.
+
+Note
+Using MCP servers might require either Node or Python environment. AI Toolkit validates your environment to ensure that the required dependencies are installed. After installing, use the command npm install -g npx to install npx. If you prefer Python, we recommend using uv
+
+
+Configure a featured MCP server
+-------------------------------
+AI Toolkit provides a list of featured MCP servers that you can use to connect to external APIs and services.
+
+To configure an MCP server from featured selections, follow these steps:
+
+• In the Tool section, select + MCP Server, and then select MCP Server in the Quick Pick.
+• Select Could not find one? Browse more MCP servers from the dropdown list.
+• Choose an MCP server that meets your needs.
+• The MCP server is added to your agent in the MCP subsection under Tools.
+
+Select tools from VS Code
+-------------------------
+• In the Tool section, select + MCP Server, and then select MCP Server in the Quick Pick.
+• Select Use Tools Added in Visual Studio Code from the dropdown list.
+• Select tools you want to use.
+• An MCP Server tool called VSCode Tools is added to your agent in the MCP subsection under Tools.
+
+Use an existing MCP server
+--------------------------
+Tip
+Find MCP servers in these reference servers.
+
+To use an existing MCP server, follow these steps:
+
+• In the MCP Workflow section, select + Add MCP Server.
+• Or in Agent Builder, in the Tool section, select the + icon to add a tool for your agent, and then select + Add server in the Quick Pick.
+• Select MCP server in the Quick Pick.
+• Select Connect to an Existing MCP Server
+• Scroll down to the bottom of the dropdown list for the options to connect to the MCP server: Command (stdio): Run a local command that implements the MCP protocol HTTP (HTTP or server-sent events): Connect to a remote server that implements the MCP protocol
+• Select tools from the MCP server if there are multiple tools available.
+• Enter your prompts in the text box and select the send icon to test the connection.
+Here's an example of configuring the Filesystem server in AI Toolkit:
+
+• In the Tool section, select + MCP Server in the Quick Pick.
+• Select Could not find one? Browse more MCP servers from the dropdown list.
+• Scroll down to the bottom of the dropdown list and select Command (stdio) Note Some servers use the Python runtime and the uvx command. The process is the same as using the npx command.
+• Navigate to the Server instructions and locate the npx section.
+• Copy the command and args into the input box in AI Toolkit. For the Filesystem server example, it's npx -y @modelcontextprotocol/server-filesystem /Users/<username>/.aitk/examples
+• Input an ID for the server.
+• Optionally, enter extra environment variables. Some servers might require extra environment variables such as API keys. In this case, AI Toolkit fails at the stage of adding tools and a file mcp.json opens, where you can enter the required server details following the instructions provided by each server. After you complete the configuration: 1. Navigate back to Tool section and select + MCP Server 1. Select the server you configured from the dropdown list
+• Select the tools you want to use.
+
+
+AI Toolkit also provides a scaffold to help you build a new MCP server. The scaffold includes a basic implementation of the MCP protocol, which you can customize to suit your needs.
+
+
+Build a new MCP server
+----------------------
+To build a new MCP server, follow these steps:
+
+• In the MCP Workflow section, select Create New MCP Server.
+• Select a programming language from the dropdown list: Python or TypeScript
+• Select a folder to create the new MCP server project in.
+• Enter a name for the MCP server project.
+After you create the MCP server project, you can customize the implementation to suit your needs. The scaffold includes a basic implementation of the MCP protocol, which you can modify to add your own functionality.
+
+You can also use the Agent Builder to test the MCP server. The Agent Builder sends the prompts to the MCP server and displays the response.
+
+Follow these steps to test the MCP server:
+
+Note
+To run the MCP Server in your local dev machine, you need: Node.js or Python installed on your machine.
+
+• Open VS Code Debug panel. Select Debug in Agent Builder or press F5 to start debugging the MCP server.
+• The server is automatically connected to Agent Builder.
+• Use AI Toolkit Agent Builder to enable the agent with the following instructions: "You are a weather forecast professional that can tell weather information based on given location.".
+• Enter the prompt "What is the weather in Seattle?" in the prompt box and select the send icon to test the server with the prompt.
+• Observe the response from the MCP server in the Agent Builder.
+
+Use function calling
+--------------------
+Function calling connects your agent to external APIs and services.
+
+
+
+• In Tool, select Add Tool, then Custom Tool.
+• Choose how to add the tool: By Example: Add from a JSON schema example Upload Existing Schema: Upload a JSON schema file
+• Enter the tool name and description, then select Add.
+• Provide a mock response in the tool card.
+
+
+• Run the agent with the function calling tool.
+Use function calling tools in the Evaluation tab by entering mock responses for test cases.
+
+
+
+
+Integrate prompt engineering into your application
+--------------------------------------------------
+After experimenting with models and prompts, you can get into coding right away with the automatically generated Python code.
+
+
+
+To view the Python code, follow these steps:
+
+• Select View Code.
+• For models hosted on GitHub, select the inference SDK you want to use. AI Toolkit generates the code for the model you selected by using the provider's client SDK. For models hosted by GitHub, you can choose which inference SDK you want to use: Agent Framework SDK or the SDK from the model provider, such as OpenAI SDK or Mistral API.
+• The generated code snippet is shown in a new editor, where you can copy it into your application. To authenticate with the model, you usually need an API key from the provider. To access models hosted by GitHub, generate a personal access token (PAT) in your GitHub settings.
+
+What you learned
+----------------
+In this article, you learned how to:
+
+• Use the AI Toolkit for VS Code to test and debug your agents.
+• Discover, configure, and build MCP servers to connect your agents to external APIs and services.
+• Set up function calling to connect your agents to external APIs and services.
+• Implement structured output to deliver predictable results from your agents.
+• Integrate prompt engineering into your application with generated code snippets.
+
+Next steps
+----------
+• Run an evaluation job for the popular evaluators
+10/03/2025

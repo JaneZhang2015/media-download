@@ -1,0 +1,67 @@
+Working with MongoDB
+====================
+
+Working with MongoDB
+Visual Studio Code has great support for working with MongoDB databases, whether your own instance or with Azure DocumentDB (with MongoDB compatibility). With the DocumentDB for VS Code extension, you can create, manage, and query MongoDB databases from within VS Code.
+
+
+Install the extension
+---------------------
+MongoDB support for VS Code is provided by the DocumentDB for VS Code extension. To install the DocumentDB for VS Code extension, open the Extensions view by pressing ⇧⌘X (Windows, Linux Ctrl+Shift+X) and search for 'DocumentDB' to filter the results. Select the DocumentDB for VS Code extension.
+
+
+
+
+Connect to MongoDB
+------------------
+Once you've installed the DocumentDB for VS Code extension, you'll notice there is a new DocumentDB logo in the Activity Bar view. Select the DocumentDB logo and you'll see the Explorer.
+
+
+
+To connect to a MongoDB-compatible database:
+
+• Select Add New Connection in the DocumentDB Connection view
+• Next, choose to connect with a connection string or use Service Discovery options: Select Connection String, and then enter the connection string in the connection string Quick Pick. Select Service Discovery, choose your provider, and then select Save & Connect.
+Note: If you're not already signed in to Azure in VS Code, you'll be prompted to do so. This is required to use Service Discovery.
+
+Once connected, you can work with the MongoDB server, managing MongoDB Databases, Collections, and Documents.
+
+You can expand databases to view their collections in JSON/ Table/ Tree view with their schema and indexes.
+
+
+
+You can also attach a MongoDB shell to the active connection, simply by right-clicking on the connection itself and selecting Launch Shell.
+
+
+
+Note: Make sure the MongoDB shell (mongo or mongosh) is installed and is on your path. In the extension's settings, you can choose which shell you are using.
+
+
+Using Scrapbook
+---------------
+The DocumentDB Scrapbook is one of the most powerful features of this extension. It allows you to write, run, and save MongoDB commands directly within a VS Code editor, helping you prototype queries and scripts
+
+
+Create a New Scrapbook
+----------------------
+• In the DocumentDB Explorer, right-click the desired collection.
+• From the menu, click DocumentDB Scrapbook and select New DocumentDB Scrapbook.
+
+
+In a scrapbook, you can reference MongoDB entities and commands and you get rich IntelliSense as you type. Scrapbooks are useful for prototyping database operations and queries. Execute selected lines in the scrapbook queries with Run Command.
+
+
+
+
+MongoDB on Azure DocumentDB
+---------------------------
+You can easily create a managed MongoDB cluster on Azure for Free with Azure DocumentDB.
+
+
+Next steps
+----------
+• Index Advisor - Learn how to optimize your MongoDB performance with Index Advisor.
+• Azure Extensions - The Visual Studio Marketplace has hundreds of VS Code extensions for Azure and the cloud.
+• Deploying to Azure - Learn step-by-step how to deploy your application to Azure.
+• Working with Docker - Put your application in a Docker container for easy reuse and deployment.
+11/1/2025

@@ -1,0 +1,1265 @@
+GitHub Copilot in VS Code settings reference
+============================================
+
+GitHub Copilot in VS Code settings reference
+This article lists the configuration settings for GitHub Copilot in Visual Studio Code. For general information about working with settings in VS Code, refer to User and workspace settings.
+
+The team is continuously working on improving Copilot in VS Code and adding new features. Some features are still experimental. Try them out and share your feedback in our issues. Get more info about the feature lifecycle in VS Code.
+
+Tip
+If you don't yet have a Copilot subscription, you can use Copilot for free by signing up for the Copilot Free plan and get a monthly limit of inline suggestions and chat interactions.
+
+
+General settings
+----------------
+Setting and Description
+Default
+chat.commandCenter.enabled
+• Open in VS Code
+• Open in VS Code Insiders
+
+Controls whether to show the Chat menu in the VS Code title bar.
+[代码]
+true
+[/代码]
+workbench.settings.showAISearchToggle
+• Open in VS Code
+• Open in VS Code Insiders
+
+Enable searching settings with AI in the Settings editor.
+[代码]
+true
+[/代码]
+workbench.commandPalette.experimental.askChatLocation
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Controls where the Command Palette should ask chat questions.
+[代码]
+"chatView"
+[/代码]
+search.searchView.semanticSearchBehavior
+• Open in VS Code
+• Open in VS Code Insiders
+(Preview)
+
+Configure when to run semantic search in the Search view: manually (default), when no text search results are found, or always.
+[代码]
+"manual"
+[/代码]
+search.searchView.keywordSuggestions
+• Open in VS Code
+• Open in VS Code Insiders
+(Preview)
+
+Controls whether to show keyword suggestions in the Search view.
+[代码]
+false
+[/代码]
+
+Code editing settings
+---------------------
+Setting and Description
+Default
+github.copilot.editor.enableCodeActions
+• Open in VS Code
+• Open in VS Code Insiders
+
+Controls if Copilot commands are shown as Code Actions when available.
+[代码]
+true
+[/代码]
+github.copilot.renameSuggestions.triggerAutomatically
+• Open in VS Code
+• Open in VS Code Insiders
+
+Generate symbol renaming suggestions.
+[代码]
+true
+[/代码]
+github.copilot.enable
+• Open in VS Code
+• Open in VS Code Insiders
+
+Enable or disable inline suggestions for specified
+languages (/docs/languages/identifiers).
+[代码]
+{ "*": true, "plaintext": false, "markdown": false, "scminput": false }
+[/代码]
+github.copilot.nextEditSuggestions.enabled
+• Open in VS Code
+• Open in VS Code Insiders
+
+Enables
+next edit suggestions (/docs/copilot/ai-powered-suggestions#_next-edit-suggestions)(NES).
+[代码]
+true
+[/代码]
+editor.inlineSuggest.edits.allowCodeShifting
+• Open in VS Code
+• Open in VS Code Insiders
+
+Configure if NES is able to shift your code to show a suggestion.
+[代码]
+"always"
+[/代码]
+editor.inlineSuggest.edits.renderSideBySide
+• Open in VS Code
+• Open in VS Code Insiders
+
+Configure if NES can show larger suggestions side-by-side if possible, or if Copilot NES should always show larger suggestions below the relevant code.
+[代码]
+"auto"
+[/代码]
+github.copilot.nextEditSuggestions.fixes
+• Open in VS Code
+• Open in VS Code Insiders
+
+Enable next edit suggestions based on diagnostics (squiggles). For example, missing imports.
+[代码]
+true
+[/代码]
+editor.inlineSuggest.minShowDelay
+• Open in VS Code
+• Open in VS Code Insiders
+
+Time in milliseconds to wait before showing inline suggestions.
+[代码]
+0
+[/代码]
+
+Chat settings
+-------------
+Setting and Description
+Default
+github.copilot.chat.localeOverride
+• Open in VS Code
+• Open in VS Code Insiders
+
+Specify a locale for chat responses, such as
+[代码]
+en
+[/代码]
+or
+[代码]
+fr
+[/代码]
+.
+[代码]
+"auto"
+[/代码]
+github.copilot.chat.useProjectTemplates
+• Open in VS Code
+• Open in VS Code Insiders
+
+Use relevant GitHub projects as starter projects when using
+[代码]
+/new
+[/代码]
+.
+[代码]
+true
+[/代码]
+github.copilot.chat.scopeSelection
+• Open in VS Code
+• Open in VS Code Insiders
+
+Whether to prompt for a specific symbol scope if you use
+[代码]
+/explain
+[/代码]
+and the active editor has no selection.
+[代码]
+false
+[/代码]
+github.copilot.chat.terminalChatLocation
+• Open in VS Code
+• Open in VS Code Insiders
+
+Controls where chat queries from the terminal should be opened.
+[代码]
+"chatView"
+[/代码]
+chat.detectParticipant.enabled
+• Open in VS Code
+• Open in VS Code Insiders
+
+Enable chat participant detection in the Chat view.
+[代码]
+true
+[/代码]
+chat.checkpoints.enabled
+• Open in VS Code
+• Open in VS Code Insiders
+
+Enable or disable
+checkpoints (/docs/copilot/chat/chat-checkpoints)in the chat.
+[代码]
+true
+[/代码]
+chat.checkpoints.showFileChanges
+• Open in VS Code
+• Open in VS Code Insiders
+
+Show a summary of file changes at the end of each chat request.
+[代码]
+false
+[/代码]
+chat.editRequests
+• Open in VS Code
+• Open in VS Code Insiders
+
+Enable or disable
+editing previous chat requests (/docs/copilot/chat/chat-checkpoints#_edit-a-previous-chat-request).
+[代码]
+"inline"
+[/代码]
+chat.editor.fontFamily
+• Open in VS Code
+• Open in VS Code Insiders
+
+Font family in chat codeblocks.
+[代码]
+"default"
+[/代码]
+chat.editor.fontSize
+• Open in VS Code
+• Open in VS Code Insiders
+
+Font size in pixels in chat codeblocks.
+[代码]
+14
+[/代码]
+chat.editor.fontWeight
+• Open in VS Code
+• Open in VS Code Insiders
+
+Font weight in chat codeblocks.
+[代码]
+"default"
+[/代码]
+chat.editor.lineHeight
+• Open in VS Code
+• Open in VS Code Insiders
+
+Line height in pixels in chat codeblocks.
+[代码]
+0
+[/代码]
+chat.editor.wordWrap
+• Open in VS Code
+• Open in VS Code Insiders
+
+Toggle line wrapping in chat codeblocks.
+[代码]
+"off"
+[/代码]
+chat.editing.confirmEditRequestRemoval
+• Open in VS Code
+• Open in VS Code Insiders
+
+Ask for confirmation before undoing an edit.
+[代码]
+true
+[/代码]
+chat.editing.confirmEditRequestRetry
+• Open in VS Code
+• Open in VS Code Insiders
+
+Ask for confirmation before performing a redo of the last edit.
+[代码]
+true
+[/代码]
+chat.editing.autoAcceptDelay
+• Open in VS Code
+• Open in VS Code Insiders
+
+Configure a delay after which suggested edits are automatically accepted, use zero to disable auto-accept.
+[代码]
+0
+[/代码]
+chat.fontFamily
+• Open in VS Code
+• Open in VS Code Insiders
+
+Font family for Markdown content in chat.
+[代码]
+"default"
+[/代码]
+chat.fontSize
+• Open in VS Code
+• Open in VS Code Insiders
+
+Font size in pixels for Markdown content in chat.
+[代码]
+13
+[/代码]
+chat.notifyWindowOnConfirmation
+• Open in VS Code
+• Open in VS Code Insiders
+
+Enable or disable showing an OS notification window when user input is needed.
+[代码]
+true
+[/代码]
+chat.notifyWindowOnResponseReceived
+• Open in VS Code
+• Open in VS Code Insiders
+
+Enable or disable showing an OS notification window when a chat response is received.
+[代码]
+true
+[/代码]
+chat.requestQueuing.enabled
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Enable or disable
+message queuing (/docs/copilot/chat/chat-sessions#_send-messages-while-a-request-is-running)while a request is in progress. When enabled, you can queue, steer, or stop and send new messages during active requests.
+[代码]
+true
+[/代码]
+chat.requestQueuing.defaultAction
+• Open in VS Code
+• Open in VS Code Insiders
+
+Configure the default action for the
+Send
+button while a request is in progress:
+[代码]
+queue
+[/代码]
+adds the message to the queue,
+[代码]
+steer
+[/代码]
+signals the current request to yield.
+[代码]
+"queue"
+[/代码]
+chat.tools.terminal.autoReplyToPrompts
+• Open in VS Code
+• Open in VS Code Insiders
+
+Automatically reply to terminal prompts with a default answer.
+[代码]
+false
+[/代码]
+chat.tools.terminal.terminalProfile.<platform>
+• Open in VS Code
+• Open in VS Code Insiders
+
+Configure which terminal profile to use for chat terminal commands on each platform.
+[代码]
+""
+[/代码]
+chat.useAgentsMdFile
+• Open in VS Code
+• Open in VS Code Insiders
+
+Enable or disable using
+[代码]
+AGENTS.md
+[/代码]
+files as context for chat requests.
+[代码]
+true
+[/代码]
+chat.math.enabled
+• Open in VS Code
+• Open in VS Code Insiders
+(Preview)
+
+Enable or disable math rendering with
+KaTeX (https://katex.org)in chat.
+[代码]
+false
+[/代码]
+chat.viewTitle.enabled
+• Open in VS Code
+• Open in VS Code Insiders
+(Preview)
+
+Show the title of the current chat session in the chat header.
+[代码]
+true
+[/代码]
+github.copilot.chat.codesearch.enabled
+• Open in VS Code
+• Open in VS Code Insiders
+(Preview)
+
+When using
+[代码]
+#codebase
+[/代码]
+in the prompt, Copilot automatically discovers relevant files to be edited.
+[代码]
+false
+[/代码]
+chat.emptyState.history.enabled
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Show recent chat history in the empty state of the Chat view.
+[代码]
+false
+[/代码]
+chat.sendElementsToChat.enabled
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Enable sending elements from the
+integrated browser (/docs/debugtest/integrated-browser)to the chat view as context.
+[代码]
+true
+[/代码]
+chat.useNestedAgentsMdFiles
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Enable or disable using
+[代码]
+AGENTS.md
+[/代码]
+files in subfolders of your workspace as context for chat requests.
+[代码]
+false
+[/代码]
+github.copilot.chat.customOAIModels
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Configure custom OpenAI-compatible models for chat.
+[代码]
+[]
+[/代码]
+github.copilot.chat.edits.suggestRelatedFilesFromGitHistory
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Suggest related files from git history in chat context.
+[代码]
+true
+[/代码]
+
+Agent settings
+--------------
+Setting and Description
+Default
+chat.agent.enabled
+• Open in VS Code
+• Open in VS Code Insiders
+ORG
+
+Enable or disable using agents (requires VS Code 1.99 or later).
+[代码]
+true
+[/代码]
+chat.agent.maxRequests
+• Open in VS Code
+• Open in VS Code Insiders
+
+Maximum number of requests that Copilot can make using agents.
+[代码]
+25
+[/代码]
+github.copilot.chat.agent.autoFix
+• Open in VS Code
+• Open in VS Code Insiders
+
+Automatically diagnose and fix issues in the generated code changes.
+[代码]
+true
+[/代码]
+chat.mcp.access
+• Open in VS Code
+• Open in VS Code Insiders
+ORG
+
+Manage which Model Context Protocol (MCP) servers can be used in VS Code.
+[代码]
+true
+[/代码]
+chat.mcp.discovery.enabled
+• Open in VS Code
+• Open in VS Code Insiders
+
+Configure automatic discovery of MCP server configuration from other applications.
+[代码]
+false
+[/代码]
+chat.tools.terminal.autoApprove
+• Open in VS Code
+• Open in VS Code Insiders
+
+Control which terminal commands are
+auto-approved when using agents (/docs/copilot/agents/agent-tools#_automatically-approve-terminal-commands). Commands can be set to
+[代码]
+true
+[/代码]
+(auto-approve) or
+[代码]
+false
+[/代码]
+(require approval). Regular expressions can be used by wrapping patterns in
+[代码]
+/
+[/代码]
+characters.
+[代码]
+{ "rm": false, "rmdir": false, "del": false, "kill": false, "curl": false, "wget": false, "eval": false, "chmod": false, "chown": false, "/^Remove-Item\\b/i": false }
+[/代码]
+chat.tools.terminal.enableAutoApprove
+• Open in VS Code
+• Open in VS Code Insiders
+ORG
+
+Enable or disable automatic approval of terminal commands.
+[代码]
+true
+[/代码]
+chat.tools.terminal.enforceTimeoutFromModel
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Control whether to enforce the timeout value that the agent specifies for terminal commands. When enabled, the agent stops tracking the command after the specified duration and returns the output collected so far.
+[代码]
+true
+[/代码]
+chat.tools.terminal.ignoreDefaultAutoApproveRules
+• Open in VS Code
+• Open in VS Code Insiders
+
+Ignore the default auto-approve rules for terminal commands.
+[代码]
+false
+[/代码]
+chat.tools.global.autoApprove
+• Open in VS Code
+• Open in VS Code Insiders
+ORG
+
+Automatically approve all tools - this setting
+disables critical security protections (/docs/copilot/security).
+[代码]
+false
+[/代码]
+chat.tools.urls.autoApprove
+• Open in VS Code
+• Open in VS Code Insiders
+
+Control which
+URL requests and responses are auto-approved (/docs/copilot/agents/agent-tools#_url-approval).
+[代码]
+[]
+[/代码]
+chat.agent.thinking.collapsedTools
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Configure whether tool call details are collapsed or expanded by default in the chat conversation.
+[代码]
+always
+[/代码]
+chat.agent.thinkingStyle
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Configure how thinking tokens are presented in chat.
+[代码]
+fixedScrolling
+[/代码]
+chat.mcp.autoStart
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Automatically start MCP servers when MCP configuration changes are detected.
+[代码]
+newAndOutdated
+[/代码]
+chat.tools.eligibleForAutoApproval
+• Open in VS Code
+• Open in VS Code Insiders
+ORG
+(Experimental)
+
+Configure which tools require manual approval before they can be used by agents.
+[代码]
+[]
+[/代码]
+chat.tools.terminal.blockDetectedFileWrites
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Require user approval for terminal commands that perform file writes.
+[代码]
+outsideWorkspace
+[/代码]
+chat.tools.terminal.sandbox.enabled
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Enable
+sandboxing for terminal commands (/docs/copilot/agents/agent-tools#_sandbox-terminal-commands-experimental)executed by the agent (macOS and Linux only). When enabled, commands are auto-approved and have restricted file system and network access.
+[代码]
+false
+[/代码]
+chat.tools.terminal.sandbox.linuxFileSystem
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Configure file system access rules for sandboxed terminal commands on Linux. Supports
+[代码]
+allowWrite
+[/代码]
+,
+[代码]
+denyWrite
+[/代码]
+, and
+[代码]
+denyRead
+[/代码]
+properties.
+[代码]
+{}
+[/代码]
+chat.tools.terminal.sandbox.macFileSystem
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Configure file system access rules for sandboxed terminal commands on macOS. Supports
+[代码]
+allowWrite
+[/代码]
+,
+[代码]
+denyWrite
+[/代码]
+, and
+[代码]
+denyRead
+[/代码]
+properties.
+[代码]
+{}
+[/代码]
+chat.tools.terminal.sandbox.network
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Configure network access rules for sandboxed terminal commands. Supports
+[代码]
+allowedDomains
+[/代码]
+property to specify permitted domains.
+[代码]
+{}
+[/代码]
+github.copilot.chat.newWorkspaceCreation.enabled
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Enable the tool for scaffolding a new workspace in chat.
+[代码]
+true
+[/代码]
+github.copilot.chat.agent.thinkingTool
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Enable the thinking tool when using agents.
+[代码]
+false
+[/代码]
+github.copilot.chat.summarizeAgentConversationHistory.enabled
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Automatically summarize the agent conversation history when the context window is full.
+[代码]
+true
+[/代码]
+github.copilot.chat.virtualTools.threshold
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Tool count over which virtual tools should be used. Virtual tools group similar sets of tools together and enable the model to activate them on-demand. Enables you to go beyond the limit of 128 tools for a chat request.
+[代码]
+128
+[/代码]
+
+Agent sessions
+--------------
+The Agents view provides a centralized location for managing both local chat conversations and remote coding agent sessions. This view enables you to work with multiple AI sessions simultaneously, track their progress, and manage long-running tasks efficiently.
+
+Setting and Description
+Default
+workbench.startupEditor
+• Open in VS Code
+• Open in VS Code Insiders
+
+Configure the VS Code welcome page to act as your agent sessions entry point. Set to
+[代码]
+agentSessionsWelcomePage
+[/代码]
+to show the
+VS Code welcome page (/docs/copilot/chat/chat-sessions#_vs-code-welcome-page)with recent sessions, embedded chat, and quick actions.
+N/A
+chat.viewSessions.enabled
+• Open in VS Code
+• Open in VS Code Insiders
+
+Show the agent sessions list in the Chat view.
+[代码]
+true
+[/代码]
+chat.agentsControl.enabled
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Enable the
+agent status indicator (/docs/copilot/agents/overview#_agent-status-indicator-experimental)in the command center. Shows unread and in-progress session badges.
+[代码]
+true
+[/代码]
+chat.agentsControl.clickBehavior
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Configure the behavior when selecting the chat icon in the agent status indicator.
+[代码]
+"cycle"
+[/代码]
+(Insiders)
+
+[代码]
+"default"
+[/代码]
+(Stable)
+chat.unifiedAgentsBar.enabled
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Replace the command center search box with a unified chat and search control.
+[代码]
+false
+[/代码]
+
+Inline chat settings
+--------------------
+Setting and Description
+Default
+inlineChat.defaultModel
+• Open in VS Code
+• Open in VS Code Insiders
+
+Configure the default language model for editor inline chat. The model you select persists during the session, but resets to this configured default after VS Code reloads.
+N/A
+inlineChat.renderMode
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Configure how inline chat is displayed.
+[代码]
+hover
+[/代码]
+: shows inline chat in a floating overlay,
+[代码]
+zone
+[/代码]
+: shows inline chat in a dedicated zone in the editor.
+[代码]
+"hover"
+[/代码]
+inlineChat.finishOnType
+• Open in VS Code
+• Open in VS Code Insiders
+
+Finish an editor inline chat session when typing outside of changed regions.
+[代码]
+false
+[/代码]
+inlineChat.holdToSpeech
+• Open in VS Code
+• Open in VS Code Insiders
+
+Holding the editor inline chat keyboard shortcut (
+⌘I
+(Windows, Linux
+Ctrl+I
+)
+) automatically enables speech recognition.
+[代码]
+true
+[/代码]
+editor.inlineSuggest.syntaxHighlightingEnabled
+• Open in VS Code
+• Open in VS Code Insiders
+
+Show syntax highlighting for inline suggestions.
+[代码]
+true
+[/代码]
+inlineChat.affordance
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Show a visual hint when you select text to help start inline chat.
+[代码]
+off
+[/代码]
+: no hint,
+[代码]
+gutter
+[/代码]
+: shows in line number area,
+[代码]
+editor
+[/代码]
+: shows at cursor position with lightbulb.
+[代码]
+"off"
+[/代码]
+inlineChat.lineEmptyHint
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Show a hint for editor inline chat on an empty line.
+[代码]
+false
+[/代码]
+inlineChat.lineNaturalLanguageHint
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Trigger editor inline chat as soon as a line mostly consists of words.
+[代码]
+true
+[/代码]
+github.copilot.chat.editor.temporalContext.enabled
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Include recently viewed and edited files in the context for editor inline chat.
+[代码]
+false
+[/代码]
+
+Code review settings
+--------------------
+Setting and Description
+Default
+github.copilot.chat.reviewSelection.enabled
+• Open in VS Code
+• Open in VS Code Insiders
+(Preview)
+
+Enable code review with AI for an editor text selection.
+[代码]
+true
+[/代码]
+github.copilot.chat.reviewSelection.instructions
+• Open in VS Code
+• Open in VS Code Insiders
+(Preview)
+
+Custom instructions that are added to requests for reviewing the current editor selection with AI.
+[代码]
+[]
+[/代码]
+
+Custom instructions settings
+----------------------------
+Setting and Description
+Default
+chat.instructionsFilesLocations
+• Open in VS Code
+• Open in VS Code Insiders
+
+Locations to search for custom instructions files. Relative paths are resolved from the root folder(s) of your workspace. Supports glob patterns for file paths.
+[代码]
+{ ".github/instructions": true }
+[/代码]
+chat.includeApplyingInstructions
+• Open in VS Code
+• Open in VS Code Insiders
+
+Automatically add instruction files with a matching
+[代码]
+applyTo
+[/代码]
+pattern to chat requests.
+[代码]
+true
+[/代码]
+chat.includeReferencedInstructions
+• Open in VS Code
+• Open in VS Code Insiders
+
+Automatically add instruction files referenced via Markdown links to chat requests.
+[代码]
+false
+[/代码]
+github.copilot.chat.codeGeneration.useInstructionFiles
+• Open in VS Code
+• Open in VS Code Insiders
+
+Automatically add custom instructions from
+[代码]
+.github/copilot-instructions.md
+[/代码]
+to chat requests.
+[代码]
+true
+[/代码]
+github.copilot.chat.commitMessageGeneration.instructions
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Custom instructions for generating commit messages with AI.
+[代码]
+[]
+[/代码]
+github.copilot.chat.pullRequestDescriptionGeneration.instructions
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Custom instructions for generating pull request titles and descriptions with AI.
+[代码]
+[]
+[/代码]
+
+Reusable prompt files settings
+------------------------------
+Setting and Description
+Default
+chat.promptFilesLocations
+• Open in VS Code
+• Open in VS Code Insiders
+
+Locations to search for prompt files. Relative paths are resolved from the root folder(s) of your workspace. Supports glob patterns for file paths.
+[代码]
+{ ".github/prompts": true }
+[/代码]
+chat.promptFilesRecommendations
+• Open in VS Code
+• Open in VS Code Insiders
+
+Enable or disable prompt file recommendations when opening a new chat session. List of key-value pairs of prompt file name and boolean or when clause.
+[代码]
+[]
+[/代码]
+
+Custom agents settings
+----------------------
+Setting and Description
+Default
+chat.agentFilesLocations
+• Open in VS Code
+• Open in VS Code Insiders
+
+Locations to search for custom agent files. Relative paths are resolved from the root folder(s) of your workspace. Supports home directory expansion (
+[代码]
+~
+[/代码]
+) for user-specific paths.
+[代码]
+{ ".github/agents": true }
+[/代码]
+chat.customAgentInSubagent.enabled
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Enable using a custom agent with
+subagents (/docs/copilot/agents/subagents).
+[代码]
+false
+[/代码]
+github.copilot.chat.cli.customAgents.enabled
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Enable using custom agents from GitHub background agent sessions.
+[代码]
+false
+[/代码]
+
+Agent skills settings
+---------------------
+Setting and Description
+Default
+chat.useAgentSkills
+• Open in VS Code
+• Open in VS Code Insiders
+
+Enable support for
+agent skills (/docs/copilot/customization/agent-skills)in VS Code.
+[代码]
+true
+[/代码]
+chat.agentSkillsLocations
+• Open in VS Code
+• Open in VS Code Insiders
+
+Locations to search for agent skills. Relative paths are resolved from the root folder(s) of your workspace. Supports home directory expansion (
+[代码]
+~
+[/代码]
+) for user-specific paths.
+[代码]
+"chat.agentSkillsLocations": { ".github/skills": true,".claude/skills": true,"~/.copilot/skills": true,"~/.claude/skills": true}
+[/代码]
+
+Debugging settings
+------------------
+Setting and Description
+Default
+github.copilot.chat.startDebugging.enabled
+• Open in VS Code
+• Open in VS Code Insiders
+(Preview)
+
+Enables the experimental
+[代码]
+/startDebugging
+[/代码]
+intent in the Chat view to generate debugging configuration.
+[代码]
+true
+[/代码]
+github.copilot.chat.copilotDebugCommand.enabled
+• Open in VS Code
+• Open in VS Code Insiders
+(Preview)
+
+Enables the
+[代码]
+copilot-debug
+[/代码]
+terminal command.
+[代码]
+true
+[/代码]
+
+Testing settings
+----------------
+Setting and Description
+Default
+github.copilot.chat.generateTests.codeLens
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Show
+Generate tests
+code lens for symbols that are not covered by current test coverage information.
+[代码]
+false
+[/代码]
+github.copilot.chat.setupTests.enabled
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Enables the experimental
+[代码]
+/setupTests
+[/代码]
+intent and prompting in
+[代码]
+/tests
+[/代码]
+generation.
+[代码]
+true
+[/代码]
+
+Notebook settings
+-----------------
+Setting and Description
+Default
+notebook.experimental.generate
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Enable the
+Generate
+action to create code cells with notebook inline chat.
+[代码]
+true
+[/代码]
+github.copilot.chat.edits.newNotebook.enabled
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Enable the notebook tool in edit mode to create a new notebook file.
+[代码]
+true
+[/代码]
+github.copilot.chat.notebook.followCellExecution.enabled
+• Open in VS Code
+• Open in VS Code Insiders
+(Experimental)
+
+Show the currently executing cell in the editor.
+[代码]
+false
+[/代码]
+
+Accessibility settings
+----------------------
+Setting and Description
+Default
+inlineChat.accessibleDiffView
+• Open in VS Code
+• Open in VS Code Insiders
+
+Whether the Inline Chat also renders an accessible diff viewer for its changes.
+[代码]
+"auto"
+[/代码]
+accessibility.signals.chatRequestSent
+• Open in VS Code
+• Open in VS Code Insiders
+
+Plays a signal - sound (audio cue) and/or announcement (alert) - when a chat request is made.
+[代码]
+{ "sound": "auto", "announcement": "auto" }
+[/代码]
+accessibility.signals.chatResponseReceived
+• Open in VS Code
+• Open in VS Code Insiders
+
+Plays a sound / audio cue when the response has been received.
+[代码]
+{ "sound": "auto" }
+[/代码]
+accessibility.signals.chatEditModifiedFile
+• Open in VS Code
+• Open in VS Code Insiders
+
+Plays a sound / audio cue when the file has been modified by chat edits.
+[代码]
+{ "sound": "auto" }
+[/代码]
+accessibility.signals.chatUserActionRequired
+• Open in VS Code
+• Open in VS Code Insiders
+
+Plays a sound / audio cue when the user needs to take an action in chat.
+[代码]
+{ "sound": "auto", "announcement": "auto" }
+[/代码]
+accessibility.signals.lineHasInlineSuggestion
+• Open in VS Code
+• Open in VS Code Insiders
+
+Plays a sound / audio cue when the cursor is on a line that has an inline suggestion.
+[代码]
+{ "sound": "auto" }
+[/代码]
+accessibility.signals.nextEditSuggestion
+• Open in VS Code
+• Open in VS Code Insiders
+
+Plays a sound / audio cue when a next edit suggestion is available.
+[代码]
+{ "sound": "auto", "announcement": "auto" }
+[/代码]
+accessibility.verboseChatProgressUpdates
+• Open in VS Code
+• Open in VS Code Insiders
+
+Provide verbose updates about chat activity.
+[代码]
+true
+[/代码]
+accessibility.verbosity.inlineChat
+• Open in VS Code
+• Open in VS Code Insiders
+
+Provide information about how to access the inline editor chat accessibility help menu and alert with hints that describe how to use the feature when the input is focused.
+[代码]
+true
+[/代码]
+accessibility.verbosity.inlineCompletions
+• Open in VS Code
+• Open in VS Code Insiders
+
+Provide information about how to access the inline suggestions hover and Accessible View.
+[代码]
+true
+[/代码]
+accessibility.verbosity.panelChat
+• Open in VS Code
+• Open in VS Code Insiders
+
+Provide information about how to access the chat help menu when the chat input is focused.
+[代码]
+true
+[/代码]
+accessibility.voice.keywordActivation
+• Open in VS Code
+• Open in VS Code Insiders
+
+Controls whether the keyword phrase 'Hey Code' is recognized to start a voice chat session.
+[代码]
+"off"
+[/代码]
+accessibility.voice.autoSynthesize
+• Open in VS Code
+• Open in VS Code Insiders
+
+Controls whether a textual response should automatically be read out aloud when speech was used as input.
+[代码]
+"off"
+[/代码]
+accessibility.voice.speechTimeout
+• Open in VS Code
+• Open in VS Code Insiders
+
+The duration in milliseconds that voice speech recognition remains active after you stop speaking.
+[代码]
+1200
+[/代码]
+
+Related resources
+-----------------
+• Get a quick overview of the Copilot features in VS Code
+02/04/2026

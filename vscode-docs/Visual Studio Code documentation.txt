@@ -1,0 +1,43 @@
+Visual Studio Code documentation
+================================
+
+
+
+
+Thanks for downloading VS Code!
+-------------------------------
+Download not starting? Try this direct download link.
+
+
+
+
+Want a head start? Watch this 5min overview.
+--------------------------------------------
+Continue with Customize VS Code or browse all intro videos.
+
+Visual Studio Code documentation
+Get familiar with Visual Studio Code and learn how to code faster with AI.
+
+
+Getting started
+---------------
+Download Visual Studio Code Download VS Code for Windows, macOS, or Linux. (/download)Set up Visual Studio Code Follow the setup guide to install and configure VS Code for your OS. (/docs/setup/setup-overview)Getting started Discover the key features of VS Code with the step-by-step tutorial. (/docs/getstarted/getting-started)Code faster with AI Get started with GitHub Copilot, your AI coding assistant. (/docs/copilot/getting-started)
+Code with rich features
+-----------------------
+Code in any language Write code in your favorite programming language. (/docs/languages/overview)Version control Built-in support for git and many other source control providers. (/docs/sourcecontrol/overview)Debugging Debug your code without leaving your editor. (/docs/editor/debugging)Testing Run automated tests and view test coverage to validate your code. (/docs/editor/testing)Code anywhere Use a container, remote machine, or WSL as your development environment. (/docs/remote/remote-overview)Videos Watch the introduction videos to learn more. (/docs/getstarted/introvideos)
+Top Extensions
+--------------
+Enable additional languages, themes, debuggers, commands, and more. VS Code's growing community shares their secret sauce to improve your workflow.
+
+See more in the Marketplace
+
+
+Privacy
+-------
+By default, VS Code auto-updates to new versions, and collects usage data and crash report information. You may opt out of these defaults by disabling them as instructed below:
+
+How do I disable auto update?
+
+How do I disable crash reporting?
+
+How do I disable usage reporting?

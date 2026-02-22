@@ -1,0 +1,932 @@
+GitHub Copilot in VS Code cheat sheet
+=====================================
+
+GitHub Copilot in VS Code cheat sheet
+GitHub Copilot in Visual Studio Code provides AI-powered features to help you write code faster and with less effort. This cheat sheet provides a quick overview of the features for GitHub Copilot in Visual Studio Code.
+
+Tip
+If you don't yet have a Copilot subscription, you can use Copilot for free by signing up for the Copilot Free plan and get a monthly limit of inline suggestions and chat interactions.
+
+
+Essential keyboard shortcuts
+----------------------------
+• ⌃⌘I (Windows, Linux Ctrl+Alt+I) - Open the Chat view
+• ⌘I (Windows, Linux Ctrl+I) - Enter voice chat prompt in Chat view
+• ⌘N (Windows, Linux Ctrl+N) - Start a new chat session in Chat view
+• ⇧⌘I (Windows Ctrl+Shift+I, Linux Ctrl+Shift+Alt+I) - Switch to using agents in Chat view
+• ⌘I (Windows, Linux Ctrl+I) - Start inline chat in the editor or terminal
+• ⌘I (Windows, Linux Ctrl+I) (hold) - Start inline voice chat
+• Tab - Accept inline suggestion or navigate to the next edit suggestion
+• Escape - Dismiss inline suggestion
+
+Access AI in VS Code
+--------------------
+• Start a chat conversation using natural language Chat view (⌃⌘I (Windows, Linux Ctrl+Alt+I)): keep an ongoing chat conversation in the Secondary Side Bar Inline chat in the editor or terminal (⌘I (Windows, Linux Ctrl+I)): ask questions while you're in the flow Quick Chat (⇧⌥⌘L (Windows, Linux Ctrl+Shift+Alt+L)): ask quick questions without leaving your current task
+• AI in the editor Inline suggestions: get suggestions as you type, press Tab to accept a suggestion Edit context menu actions: access common AI actions like explaining or fixing code, generating tests, or reviewing a text selection Code actions: get editor code actions (lightbulb) to fix linting and compiler errors
+• Task-specific smart actions across VS Code Generate commit messages and pull request titles and descriptions Fix testing errors Semantic file search suggestions
+
+Chat experience in VS Code
+--------------------------
+Start a natural language chat conversation to get help with coding tasks. For example, ask to explain a block of code or a programming concept, refactor a piece of code, or implement a new feature. Get more information about using Copilot Chat.
+
+Action
+Description
+⌃⌘I
+(Windows, Linux
+Ctrl+Alt+I
+)
+Open the
+Chat view (/docs/copilot/chat/copilot-chat)in the Secondary Side Bar.
+⌘I
+(Windows, Linux
+Ctrl+I
+)
+Start
+inline chat (/docs/copilot/chat/inline-chat)to open chat in the editor or terminal.
+⇧⌥⌘L
+(Windows, Linux
+Ctrl+Shift+Alt+L
+)
+Open
+Quick Chat (/docs/copilot/chat/copilot-chat)without interrupting your workflow.
+⌘N
+(Windows, Linux
+Ctrl+N
+)
+Start a new chat session in the Chat view.
+Toggle between different
+agents (/docs/copilot/customization/custom-agents)in the Chat view.
+⌥⌘.
+(Windows, Linux
+Ctrl+Alt+.
+)
+Show the model picker to
+select a different AI model (/docs/copilot/customization/language-models)for chat.
+Context window control
+Visual indicator in the chat input box showing
+context window usage (/docs/copilot/chat/copilot-chat-context#_monitor-context-window-usage). Hover for total token count and a breakdown by category.
+[代码]
+Add Context...
+[/代码]
+Attach different types of
+context to your chat prompt (/docs/copilot/chat/copilot-chat-context).
+[代码]
+/
+[/代码]
+-command
+Use
+slash commands (#_slash-commands)for common tasks or invoke a
+reusable chat prompt (/docs/copilot/customization/overview).
+[代码]
+#
+[/代码]
+-mention
+Reference common tools or chat variables to
+provide context (/docs/copilot/chat/copilot-chat-context)within in your prompt.
+[代码]
+@
+[/代码]
+-mention
+Reference
+chat participants (#_chat-participants)to handle domain-specific requests.
+Edit (
+)
+Edit a previous chat prompt (/docs/copilot/chat/chat-checkpoints#_edit-a-previous-chat-request)and revert changes.
+History (
+)
+Access your history of chat sessions.
+Queue or steer
+Send a follow-up message (/docs/copilot/chat/chat-sessions#_send-messages-while-a-request-is-running)while a request is running. Choose to queue the message, steer the current request, or stop and send immediately.
+Voice (
+)
+Enter a chat prompt by using speech (voice chat). The chat response is read out aloud.
+KaTeX (https://katex.org)Render mathematical equations in chat responses. Enable with
+chat.math.enabled
+• Open in VS Code
+• Open in VS Code Insiders
+. Right-click on a math expression to copy the source expression.
+Mermaid (https://mermaid.js.org)Render Mermaid diagrams in chat responses. Enable with
+mermaid-chat.enabled
+• Open in VS Code
+• Open in VS Code Insiders
+. Right-click on a diagram to copy the source code.
+Tips
+
+• Use #-mentions to add more context to your chat prompt.
+• Use / commands and @ participants to get more precise and relevant answers.
+• Be specific, keep it simple, and ask follow-up questions to get the best results.
+• Choose an agent that fits your needs: Ask, Edit, Agent, or create a custom agent.
+
+Add context to your prompt
+--------------------------
+Get more relevant responses by providing context to your chat prompt. Choose from different context types, such as files, symbols, editor selections, source control commits, test failures, and more.
+
+Action
+Description
+Add Context
+Open a Quick Pick to select relevant context for your chat prompt. Choose from different context types, such as workspace files, symbols, current editor selection, terminal selection, and more.
+Drag & drop files
+Drag & drop a file from the Explorer or Search view, or drag an editor tab onto the Chat view.
+Drag & drop folders
+Drag & drop a folder onto the Chat view to attach the files within it.
+Drag & drop problem
+Drag & drop an item from the Problems panel.
+[代码]
+#<file|folder|symbol>
+[/代码]
+Type
+[代码]
+#
+[/代码]
+, followed by a file, folder, or symbol name, to add it as chat context.
+[代码]
+#
+[/代码]
+-mention
+Type
+[代码]
+#
+[/代码]
+, followed by a
+chat tool (#_chat-tools)to add a specific context type or tool.
+
+Chat tools
+----------
+Use tools in chat to accomplish specialized tasks while processing a user request. Examples of such tasks are listing the files in a directory, editing a file in your workspace, running a terminal command, getting the output from the terminal, and more.
+
+VS Code provides built-in tools, and you can extend chat with tools from MCP servers and extensions. Learn more about types of tools.
+
+The following table lists the VS Code built-in tools:
+
+Chat variable/Tool
+Description
+[代码]
+#changes
+[/代码]
+List of source control changes.
+[代码]
+#codebase
+[/代码]
+Perform a code search in the current workspace to automatically find relevant context for the chat prompt.
+[代码]
+#createAndRunTask
+[/代码]
+Create and run a new
+task (/docs/debugtest/tasks)in the workspace.
+[代码]
+#createDirectory
+[/代码]
+Create a new directory in the workspace.
+[代码]
+#createFile
+[/代码]
+Create a new file in the workspace.
+[代码]
+#edit
+[/代码]
+(tool set)
+Enable modifications in the workspace.
+[代码]
+#editFiles
+[/代码]
+Apply edits to files in the workspace.
+[代码]
+#editNotebook
+[/代码]
+Make edits to a notebook.
+[代码]
+#extensions
+[/代码]
+Search for and ask about VS Code extensions. For example, "how to get started with Python #extensions?"
+[代码]
+#fetch
+[/代码]
+Fetch the content from a given web page. For example, "Summarize #fetch code.visualstudio.com/updates."
+[代码]
+#fileSearch
+[/代码]
+Search for files in the workspace by using glob patterns and returns their path.
+[代码]
+#getNotebookSummary
+[/代码]
+Get the list of notebook cells and their details.
+[代码]
+#getProjectSetupInfo
+[/代码]
+Provide instructions and configuration for scaffolding different types of projects.
+[代码]
+#getTaskOutput
+[/代码]
+Get the output from running a
+task (/docs/debugtest/tasks)in the workspace.
+[代码]
+#getTerminalOutput
+[/代码]
+Get the output from running a terminal command in the workspace.
+[代码]
+#githubRepo
+[/代码]
+Perform a code search in a GitHub repo. For example, "what is a global snippet #githubRepo microsoft/vscode."
+[代码]
+#installExtension
+[/代码]
+Install a VS Code extension.
+[代码]
+#listDirectory
+[/代码]
+List files in a directory in the workspace.
+[代码]
+#new
+[/代码]
+Scaffold a new VS Code workspace, preconfigured with debug and run configurations.
+[代码]
+#newJupyterNotebook
+[/代码]
+Scaffold a new Jupyter notebook given a description.
+[代码]
+#newWorkspace
+[/代码]
+Create a new workspace.
+[代码]
+#openSimpleBrowser
+[/代码]
+Open the
+integrated browser (/docs/debugtest/integrated-browser)and preview a locally-deployed web app.
+[代码]
+#problems
+[/代码]
+Add workspace issues and problems from the
+Problems
+panel as context. Useful while fixing code or debugging.
+[代码]
+#readFile
+[/代码]
+Read the content of a file in the workspace.
+[代码]
+#readNotebookCellOutput
+[/代码]
+Read the output from a notebook cell execution.
+[代码]
+#runCell
+[/代码]
+Run a notebook cell.
+[代码]
+#runCommands
+[/代码]
+(tool set)
+Enable running commands in the terminal and reading the output.
+[代码]
+#runInTerminal
+[/代码]
+Run a shell command in the integrated terminal.
+[代码]
+#runNotebooks
+[/代码]
+(tool set)
+Enable running notebook cells.
+[代码]
+#runTask
+[/代码]
+Run an existing
+task (/docs/debugtest/tasks)in the workspace.
+[代码]
+#runTasks
+[/代码]
+(tool set)
+Enable running
+tasks (/docs/debugtest/tasks)in the workspace and reading the output.
+[代码]
+#runSubagent
+[/代码]
+Run a task in an isolated
+subagent context (/docs/copilot/agents/subagents). Helps to improve the context management of the main agent thread.
+[代码]
+#runTests
+[/代码]
+Run
+unit tests (/docs/debugtest/testing)in the workspace.
+[代码]
+#runVscodeCommand
+[/代码]
+Run a VS Code command. For example, "Enable zen mode #runVscodeCommand."
+[代码]
+#search
+[/代码]
+(tool set)
+Enable searching for files in the current workspace.
+[代码]
+#searchResults
+[/代码]
+Get the search results from the Search view.
+[代码]
+#selection
+[/代码]
+Get the current editor selection (only available when text is selected).
+[代码]
+#terminalLastCommand
+[/代码]
+Get the last run terminal command and its output.
+[代码]
+#terminalSelection
+[/代码]
+Get the current terminal selection.
+[代码]
+#testFailure
+[/代码]
+Get unit test failure information. Useful when running and diagnosing
+tests (/docs/debugtest/testing).
+[代码]
+#textSearch
+[/代码]
+Find text in files.
+[代码]
+#todos
+[/代码]
+Track implementation and progress of a chat request with a todo list.
+[代码]
+#usages
+[/代码]
+Combination of "Find All References", "Find Implementation", and "Go to Definition".
+[代码]
+#VSCodeAPI
+[/代码]
+Ask about VS Code functionality and extension development.
+
+Slash commands
+--------------
+Slash commands are shortcuts to specific functionality within the chat. You can use them to quickly perform actions, like fixing issues, generating tests, or explaining code.
+
+Slash command
+Description
+[代码]
+/doc
+[/代码]
+Generate code documentation comments from editor inline chat.
+[代码]
+/explain
+[/代码]
+Explain a code block, file, or programming concept.
+[代码]
+/fix
+[/代码]
+Ask to fix a code block or resolve compiler or linting errors.
+[代码]
+/tests
+[/代码]
+Generate tests for all or only the selected methods and functions in the editor.
+[代码]
+/setupTests
+[/代码]
+Get help setting up a testing framework for your code. Get recommendation for a relevant testing framework, steps to set up and configure it, and suggestions for VS Code testing extensions.
+[代码]
+/clear
+[/代码]
+Start a new chat session in the Chat view.
+[代码]
+/debug
+[/代码]
+Show the Chat Debug view to
+inspect the chat logs for troubleshooting (/docs/copilot/troubleshooting).
+[代码]
+/new
+[/代码]
+Scaffold a new VS Code workspace or file. Use natural language to describe the type of project/file you need, and preview the scaffolded content before creating it.
+[代码]
+/newNotebook
+[/代码]
+Scaffold a new Jupyter notebook based on your requirements. Use natural language to describe what the notebook should contain.
+[代码]
+/init
+[/代码]
+Generate or update workspace instructions (
+[代码]
+copilot-instructions.md
+[/代码]
+or
+[代码]
+AGENTS.md
+[/代码]
+) based on your project structure and coding patterns.
+[代码]
+/plan
+[/代码]
+Create a detailed implementation plan for a complex coding task. Research requirements, ask clarifying questions, and generate a structured plan with steps, verification, and decisions.
+[代码]
+/search
+[/代码]
+Generate a search query for the Search view. Use natural language to describe what you want to search for.
+[代码]
+/startDebugging
+[/代码]
+Generate a
+[代码]
+launch.json
+[/代码]
+debug configuration file and start a debugging session from the Chat view.
+[代码]
+/agents
+[/代码]
+Configure your
+custom agents (/docs/copilot/customization/custom-agents).
+[代码]
+/hooks
+[/代码]
+Configure your
+hooks (/docs/copilot/customization/hooks).
+[代码]
+/instructions
+[/代码]
+Configure your
+custom instructions (/docs/copilot/customization/custom-instructions).
+[代码]
+/prompts
+[/代码]
+Configure your
+reusable prompt files (/docs/copilot/customization/prompt-files).
+[代码]
+/skills
+[/代码]
+Configure your
+agent skills (/docs/copilot/customization/agent-skills).
+[代码]
+/<skill name>
+[/代码]
+Run an
+agent skill (/docs/copilot/customization/agent-skills)in chat. For example, if you have a skill file named
+[代码]
+webapp-testing.md
+[/代码]
+, you can run it by typing
+[代码]
+/webapp-testing
+[/代码]
+.
+[代码]
+/<prompt name>
+[/代码]
+Run a
+reusable prompt (/docs/copilot/customization/prompt-files)in chat.
+
+Chat participants
+-----------------
+Use chat participants to handle domain-specific requests in chat. Chat participants are prefixed with @ and can be used to ask questions about specific topics. VS Code provides built-in chat participants, such as @github, @terminal, and @vscode, and extensions can provide additional participants.
+
+Chat participant
+Description
+[代码]
+@github
+[/代码]
+Use the
+[代码]
+@github
+[/代码]
+participant to ask questions about GitHub repositories, issues, pull requests, and more. Get more information about the
+available GitHub skills (https://docs.github.com/en/copilot/using-github-copilot/asking-github-copilot-questions-in-your-ide#currently-available-skills).
+
+Example:
+[代码]
+@github What are all of the open PRs assigned to me?
+[/代码]
+,
+[代码]
+@github Show me the recent merged PRs from @dancing-mona
+[/代码]
+[代码]
+@terminal
+[/代码]
+Use the
+[代码]
+@terminal
+[/代码]
+participant to ask questions about the integrated terminal or shell commands.
+
+Example:
+[代码]
+@terminal list the 5 largest files in this workspace
+[/代码]
+[代码]
+@vscode
+[/代码]
+Use the
+[代码]
+@vscode
+[/代码]
+participant to ask questions about VS Code features, settings, and the VS Code extension APIs.
+
+Example:
+[代码]
+@vscode how to enable word wrapping?
+[/代码]
+[代码]
+@workspace
+[/代码]
+Use the
+[代码]
+@workspace
+[/代码]
+participant to ask questions about the current workspace.
+
+Example:
+[代码]
+@workspace how is authentication implemented?
+[/代码]
+
+Use agents
+----------
+When using agents, you can use natural language to specify a high-level task, and let AI autonomously reason about the request, plan the work needed, and apply the changes to your codebase. Agents use a combination of code editing and tool invocation to accomplish the task you specified. As it processes your request, it monitors the outcome of edits and tools, and iterates to resolve any issues that arise.
+
+Action
+Description
+⇧⌘I
+(Windows
+Ctrl+Shift+I
+, Linux
+Ctrl+Shift+Alt+I
+)
+Switch to using agents in the Chat view
+Tools (
+)
+Configure which tools are available when using agents. Select from built-in tools, MCP servers, and extension-provided tools.
+Auto-approve tools
+Enable
+auto-approval of all tools (/docs/copilot/agents/agent-tools#_auto-approve-all-tools)when using agents (
+chat.tools.autoApprove
+• Open in VS Code
+• Open in VS Code Insiders
+).
+Auto-approve terminal commands
+Enable
+auto-approval of terminal commands (/docs/copilot/agents/agent-tools#_automatically-approve-terminal-commands)when using agents (
+chat.tools.terminal.autoApprove
+• Open in VS Code
+• Open in VS Code Insiders
+).
+MCP
+Configure
+MCP servers (/docs/copilot/customization/mcp-servers)to extend agent capabilities and tools.
+Third-party agents (/docs/copilot/agents/third-party-agents)Use agents from external providers like Claude Agent (Preview) and OpenAI Codex with your Copilot subscription.
+Claude Agent
+(Preview)
+Start a Claude Agent session powered by Anthropic's Claude Agent SDK. Use
+[代码]
+/agents
+[/代码]
+,
+[代码]
+/hooks
+[/代码]
+, and
+[代码]
+/memory
+[/代码]
+slash commands for advanced workflows.
+Tips
+
+• Add extra tools when using agents to extend its capabilities.
+• Configure custom agents to define how the agent should operate, for example to implement a read-only planning mode.
+• Define custom instructions to guide agents on how to generate and structure code.
+• Try third-party agents like Claude Code or OpenAI Codex for alternative agentic coding experiences.
+
+Planning
+--------
+Use the plan agent in VS Code chat to create detailed implementation plans before starting complex coding tasks. Hand off the approved plan to an implementation agent to start coding.
+
+Action
+Description
+Plan agent
+Select the
+Plan
+agent from the agents dropdown or use the
+[代码]
+/plan
+[/代码]
+slash command to create a detailed implementation plan for complex coding tasks.
+Todo list
+View a todo list to track progress on complex tasks. Enable this with the
+[代码]
+setting(chat.tools.todos.showWidget
+[/代码]
+setting.
+
+Customize your chat experience
+------------------------------
+Customize your chat experience to generate responses that match your coding style, tools, and developer workflow. There are several ways to customize your chat experience in VS Code:
+
+• Custom instructions: Define common guidelines or rules for tasks like generating code, performing code reviews, or generating commit messages. Custom instructions describe the conditions in which the AI should operate (how a task should be done).
+• Reusable prompt files: Define reusable prompts for common tasks like generating code or performing a code review. Prompt files are standalone prompts that you can run directly in chat. They describe the task to be performed (what should be done).
+• Custom agents: Define how chat operates, which tools it can use, and how it interacts with the codebase. Each chat prompt is run within the boundaries of the agent, without having to configure tools and instructions for every request.
+Tips
+
+• Define language-specific instructions to get more accurate generated code for each language.
+• Store your instructions in your workspace to easily share them with your team.
+• Define reusable prompt files for common tasks to save time and help team members get started quickly.
+
+Editor AI features
+------------------
+As you're coding in the editor, you can use Copilot to generate inline suggestions as you're typing. Invoke Inline Chat to ask questions and get help from Copilot, while staying in the flow of coding. For example, ask Copilot to generate unit tests for a function or method. Get more information about inline suggestions and Inline Chat.
+
+Action
+Description
+Inline suggestions
+Start typing in the editor and get
+inline suggestions (/docs/copilot/ai-powered-suggestions)that match your coding style and take your existing code into account.
+Code comments
+Provide an inline suggestions prompt by writing instructions in a code comment.
+
+Example:
+[代码]
+# write a calculator class with methods for add, subtract, and multiply. Use static methods.
+[/代码]
+⌘I
+(Windows, Linux
+Ctrl+I
+)
+Start editor inline chat to send a chat request directly from the editor. Use natural language and reference chat variables and slash commands to provide context.
+F2
+Get AI-powered suggestions when renaming symbols in your code.
+Context menu actions
+Use the editor context menu to access common AI actions, such as explaining code, generating tests, reviewing code, and more. Right-click in the editor to open the context menu and select
+Generate Code
+.
+Code Actions (lightbulb)
+Select the Code Action (lightbulb) in the editor for fixing linting or compiler errors in your code.
+Tips
+
+• Use meaningful method or function names to get better inline suggestions quicker.
+• Select a code block to scope your Inline Chat prompt or attach relevant context by attaching files or symbols.
+• Use the editor context menu options to access common AI-powered actions directly from the editor.
+
+Source control and issues
+-------------------------
+Use AI to analyze the changes in your commits and pull requests and provide suggestions for commit messages and pull request descriptions.
+
+Action
+Description
+[代码]
+#changes
+[/代码]
+Add the current source control changes as context in your chat prompt.
+Commit as context
+Add a commit from the source control history as context in your chat prompt.
+Commit message
+Generate a commit message for the current changes in a source control commit.
+Merge conflicts (Experimental)
+Get help
+resolving Git merge conflicts with AI (/docs/sourcecontrol/overview#resolve-merge-conflicts-with-ai-experimental).
+Pull request description
+Generate a pull request title and description that correspond with the changes in your pull request.
+[代码]
+@github
+[/代码]
+Use the
+[代码]
+@github
+[/代码]
+participant in chat to ask about issues, pull requests, and more across your repositories. Get more information about the
+available GitHub skills (https://docs.github.com/en/copilot/using-github-copilot/asking-github-copilot-questions-in-your-ide#currently-available-skills).
+
+Example:
+[代码]
+@github What are all of the open PRs assigned to me?
+[/代码]
+,
+[代码]
+@github Show me the recent merged pr's from @dancing-mona
+[/代码]
+
+Review code (experimental)
+--------------------------
+Use AI to do a quick review pass of a code block or perform a review of uncommitted changes in your workspace. Review feedback shows up as comments in the editor, where you can apply the suggestions.
+
+Action
+Description
+Review Selection
+(Preview)
+Select a block of code, and select
+Generate Code
+>
+Review
+from the editor context menu for a quick review pass.
+Code Review
+Select the
+Code Review
+button in the Source Control view for a deeper review of all uncommitted changes.
+
+Search and settings
+-------------------
+Get semantically relevant search results in the Search view or help with searching for settings in the Settings editor.
+
+Action
+Description
+Settings search
+Include semantic search results in the Settings editor (
+workbench.settings.showAISearchToggle
+• Open in VS Code
+• Open in VS Code Insiders
+).
+Semantic search
+(Preview)
+Include semantic search results in the Search view (
+search.searchView.semanticSearchBehavior
+• Open in VS Code
+• Open in VS Code Insiders
+).
+
+Generate tests
+--------------
+VS Code can generate tests for functions and methods in your codebase by using slash commands in chat. Slash commands are a shorthand notation for common tasks that you can use in chat prompts. Type / followed by the command name to use a slash command.
+
+Action
+Description
+[代码]
+/tests
+[/代码]
+Generate tests for all or only the selected methods and functions in the editor. The generated tests are appended in an existing tests file or a new tests file is created.
+[代码]
+/setupTests
+[/代码]
+Get help setting up a testing framework for your code. Get recommendation for a relevant testing framework, steps to set up and configure it, and suggestions for VS Code testing extensions.
+[代码]
+/fixTestFailure
+[/代码]
+Ask Copilot for suggestions on how to fix failing tests.
+Test coverage
+(Experimental)
+Generate tests for functions and methods that are not yet covered by tests.
+Get more information (https://code.visualstudio.com/updates/v1_93#_generate-tests-based-on-test-coverage-experimental).
+Tips
+
+• Provide details about the testing frameworks or libraries to use.
+
+Debug and fix problems
+----------------------
+Use Copilot to help fix coding problems and to get help with configuring and starting debugging sessions in VS Code.
+
+Action
+Description
+[代码]
+/fix
+[/代码]
+Ask Copilot for suggestions on how to fix a block of code or how to resolve any compiler or linting errors in your code. For example, to help fix unresolved Node.js package names.
+[代码]
+/fixTestFailure
+[/代码]
+Ask Copilot for suggestions on how to fix failing tests.
+[代码]
+/startDebugging
+[/代码]
+(Experimental)
+Generate a
+[代码]
+launch.json
+[/代码]
+debug configuration file and
+start a debugging session (/docs/copilot/guides/debug-with-copilot)from the Chat view.
+[代码]
+copilot-debug
+[/代码]
+command
+Terminal command to help you
+debug your programs (/docs/copilot/guides/debug-with-copilot). Prefix a run command to start a debugging session for it (for example,
+[代码]
+copilot-debug python foo.py
+[/代码]
+).
+Tips
+
+• Provide additional information about the type of fix you need, such as optimizing the memory consumption or performance.
+• Watch for Copilot Code Actions in the editor that indicate suggestions for fixing problems in your code.
+
+Scaffold a new project
+----------------------
+Copilot can help you create a new project by generating a scaffold of the project structure, or generate a notebook based on your requirements.
+
+Action
+Description
+Agent
+Use
+agents (/docs/copilot/agents/local-agents)and use a natural language prompt to create a new project or file. For example,
+[代码]
+Create a svelte web application to track my tasks
+[/代码]
+.
+[代码]
+/new
+[/代码]
+Use the
+[代码]
+/new
+[/代码]
+command in the Chat view to scaffold a new project or a new file. Use natural language to describe the type of project/file you need, and preview the scaffolded content before creating it.
+
+Example:
+[代码]
+/new Express app using typescript and svelte
+[/代码]
+[代码]
+/newNotebook
+[/代码]
+Use the
+[代码]
+/newNotebook
+[/代码]
+command in the Chat view to generate a new Jupyter notebook based on your requirements. Use natural language to describe what the notebook should contain.
+
+Example:
+[代码]
+/newNotebook get census data and preview key insights with Seaborn
+[/代码]
+.
+
+Terminal
+--------
+Get help about shell commands and how to resolve errors when running commands in the terminal.
+
+Action
+Description
+⌘I
+(Windows, Linux
+Ctrl+I
+)
+Start terminal inline chat to use natural language for asking about shell commands and the terminal.
+
+Example:
+[代码]
+how many cores on this machine?
+[/代码]
+[代码]
+@terminal
+[/代码]
+Use the
+[代码]
+@terminal
+[/代码]
+participant in the Chat view to ask questions about the integrated terminal or shell commands.
+
+Example:
+[代码]
+@terminal list the 5 largest files in this workspace
+[/代码]
+[代码]
+@terminal /explain
+[/代码]
+Use the
+[代码]
+/explain
+[/代码]
+command in the Chat view to explain something from the terminal.
+
+Example:
+[代码]
+@terminal /explain top shell command
+[/代码]
+
+Python and notebook support
+---------------------------
+You can use chat to help you with Python programming tasks in the Native Python REPL and in Jupyter notebooks.
+
+Action
+Description
+Generate
+
+⌘I
+(Windows, Linux
+Ctrl+I
+)
+Start Inline Chat in a notebook to generate a codeblock or Markdown block.
+[代码]
+#
+[/代码]
+Attach variables from the Jupyter kernel in your chat prompt to get more relevant responses.
+Native REPL +
+⌘I
+(Windows, Linux
+Ctrl+I
+)
+Start Inline Chat in the Native Python REPL and run the generated commands.
+⌃⌘I
+(Windows, Linux
+Ctrl+Alt+I
+)
+Open the
+Chat view
+and use agents to make notebook edits.
+[代码]
+/newNotebook
+[/代码]
+Use the
+[代码]
+/newNotebook
+[/代码]
+command in the Chat view to generate a new Jupyter notebook based on your requirements. Use natural language to describe what the notebook should contain.
+
+Example:
+[代码]
+/newNotebook get census data and preview key insights with Seaborn
+[/代码]
+.
+
+Next steps
+----------
+• Tutorial: Get started with AI features in VS Code
+02/04/2026

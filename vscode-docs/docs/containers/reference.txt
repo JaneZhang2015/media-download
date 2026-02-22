@@ -1,0 +1,1593 @@
+Customize the Container Tools extension
+=======================================
+
+Customize the Container Tools extension
+The Container Tools extension includes several Visual Studio Code tasks to control the behavior of Docker build and run, and form the basis of container startup for debugging.
+
+The tasks allow for a great deal of control and customization. The final configuration is a combination of general defaults, platform-specific defaults (such as Node.js, Python, or .NET), and user input. User input takes precedence when it conflicts with defaults.
+
+All common features of Visual Studio Code tasks (for example, grouping tasks into compound tasks) are supported by Container Tools extension tasks. For more information on common task features and properties, see the Visual Studio Code custom task documentation.
+
+
+Docker build task
+-----------------
+The docker-build task builds images using the Docker command line (CLI). The task can be used by itself, or as part of a chain of tasks to run and/or debug an application within a container.
+
+The most important configuration settings for the docker-build task are dockerBuild and platform:
+
+• The dockerBuild object specifies parameters for the Docker build command. Values specified by this object are applied directly to Docker build CLI invocation.
+• The platform property is a hint that changes how the docker-build task determines Docker build defaults.
+See property reference for full list of all task properties.
+
+
+Platform support
+----------------
+While the docker-build task in tasks.json can be used to build any image, the extension has explicit support (and simplified configuration) for Node.js, Python, and .NET Core.
+
+
+Node.js (docker-build)
+----------------------
+Minimal configuration using defaults
+
+A Node.js-based image with no specific platform options can just set the platform property to node:
+
+[代码]
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build Node Image",
+      "type": "docker-build",
+      "platform": "node"
+    }
+  ]
+}
+[/代码]
+Platform defaults
+
+For Node.js-based images, the docker-build task infers the following options:
+
+Property
+Inferred Value
+[代码]
+dockerBuild.context
+[/代码]
+The same directory in which the
+[代码]
+package.json
+[/代码]
+resides.
+[代码]
+dockerBuild.dockerfile
+[/代码]
+The file
+[代码]
+Dockerfile
+[/代码]
+in the same directory as the
+[代码]
+package.json
+[/代码]
+resides.
+[代码]
+dockerBuild.tag
+[/代码]
+The application's
+[代码]
+name
+[/代码]
+property in
+[代码]
+package.json
+[/代码]
+(if defined), else the base name of the folder in which
+[代码]
+package.json
+[/代码]
+resides.
+[代码]
+dockerBuild.pull
+[/代码]
+Defaults to true in order to pull new base images before building.
+
+Python (docker-build)
+---------------------
+Minimal configuration using defaults
+
+A Python-based image with no specific platform options can just set the platform property to python:
+
+[代码]
+{
+  "tasks": [
+    {
+      "type": "docker-build",
+      "label": "docker-build",
+      "platform": "python"
+    }
+  ]
+}
+[/代码]
+Platform defaults
+
+For Python-based images, the docker-build task infers the following options:
+
+Property
+Inferred Value
+[代码]
+dockerBuild.context
+[/代码]
+The default context is the workspace folder.
+[代码]
+dockerBuild.dockerfile
+[/代码]
+The default
+[代码]
+Dockerfile
+[/代码]
+path will be in the root of the workspace folder.
+[代码]
+dockerBuild.tag
+[/代码]
+The base name of the root workspace folder.
+[代码]
+dockerBuild.pull
+[/代码]
+Defaults to true in order to pull new base images before building.
+
+.NET (docker-build)
+-------------------
+Minimal configuration using defaults
+
+When you build a .NET-based image, you can omit the platform property and just set the netCore object (platform is implicitly set to netcore when netCore object is present). Note that appProject is a required property:
+
+[代码]
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build Node Image",
+      "type": "docker-build",
+      "netCore": {
+        "appProject": "${workspaceFolder}/project.csproj"
+      }
+    }
+  ]
+}
+[/代码]
+Platform defaults
+
+For .NET-based images, the docker-build task infers the following options:
+
+Property
+Inferred Value
+[代码]
+dockerBuild.context
+[/代码]
+The root workspace folder.
+[代码]
+dockerBuild.dockerfile
+[/代码]
+The file
+[代码]
+Dockerfile
+[/代码]
+in the root workspace folder.
+[代码]
+dockerBuild.tag
+[/代码]
+The base name of the root workspace folder.
+[代码]
+dockerBuild.pull
+[/代码]
+Defaults to true in order to pull new base images before building.
+
+Build task reference
+--------------------
+Here are all properties available for configuring docker-build task. All properties are optional unless indicated otherwise.
+
+Property
+Description
+[代码]
+dockerBuild
+[/代码]
+Options for controlling the
+[代码]
+docker build
+[/代码]
+command executed (
+see below (#_dockerbuild-object-properties)).
+
+Required unless
+[代码]
+platform
+[/代码]
+is set.
+[代码]
+platform
+[/代码]
+Determines the platform: .NET (
+[代码]
+netcore
+[/代码]
+) or Node.js (
+[代码]
+node
+[/代码]
+) and default settings for
+[代码]
+docker build
+[/代码]
+command.
+[代码]
+node
+[/代码]
+Determines options specific for Node.js projects (
+see below (#_node-object-properties-dockerbuild-task)).
+[代码]
+python
+[/代码]
+There are no object properties for Python in the
+[代码]
+docker-build
+[/代码]
+task.
+[代码]
+netCore
+[/代码]
+Determines options specific for .NET projects (
+see below (#_netcore-object-properties-dockerbuild-task)).
+
+dockerBuild object properties
+-----------------------------
+Property
+Description
+[代码]
+docker build
+[/代码]
+CLI Equivalent
+[代码]
+context
+[/代码]
+The path to the build context.
+
+Required, unless inferred from the platform.
+[代码]
+PATH
+[/代码]
+[代码]
+dockerfile
+[/代码]
+The path to the Dockerfile.
+
+Required, unless inferred from the platform.
+[代码]
+-f
+[/代码]
+or
+[代码]
+--file
+[/代码]
+[代码]
+tag
+[/代码]
+The tag applied to the image.
+
+Required, unless inferred from the platform.
+[代码]
+-t
+[/代码]
+or
+[代码]
+--tag
+[/代码]
+[代码]
+buildArgs
+[/代码]
+Build arguments applied to the command line. This is a list of key-value pairs.
+[代码]
+--build-arg
+[/代码]
+[代码]
+labels
+[/代码]
+Labels added to the image. This is a list of key-value pairs (a JSON object).
+
+In addition to labels specified here, a label
+[代码]
+com.microsoft.created-by
+[/代码]
+, set to
+[代码]
+visual-studio-code
+[/代码]
+is added to the image. This behavior can be turned off by setting
+[代码]
+includeDefaults
+[/代码]
+property of the
+[代码]
+labels
+[/代码]
+object to false.
+[代码]
+--label
+[/代码]
+[代码]
+target
+[/代码]
+The target in the Dockerfile to build to.
+[代码]
+--target
+[/代码]
+[代码]
+pull
+[/代码]
+Whether or not to pull new base images before building.
+[代码]
+--pull
+[/代码]
+[代码]
+customOptions
+[/代码]
+Any extra parameters to add before the context argument. No attempt is made to resolve conflicts with other options or validate this option.
+(any)
+
+node object properties (docker-build task)
+------------------------------------------
+Property
+Description
+Default
+[代码]
+package
+[/代码]
+The path to the
+[代码]
+package.json
+[/代码]
+file associated with the Dockerfile and
+[代码]
+docker-build
+[/代码]
+task.
+The file
+[代码]
+package.json
+[/代码]
+in the root workspace folder.
+
+netCore object properties (docker-build task)
+---------------------------------------------
+Property
+Description
+[代码]
+appProject
+[/代码]
+The .NET project file (
+[代码]
+.csproj
+[/代码]
+,
+[代码]
+.fsproj
+[/代码]
+, etc.) associated with the Dockerfile and
+[代码]
+docker-build
+[/代码]
+task.
+
+Required always.
+
+Docker run task
+---------------
+The docker-run task in tasks.json creates and starts a container using the Docker command line (CLI). The task can be used by itself, or as part of a chain of tasks to debug an application within a container.
+
+The most important configuration settings for the docker-run task are dockerRun and platform:
+
+• The dockerRun object specifies parameters for the Docker run command. Values specified by this object are applied directly to Docker run CLI invocation.
+• The platform property is a hint that changes how the docker-run task determines Docker run defaults.
+See property reference for full list of all task properties.
+
+
+Docker run platform support
+---------------------------
+While the docker-run task can be used to run any Docker image, the extension has explicit support (and simplified configuration) for Node.js, Python, and .NET.
+
+
+Node.js (docker-run)
+--------------------
+Minimal configuration using defaults
+
+A Node.js-based image with no specific platform options can just set the platform property to node.
+
+[代码]
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run Node Image",
+      "node": "docker-run",
+      "platform": "node"
+    }
+  ]
+}
+[/代码]
+Platform defaults
+
+For Node.js-based images, the docker-run task infers the following options:
+
+Property
+Inferred Value
+[代码]
+dockerRun.command
+[/代码]
+Generated from the npm
+[代码]
+start
+[/代码]
+script in the
+[代码]
+package.json
+[/代码]
+(if it exists), else generated from the
+[代码]
+main
+[/代码]
+property in the
+[代码]
+package.json
+[/代码]
+.
+[代码]
+dockerRun.containerName
+[/代码]
+Derived from the application package name.
+[代码]
+dockerRun.image
+[/代码]
+The tag from a dependent
+[代码]
+docker-build
+[/代码]
+task (if one exists) or derived from the application package name, itself derived from the
+[代码]
+name
+[/代码]
+property within
+[代码]
+package.json
+[/代码]
+or the base name of the folder in which it resides.
+
+Python (docker-run)
+-------------------
+When building a Python-based image, you can omit the platform property and just set the python object (platform is implicitly set to python when python object is present)
+
+Minimal configuration for Django Apps
+
+[代码]
+{
+  "type": "docker-run",
+  "label": "docker-run: debug",
+  "dependsOn": ["docker-build"],
+  "python": {
+    "args": ["runserver", "0.0.0.0:8000", "--nothreading", "--noreload"],
+    "file": "path_to/manage.py"
+  }
+}
+[/代码]
+Minimal configuration for Flask Apps
+
+[代码]
+{
+  "type": "docker-run",
+  "label": "docker-run: debug",
+  "dependsOn": ["docker-build"],
+  "dockerRun": {
+    "env": {
+      "FLASK_APP": "path_to/flask_entry_point.py"
+    }
+  },
+  "python": {
+    "args": ["run", "--no-debugger", "--no-reload", "--host", "0.0.0.0", "--port", "5000"],
+    "module": "flask"
+  }
+}
+[/代码]
+Minimal configuration for General Apps
+
+[代码]
+{
+  "type": "docker-run",
+  "label": "docker-run: debug",
+  "dependsOn": ["docker-build"],
+  "python": {
+    "file": "path_to/app_entry_point.py"
+  }
+}
+[/代码]
+Platform defaults
+
+For Python-based images, the docker-run task infers the following options:
+
+Property
+Inferred Value
+[代码]
+dockerRun.command
+[/代码]
+Generated by the Python object and is called by the Python Debugger.
+[代码]
+dockerRun.containerName
+[/代码]
+Derived from the base name of the root workspace folder.
+[代码]
+dockerRun.image
+[/代码]
+The tag from a dependent docker-build task (if one exists) or derived from the base name of the root workspace folder.
+
+.NET (docker-run)
+-----------------
+Minimal configuration using defaults
+
+When building a .NET-based image, you can omit the platform property and just set the netCore object (platform is implicitly set to netcore when netCore object is present). Note that appProject is a required property:
+
+[代码]
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run .NET Core Image",
+      "type": "docker-run",
+      "netCore": {
+        "appProject": "${workspaceFolder}/project.csproj"
+      }
+    }
+  ]
+}
+[/代码]
+Platform defaults
+
+For .NET-based images, the docker-run task infers the following options:
+
+Property
+Inferred Value
+[代码]
+dockerRun.containerName
+[/代码]
+Derived from the base name of the root workspace folder.
+[代码]
+dockerRun.env
+[/代码]
+Adds the following environment variables as required:
+[代码]
+ASPNETCORE_ENVIRONMENT
+[/代码]
+,
+[代码]
+ASPNETCORE_URLS
+[/代码]
+, and
+[代码]
+DOTNET_USE_POLLING_FILE_WATCHER
+[/代码]
+.
+[代码]
+dockerRun.image
+[/代码]
+The tag from a dependent
+[代码]
+docker-build
+[/代码]
+task (if one exists) or derived from the base name of the root workspace folder.
+[代码]
+dockerRun.os
+[/代码]
+[代码]
+Linux
+[/代码]
+[代码]
+dockerRun.volumes
+[/代码]
+Adds the following volumes as required: the local application folder, the source folder, the debugger folder, the NuGet package folder, and NuGet fallback folder.
+
+Run task reference
+------------------
+Here are all properties available for configuring docker-run task. All properties are optional unless indicated otherwise.
+
+Property
+Description
+[代码]
+dockerRun
+[/代码]
+Options for controlling the
+[代码]
+docker run
+[/代码]
+command executed (
+see below (#_dockerrun-object-properties)).
+
+Required unless
+[代码]
+platform
+[/代码]
+is set.
+[代码]
+platform
+[/代码]
+Determines the platform: .NET (
+[代码]
+netcore
+[/代码]
+) or Node.js (
+[代码]
+node
+[/代码]
+) and default settings for
+[代码]
+docker run
+[/代码]
+command.
+[代码]
+node
+[/代码]
+For Node.js projects, this controls various options (
+see below (#_node-object-properties-dockerrun-task)).
+[代码]
+python
+[/代码]
+For Python projects, this controls various options (
+see below (#_python-object-properties-dockerrun-task)).
+[代码]
+netCore
+[/代码]
+For .NET projects, this controls various options (
+see below (#_netcore-object-properties-dockerrun-task)).
+
+dockerRun object properties
+---------------------------
+Property
+Description
+CLI Equivalent
+[代码]
+image
+[/代码]
+The name (tag) of the image to run.
+
+Required unless inferred from the platform.
+[代码]
+IMAGE
+[/代码]
+[代码]
+command
+[/代码]
+The command to run upon starting the container.
+
+Required, unless inferred from the platform.
+[代码]
+COMMAND [ARG...]
+[/代码]
+[代码]
+containerName
+[/代码]
+The name given to the started container.
+
+Required, unless inferred from the platform.
+[代码]
+--name
+[/代码]
+[代码]
+env
+[/代码]
+Environment variables set in the container. This is a list of key-value pairs.
+[代码]
+-e
+[/代码]
+or
+[代码]
+--env
+[/代码]
+[代码]
+envFiles
+[/代码]
+This is a list of
+[代码]
+.env
+[/代码]
+files.
+[代码]
+--env-file
+[/代码]
+[代码]
+labels
+[/代码]
+Labels given to the started container. This is a list of key-value pairs.
+[代码]
+--label
+[/代码]
+[代码]
+network
+[/代码]
+The name of the network to which the container will be connected.
+[代码]
+--network
+[/代码]
+[代码]
+networkAlias
+[/代码]
+The network-scoped alias for the started container.
+[代码]
+--network-alias
+[/代码]
+[代码]
+os
+[/代码]
+Default is
+[代码]
+Linux
+[/代码]
+, the other option is
+[代码]
+Windows
+[/代码]
+. The container operating system used.
+N/A
+[代码]
+ports
+[/代码]
+The ports to publish (map) from container to host. This is a list of objects (
+see below (#_ports-object-properties)).
+[代码]
+-p
+[/代码]
+or
+[代码]
+--publish
+[/代码]
+[代码]
+portsPublishAll
+[/代码]
+Whether to publish all ports exposed by the Docker image. Defaults to
+[代码]
+true
+[/代码]
+if no ports are explicitly published.
+[代码]
+-P
+[/代码]
+[代码]
+extraHosts
+[/代码]
+The hosts to add to the container for DNS resolution. This is a list of objects (
+see below (#_extrahosts-object-properties)).
+[代码]
+--add-host
+[/代码]
+[代码]
+volumes
+[/代码]
+The volumes to map into the started container. This is a list of objects (
+see below (#_volumes-object-properties)).
+[代码]
+-v
+[/代码]
+or
+[代码]
+--volume
+[/代码]
+[代码]
+remove
+[/代码]
+Whether or not to remove the container after it stops.
+[代码]
+--rm
+[/代码]
+[代码]
+customOptions
+[/代码]
+Any extra parameters to add before the image argument. No attempt is made to resolve conflicts with other options or validate this option.
+(any)
+
+ports object properties
+-----------------------
+Property
+Description
+Default
+[代码]
+containerPort
+[/代码]
+The port number bound on the container.
+
+Required.
+[代码]
+hostPort
+[/代码]
+The port number bound on the host.
+(randomly selected by Docker)
+[代码]
+protocol
+[/代码]
+The protocol for the binding (
+[代码]
+tcp
+[/代码]
+or
+[代码]
+udp
+[/代码]
+).
+[代码]
+tcp
+[/代码]
+
+extraHosts object properties
+----------------------------
+Property
+Description
+[代码]
+hostname
+[/代码]
+The hostname for DNS resolution.
+
+Required.
+[代码]
+ip
+[/代码]
+The IP address associated with the above hostname.
+
+Required.
+
+volumes object properties
+-------------------------
+Property
+Description
+Default
+[代码]
+localPath
+[/代码]
+The path on the local machine that will be mapped.
+
+Required.
+[代码]
+containerPath
+[/代码]
+The path in the container to which the local path will be mapped.
+
+Required.
+[代码]
+permissions
+[/代码]
+Permissions the container has on the mapped path. Can be
+[代码]
+ro
+[/代码]
+(read-only) or
+[代码]
+rw
+[/代码]
+(read-write).
+Container dependent.
+
+node object properties (docker-run task)
+----------------------------------------
+Property
+Description
+Default
+[代码]
+package
+[/代码]
+The path to the
+[代码]
+package.json
+[/代码]
+file associated with the
+[代码]
+docker-run
+[/代码]
+task.
+The file
+[代码]
+package.json
+[/代码]
+in the root workspace folder.
+[代码]
+enableDebugging
+[/代码]
+Whether or not to enable debugging within the container.
+[代码]
+false
+[/代码]
+[代码]
+inspectMode
+[/代码]
+Defines the initial interaction between the application and the debugger (
+[代码]
+default
+[/代码]
+or
+[代码]
+break
+[/代码]
+).
+
+The value
+[代码]
+default
+[/代码]
+allows the application to run until the debugger attaches.
+
+The value
+[代码]
+break
+[/代码]
+prevents the application from running until the debugger attaches.
+[代码]
+default
+[/代码]
+[代码]
+inspectPort
+[/代码]
+The port on which debugging should occur.
+[代码]
+9229
+[/代码]
+
+python object properties (docker-run task)
+------------------------------------------
+Property
+Description
+Default
+[代码]
+args
+[/代码]
+Arguments passed to the Python app.
+Platform dependent. Defaults of scaffolding shown
+above (#_python-docker-run)[代码]
+debugPort
+[/代码]
+The port that the debugger will listen on.
+[代码]
+5678
+[/代码]
+[代码]
+wait
+[/代码]
+Whether to wait for debugger to attach.
+[代码]
+true
+[/代码]
+[代码]
+module
+[/代码]
+The Python module to run (only module
+or
+file should be chosen).
+[代码]
+file
+[/代码]
+The Python file to run (only module
+or
+file should be chosen).
+
+netCore object properties (docker-run task)
+-------------------------------------------
+Property
+Description
+[代码]
+appProject
+[/代码]
+The .NET project file (
+[代码]
+.csproj
+[/代码]
+,
+[代码]
+.fsproj
+[/代码]
+, etc.) associated with
+[代码]
+docker-run
+[/代码]
+task.
+
+Required.
+[代码]
+configureSsl
+[/代码]
+Whether to configure ASP.NET Core SSL certificates and other settings to enable SSL on the service in the container.
+[代码]
+enableDebugging
+[/代码]
+Whether to enable the started container for debugging. This will infer additional volume mappings and other options necessary for debugging.
+
+Docker Compose task
+-------------------
+The docker-compose task in tasks.json creates and starts containers using the Docker Compose command line (CLI). The task can be used by itself, or as part of a chain of tasks to debug an application within a container.
+
+The most important configuration setting for the docker-compose task is dockerCompose:
+
+• The dockerCompose object specifies parameters for the Docker Compose command. Values specified by this object are applied directly to Docker Compose CLI invocation.
+See property reference for full list of all task properties.
+
+Example configuration
+
+[代码]
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run docker-compose up",
+      "type": "docker-compose",
+      "dockerCompose": {
+        "up": {
+          "detached": true,
+          "build": true,
+          "services": ["myservice"]
+        },
+        "files": [
+          "${workspaceFolder}/docker-compose.yml",
+          "${workspaceFolder}/docker-compose.debug.yml"
+        ]
+      }
+    }
+  ]
+}
+[/代码]
+
+Compose task reference
+----------------------
+Here are all properties available for configuring docker-compose task. All properties are optional unless indicated otherwise.
+
+Property
+Description
+[代码]
+dockerCompose
+[/代码]
+Options for controlling the
+[代码]
+docker-compose
+[/代码]
+command executed (
+see below (#_dockercompose-object-properties)).
+
+Required.
+
+dockerCompose object properties
+-------------------------------
+Property
+Description
+CLI Equivalent
+[代码]
+up
+[/代码]
+Run a
+[代码]
+docker-compose up
+[/代码]
+command.
+
+Either this or
+[代码]
+down
+[/代码]
+must be specified, but not both.
+[代码]
+docker-compose up
+[/代码]
+[代码]
+down
+[/代码]
+Run a
+[代码]
+docker-compose down
+[/代码]
+command.
+
+Either this or
+[代码]
+up
+[/代码]
+must be specified, but not both.
+[代码]
+docker-compose down
+[/代码]
+[代码]
+files
+[/代码]
+The list of Docker Compose YAML files to use in the
+[代码]
+docker-compose
+[/代码]
+command. If not specified, the Docker Compose CLI looks for
+[代码]
+docker-compose.yml
+[/代码]
+and
+[代码]
+docker-compose.override.yml
+[/代码]
+.
+[代码]
+-f <file>
+[/代码]
+[代码]
+envFile
+[/代码]
+File of environment variables read in and applied to the containers.
+[代码]
+--env-file <file>
+[/代码]
+[代码]
+projectName
+[/代码]
+Alternate project name to use when naming and labeling Docker objects. If using an alternate project name when composing up, the same project name must be specified when composing down.
+[代码]
+--project-name <name>
+[/代码]
+
+up object properties
+--------------------
+Property
+Description
+CLI Equivalent
+Default
+[代码]
+detached
+[/代码]
+Whether or not to run detached.
+[代码]
+-d
+[/代码]
+[代码]
+true
+[/代码]
+[代码]
+build
+[/代码]
+Whether or not to build before running.
+[代码]
+--build
+[/代码]
+[代码]
+true
+[/代码]
+[代码]
+scale
+[/代码]
+Number of instances of each service to run. This is a list of key-value pairs.
+[代码]
+--scale SERVICE=NUM
+[/代码]
+[代码]
+services
+[/代码]
+A subset of the services to start. Cannot be combined with
+[代码]
+profiles
+[/代码]
+.
+[代码]
+[SERVICE...]
+[/代码]
+(all)
+[代码]
+profiles
+[/代码]
+A subset of the profiles to start. Cannot be combined with
+[代码]
+services
+[/代码]
+.
+[代码]
+--profile <profile>
+[/代码]
+(all)
+[代码]
+customOptions
+[/代码]
+Any extra parameters to add after the
+[代码]
+up
+[/代码]
+argument. No attempt is made to resolve conflicts with other options or validate this option.
+(any)
+
+down object properties
+----------------------
+Property
+Description
+CLI Equivalent
+Default
+[代码]
+removeImages
+[/代码]
+Whether to remove images, and which.
+[代码]
+all
+[/代码]
+will remove all images used by any service,
+[代码]
+local
+[/代码]
+will remove only images without a custom tag. Leaving this unset will remove no images.
+[代码]
+--rmi
+[/代码]
+[代码]
+removeVolumes
+[/代码]
+Whether or not to remove named volumes.
+[代码]
+-v
+[/代码]
+[代码]
+false
+[/代码]
+[代码]
+customOptions
+[/代码]
+Any extra parameters to add after the
+[代码]
+down
+[/代码]
+argument. No attempt is made to resolve conflicts with other options or validate this option.
+(any)
+
+Command customization
+---------------------
+The Container Tools extension executes a number of Docker CLI commands when you perform various operations, such as to build images, run containers, attach to containers, and view container logs. Some of these commands have a large number of optional arguments, often used in very specific scenarios. As an alternative to the above Visual Studio Code tasks, several commands can be customized when tasks are not in use.
+
+For example, the tokens ${serviceList} and ${profileList} in the Compose Up command allows for easily starting a subset of the services within your Docker Compose YAML file(s).
+
+For each of these customizable Docker commands, a configuration setting is available to set the template of what to execute. Alternatively, you can define multiple templates, optionally with a regular expression, which when matched, hints the context in which a template should be used. The templates support some tokens similar to launch.json and tasks.json, for example, ${workspaceFolder}.
+
+
+Settings JSON schema
+--------------------
+You have two options for configuring each of the templates (listed below). The first option is a single template that overrides the default behavior:
+
+[代码]
+{
+  "containers.commands.build": "docker build --rm -f \"${dockerfile}\" -t ${tag} \"${context}\""
+}
+[/代码]
+The second option is multiple templates that will be chosen based on the match regular expression, as well as user input.
+
+For example, three templates are shown in the following example:
+
+[代码]
+{
+  "containers.commands.build": [
+    {
+      "label": "Default build command",
+      "template": "docker build --rm -f \"${dockerfile}\" -t ${tag} \"${context}\""
+    },
+    {
+      "label": "Alpine-specific build command",
+      "template": "docker build -p 1234:1234 -f \"${dockerfile}\" -t ${tag} \"${context}\"",
+      "match": "alpine"
+    }
+  ]
+}
+[/代码]
+
+Selection behavior
+------------------
+The command template chosen to execute is selected based on the following rules:
+
+• If no setting is configured, the default command template is chosen.
+• If only a single template is configured (the first example above), that template is chosen.
+• If multiple templates are configured: Constrained templates are checked. A constrained template has match. The match regular expression is compared against contextual hints--for example, image name, container name, etc. If multiple constrained templates apply, the user will be prompted to choose. If only one applies, the user will not be prompted. If there no applicable constrained templates, unconstrained templates are checked. An unconstrained template does not have match, and is therefore always applicable. If multiple unconstrained templates apply, the user will be prompted to choose. If only one applies, the user will not be prompted.
+
+Docker Build
+------------
+Configuration Setting
+Default Value
+[代码]
+docker.commands.build
+[/代码]
+[代码]
+${containerCommand} build --rm -f "${dockerfile}" -t ${tag} "${context}"
+[/代码]
+Supported tokens:
+
+Token
+Description
+[代码]
+${containerCommand}
+[/代码]
+The CLI command / executable used to execute container commands.
+[代码]
+${dockerfile}
+[/代码]
+The workspace-relative path of the selected
+[代码]
+Dockerfile
+[/代码]
+.
+[代码]
+${tag}
+[/代码]
+The value entered/confirmed by the user upon invoking the build command. If previously built, defaults to the previously entered value for that
+[代码]
+Dockerfile
+[/代码]
+.
+[代码]
+${context}
+[/代码]
+If set, the value of the
+[代码]
+containers.imageBuildContextPath
+[/代码]
+configuration setting. Otherwise, the workspace-relative folder in which the
+[代码]
+Dockerfile
+[/代码]
+resides.
+Note: If the containers.commands.build setting does not contain the ${tag} token, the user will not be prompted to enter/confirm a tag.
+
+Note: The match regular expression will be compared against the selected Dockerfile name and the workspace folder name.
+
+
+Docker Run
+----------
+Configuration Setting
+Default Value
+[代码]
+containers.commands.run
+[/代码]
+[代码]
+${containerCommand} run --rm -d ${exposedPorts} ${tag}
+[/代码]
+[代码]
+containers.commands.runInteractive
+[/代码]
+[代码]
+${containerCommand} run --rm -it ${exposedPorts} ${tag}
+[/代码]
+Supported tokens:
+
+Token
+Description
+[代码]
+${containerCommand}
+[/代码]
+The CLI command / executable used to execute container commands.
+[代码]
+${exposedPorts}
+[/代码]
+Generated from the list of exposed ports in the image (ultimately from the
+[代码]
+Dockerfile
+[/代码]
+), where each exposed port is mapped to the same port on the local machine. For example,
+[代码]
+"EXPOSE 5000 5001"
+[/代码]
+would generate
+[代码]
+"-p 5000:5000 -p 5001:5001"
+[/代码]
+.
+[代码]
+${tag}
+[/代码]
+The full tag of the selected image.
+Note: The match regular expression will be compared against the full tag of the selected image.
+
+
+Container Attach
+----------------
+Configuration Setting
+Default Value
+[代码]
+containers.commands.attach
+[/代码]
+[代码]
+${containerCommand} exec -it ${containerId} ${shellCommand}
+[/代码]
+Supported tokens:
+
+Token
+Description
+[代码]
+${containerCommand}
+[/代码]
+The CLI command / executable used to execute container commands.
+[代码]
+${containerId}
+[/代码]
+The ID of the container to attach to.
+[代码]
+${shellCommand}
+[/代码]
+If
+[代码]
+bash
+[/代码]
+is present in the container, it is substituted here, otherwise
+[代码]
+sh
+[/代码]
+. In Windows containers,
+[代码]
+cmd
+[/代码]
+is always used.
+Note: The match regular expression will be compared against the container name and full tag of the container image.
+
+
+Container Logs
+--------------
+Configuration Setting
+Default Value
+[代码]
+containers.commands.logs
+[/代码]
+[代码]
+${containerCommand} logs -f ${containerId}
+[/代码]
+Supported tokens:
+
+Token
+Description
+[代码]
+${containerCommand}
+[/代码]
+The CLI command / executable used to execute container commands.
+[代码]
+${containerId}
+[/代码]
+The ID of the container to view the logs for.
+Note: The match regular expression will be compared against the container name and full tag of the container image.
+
+
+Docker Compose Up
+-----------------
+Configuration Setting
+Default Value
+[代码]
+containers.commands.composeUp
+[/代码]
+[代码]
+${composeCommand} ${configurationFile} up ${detached} ${build}
+[/代码]
+Supported tokens:
+
+Token
+Description
+[代码]
+${configurationFile}
+[/代码]
+Set to
+[代码]
+-f
+[/代码]
+plus the workspace-relative path to the selected Docker Compose YAML file.
+[代码]
+${detached}
+[/代码]
+Set to
+[代码]
+-d
+[/代码]
+if the configuration setting
+[代码]
+containers.composeDetached
+[/代码]
+is set to
+[代码]
+true
+[/代码]
+. Otherwise, set to
+[代码]
+""
+[/代码]
+.
+[代码]
+${build}
+[/代码]
+Set to
+[代码]
+--build
+[/代码]
+if the configuration setting
+[代码]
+containers.composeBuild
+[/代码]
+is set to
+[代码]
+true
+[/代码]
+. Otherwise, set to
+[代码]
+""
+[/代码]
+.
+[代码]
+${serviceList}
+[/代码]
+If specified, prompts for a subset of the services to start when the command is run.
+[代码]
+${profileList}
+[/代码]
+If specified and the Docker Compose YAML file contains profiles, prompts for a subset of the profiles to start when the command is run.
+[代码]
+${composeCommand}
+[/代码]
+Set to the value of the
+[代码]
+containers.composeCommand
+[/代码]
+setting if set, otherwise the extension will try to automatically determine the command to use (
+[代码]
+docker compose
+[/代码]
+or
+[代码]
+docker-compose
+[/代码]
+).
+
+Docker Compose Down
+-------------------
+Configuration Setting
+Default Value
+[代码]
+containers.commands.composeDown
+[/代码]
+[代码]
+${composeCommand} ${configurationFile} down
+[/代码]
+Supported tokens:
+
+Token
+Description
+[代码]
+${configurationFile}
+[/代码]
+Set to
+[代码]
+-f
+[/代码]
+plus the workspace-relative path to the selected Docker Compose YAML file.
+[代码]
+${composeCommand}
+[/代码]
+Set to the value of the
+[代码]
+containers.composeCommand
+[/代码]
+setting if set, otherwise the extension will try to automatically determine the command to use (
+[代码]
+docker compose
+[/代码]
+or
+[代码]
+docker-compose
+[/代码]
+).
+
+Additional supported tokens
+---------------------------
+In addition to the command-specific supported tokens, the following tokens are supported in all command templates:
+
+Token
+Description
+[代码]
+${workspaceFolder}
+[/代码]
+The selected workspace folder path.
+[代码]
+${config:some.setting.identifier}
+[/代码]
+The value of any configuration setting, as long as it is a string, number, or boolean. These setting identifiers can be arbitrarily defined and do not need to belong to Visual Studio Code or to any extension.
+[代码]
+${env:Name}
+[/代码]
+The value of an environment variable.
+[代码]
+${command:commandID}
+[/代码]
+The string return value of a command.
+4/18/2022

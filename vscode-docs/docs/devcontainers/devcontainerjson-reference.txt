@@ -1,0 +1,1285 @@
+Development Containers
+======================
+
+Development Containers (/)• Overview
+• Reference
+• Specification
+• Supporting Tools
+• Guides
+• Available Features
+• Available Templates
+• Collections
+• Specification
+• Reference Implementation
+• devcontainer.json schema
+• Dev Container metadata reference
+• Features
+• Features distribution
+• Templates
+• Templates distribution
+• Contributing
+Specification
+
+Dev Container metadata reference
+--------------------------------
+The devcontainer.json file contains any needed metadata and settings required to configure a development container for a given well-defined tool and runtime stack. It can be used by tools and services that support the dev container spec to create a development environment that contains one or more development containers.
+
+Metadata properties marked with a 🏷️️ can be stored in the devcontainer.metadata container image label in addition to devcontainer.json. This label can contain an array of json snippets that will be automatically merged with devcontainer.json contents (if any) when a container is created.
+
+
+General devcontainer.json properties
+------------------------------------
+Property
+Type
+Description
+[代码]
+name
+[/代码]
+string
+A name for the dev container displayed in the UI.
+[代码]
+forwardPorts
+[/代码]
+🏷️
+array
+An array of port numbers or
+[代码]
+"host:port"
+[/代码]
+values (e.g.
+[代码]
+[3000, "db:5432"]
+[/代码]
+) that should always be forwarded from inside the primary container to the local machine (including on the web). The property is most useful for forwarding ports that cannot be auto-forwarded because the related process that starts before the
+[代码]
+devcontainer.json
+[/代码]
+supporting service / tool connects or for forwarding a service not in the primary container in Docker Compose scenarios (e.g.
+[代码]
+"db:5432"
+[/代码]
+). Defaults to
+[代码]
+[]
+[/代码]
+.
+[代码]
+portsAttributes
+[/代码]
+🏷️
+object
+Object that maps a port number,
+[代码]
+"host:port"
+[/代码]
+value, range, or regular expression to a set of default options. See
+port attributes (#port-attributes)for available options. For example:
+
+[代码]
+"portsAttributes": {"3000": {"label": "Application port"}}
+[/代码]
+[代码]
+otherPortsAttributes
+[/代码]
+🏷️
+object
+Default options for ports, port ranges, and hosts that aren’t configured using
+[代码]
+portsAttributes
+[/代码]
+. See
+port attributes (#port-attributes)for available options. For example:
+
+[代码]
+"otherPortsAttributes": {"onAutoForward": "silent"}
+[/代码]
+[代码]
+containerEnv
+[/代码]
+🏷️
+object
+A set of name-value pairs that sets or overrides environment variables for the container. Environment and
+pre-defined variables (#variables-in-devcontainerjson)may be referenced in the values. For example:
+
+[代码]
+"containerEnv": { "MY_VARIABLE": "${localEnv:MY_VARIABLE}" }
+[/代码]
+
+If you want to reference an existing container variable while setting this one (like updating the
+[代码]
+PATH
+[/代码]
+), use
+[代码]
+remoteEnv
+[/代码]
+instead.
+
+[代码]
+containerEnv
+[/代码]
+will set the variable on the Docker container itself, so all processes spawned in the container will have access to it. But it will also be static for the life of the container - you must rebuild the container to update the value.
+
+We recommend using
+[代码]
+containerEnv
+[/代码]
+(over
+[代码]
+remoteEnv
+[/代码]
+) as much as possible since it allows all processes to see the variable and isn’t client-specific.
+[代码]
+remoteEnv
+[/代码]
+🏷️
+object
+A set of name-value pairs that sets or overrides environment variables for the
+[代码]
+devcontainer.json
+[/代码]
+supporting service / tool (or sub-processes like terminals) but not the container as a whole. Environment and
+pre-defined variables (#variables-in-devcontainerjson)may be referenced in the values.
+
+You may want to use
+[代码]
+remoteEnv
+[/代码]
+(over
+[代码]
+containerEnv
+[/代码]
+) if the value isn’t static since you can update its value without having to rebuild the full container.
+[代码]
+remoteUser
+[/代码]
+🏷️
+string
+Overrides the user that
+[代码]
+devcontainer.json
+[/代码]
+supporting services tools / runs as in the container (along with sub-processes like terminals, tasks, or debugging). Does not change the user the container as a whole runs as which can be set using
+[代码]
+containerUser
+[/代码]
+. Defaults to the user the container as a whole is running as (often
+[代码]
+root
+[/代码]
+).
+
+You may learn more in the
+remoteUser section below (#remoteUser).
+[代码]
+containerUser
+[/代码]
+🏷️
+string
+Overrides the user for all operations run as inside the container. Defaults to either
+[代码]
+root
+[/代码]
+or the last
+[代码]
+USER
+[/代码]
+instruction in the related Dockerfile used to create the image. If you want any connected tools or related processes to use a different user than the one for the container, see
+[代码]
+remoteUser
+[/代码]
+.
+[代码]
+updateRemoteUserUID
+[/代码]
+🏷️
+boolean
+On Linux, if
+[代码]
+containerUser
+[/代码]
+or
+[代码]
+remoteUser
+[/代码]
+is specified, the user’s UID/GID will be updated to match the local user’s UID/GID to avoid permission problems with bind mounts. Defaults to
+[代码]
+true
+[/代码]
+.
+[代码]
+userEnvProbe
+[/代码]
+🏷️
+enum
+Indicates the type of shell to use to “probe” for user environment variables to include in
+[代码]
+devcontainer.json
+[/代码]
+supporting services’ / tools’ processes:
+[代码]
+none
+[/代码]
+,
+[代码]
+interactiveShell
+[/代码]
+,
+[代码]
+loginShell
+[/代码]
+, or
+[代码]
+loginInteractiveShell
+[/代码]
+(default). The specific shell used is based on the default shell for the user (typically bash). For example, bash interactive shells will typically include variables set in
+[代码]
+/etc/bash.bashrc
+[/代码]
+and
+[代码]
+~/.bashrc
+[/代码]
+while login shells usually include variables from
+[代码]
+/etc/profile
+[/代码]
+and
+[代码]
+~/.profile
+[/代码]
+. Setting this property to
+[代码]
+loginInteractiveShell
+[/代码]
+will get variables from all four files.
+[代码]
+overrideCommand
+[/代码]
+🏷️
+boolean
+Tells
+[代码]
+devcontainer.json
+[/代码]
+supporting services / tools whether they should run
+[代码]
+/bin/sh -c "while sleep 1000; do :; done"
+[/代码]
+when starting the container instead of the container’s default command (since the container can shut down if the default command fails). Set to
+[代码]
+false
+[/代码]
+if the default command must run for the container to function properly. Defaults to
+[代码]
+true
+[/代码]
+for when using an image Dockerfile and
+[代码]
+false
+[/代码]
+when referencing a Docker Compose file.
+[代码]
+shutdownAction
+[/代码]
+🏷️
+enum
+Indicates whether
+[代码]
+devcontainer.json
+[/代码]
+supporting tools should stop the containers when the related tool window is closed / shut down.
+
+Values are
+[代码]
+none
+[/代码]
+,
+[代码]
+stopContainer
+[/代码]
+(default for image or Dockerfile), and
+[代码]
+stopCompose
+[/代码]
+(default for Docker Compose).
+[代码]
+init
+[/代码]
+🏷️
+boolean
+Defaults to
+[代码]
+false
+[/代码]
+. Cross-orchestrator way to indicate whether the
+tini init process (https://github.com/krallin/tini)should be used to help deal with zombie processes.
+[代码]
+privileged
+[/代码]
+🏷️
+boolean
+Defaults to
+[代码]
+false
+[/代码]
+. Cross-orchestrator way to cause the container to run in privileged mode (
+[代码]
+--privileged
+[/代码]
+). Required for things like Docker-in-Docker, but has security implications particularly when running directly on Linux.
+[代码]
+capAdd
+[/代码]
+🏷️
+array
+Defaults to
+[代码]
+[]
+[/代码]
+. Cross-orchestrator way to add capabilities typically disabled for a container. Most often used to add the
+[代码]
+ptrace
+[/代码]
+capability required to debug languages like C++, Go, and Rust. For example:
+
+[代码]
+"capAdd": ["SYS_PTRACE"]
+[/代码]
+[代码]
+securityOpt
+[/代码]
+🏷️
+array
+Defaults to
+[代码]
+[]
+[/代码]
+. Cross-orchestrator way to set container security options. For example:
+
+[代码]
+"securityOpt": [ "seccomp=unconfined" ]
+[/代码]
+[代码]
+mounts
+[/代码]
+🏷️
+string or object
+Defaults to unset. Cross-orchestrator way to add additional mounts to a container. Each value is a string that accepts the same values as the
+Docker CLI --mount flag (https://docs.docker.com/engine/reference/commandline/run/#mount). Environment and
+pre-defined variables (#variables-in-devcontainerjson)may be referenced in the value. For example:
+
+[代码]
+"mounts": [{ "source": "dind-var-lib-docker", "target": "/var/lib/docker", "type": "volume" }]
+[/代码]
+[代码]
+features
+[/代码]
+object
+An object of
+Dev Container Feature IDs (../../features)and related options to be added into your primary container. The specific options that are available varies by feature, so see its documentation for additional details. For example:
+
+[代码]
+"features": { "ghcr.io/devcontainers/features/github-cli": {} }
+[/代码]
+[代码]
+overrideFeatureInstallOrder
+[/代码]
+array
+By default, Features will attempt to automatically set the order they are installed based on a
+[代码]
+installsAfter
+[/代码]
+property within each of them. This property allows you to override the Feature install order when needed. For example:
+
+[代码]
+"overrideFeatureInstallОrder": [ "ghcr.io/devcontainers/features/common-utils", "ghcr.io/devcontainers/features/github-cli" ]
+[/代码]
+[代码]
+customizations
+[/代码]
+🏷️
+object
+Product specific properties, defined in
+supporting tools (../../supporting)
+Scenario specific properties
+----------------------------
+The focus of devcontainer.json is to describe how to enrich a container for the purposes of development rather than acting as a multi-container orchestrator format. Instead, container orchestrator formats can be referenced when needed to manage multiple containers and their lifecycles. Today, devcontainer.json includes scenario specific properties for working without a container orchestrator (by directly referencing an image or Dockerfile) and for using Docker Compose as a simple multi-container orchestrator.
+
+
+Image or Dockerfile specific properties
+---------------------------------------
+Property
+Type
+Description
+[代码]
+image
+[/代码]
+string
+Required
+when using an image. The name of an image in a container registry (
+DockerHub (https://hub.docker.com),
+GitHub Container Registry (https://docs.github.com/packages/guides/about-github-container-registry),
+Azure Container Registry (https://azure.microsoft.com/services/container-registry/)) that
+[代码]
+devcontainer.json
+[/代码]
+supporting services / tools should use to create the dev container.
+[代码]
+build.dockerfile
+[/代码]
+string
+Required
+when using a Dockerfile. The location of a
+Dockerfile (https://docs.docker.com/engine/reference/builder/)that defines the contents of the container. The path is relative to the
+[代码]
+devcontainer.json
+[/代码]
+file.
+[代码]
+build.context
+[/代码]
+string
+Path that the Docker build should be run from relative to
+[代码]
+devcontainer.json
+[/代码]
+. For example, a value of
+[代码]
+".."
+[/代码]
+would allow you to reference content in sibling directories. Defaults to
+[代码]
+"."
+[/代码]
+.
+[代码]
+build.args
+[/代码]
+Object
+A set of name-value pairs containing
+Docker image build arguments (https://docs.docker.com/engine/reference/commandline/build/#build-arg)that should be passed when building a Dockerfile. Environment and
+pre-defined variables (#variables-in-devcontainerjson)may be referenced in the values. Defaults to not set. For example:
+[代码]
+"build": { "args": { "MYARG": "MYVALUE", "MYARGFROMENVVAR": "${localEnv:VARIABLE_NAME}" } }
+[/代码]
+[代码]
+build.options
+[/代码]
+array
+An array of
+Docker image build options (https://docs.docker.com/engine/reference/commandline/build/#options)that should be passed to the build command when building a Dockerfile. Defaults to
+[代码]
+[]
+[/代码]
+. For example:
+[代码]
+"build": { "options": [ "--add-host=host.docker.internal:host-gateway" ] }
+[/代码]
+[代码]
+build.target
+[/代码]
+string
+A string that specifies a
+Docker image build target (https://docs.docker.com/engine/reference/commandline/build/#target)that should be passed when building a Dockerfile. Defaults to not set. For example:
+[代码]
+"build": { "target": "development" }
+[/代码]
+[代码]
+build.cacheFrom
+[/代码]
+string,
+
+array
+A string or array of strings that specify one or more images to use as caches when building the image. Cached image identifiers are passed to the
+[代码]
+docker build
+[/代码]
+command with
+[代码]
+--cache-from
+[/代码]
+.
+[代码]
+appPort
+[/代码]
+integer,
+
+string,
+
+array
+In most cases, we recommend using the new
+forwardPorts property (#general-properties). This property accepts a port or array of ports that should be published locally when the container is running. Unlike
+[代码]
+forwardPorts
+[/代码]
+, your application may need to listen on all interfaces (
+[代码]
+0.0.0.0
+[/代码]
+) not just
+[代码]
+localhost
+[/代码]
+for it to be available externally. Defaults to
+[代码]
+[]
+[/代码]
+.
+
+Learn more about publishing vs forwarding ports
+here (#publishing-vs-forwarding-ports).
+
+Note that the array syntax will execute the command without a shell. You can
+learn more (#formatting-string-vs-array-properties)about formatting string vs array properties.
+[代码]
+workspaceMount
+[/代码]
+string
+Requires
+[代码]
+workspaceFolder
+[/代码]
+be set as well. Overrides the default local mount point for the workspace when the container is created. Supports the same values as the
+Docker CLI --mount flag (https://docs.docker.com/engine/reference/commandline/run/#mount). Environment and
+pre-defined variables (#variables-in-devcontainerjson)may be referenced in the value. For example:
+
+[代码]
+"workspaceMount": "source=${localWorkspaceFolder}/sub-folder,target=/workspace,type=bind,consistency=cached", "workspaceFolder": "/workspace"
+[/代码]
+[代码]
+workspaceFolder
+[/代码]
+string
+Requires
+[代码]
+workspaceMount
+[/代码]
+be set. Sets the default path that
+[代码]
+devcontainer.json
+[/代码]
+supporting services / tools should open when connecting to the container. Defaults to the automatic source code mount location.
+[代码]
+runArgs
+[/代码]
+array
+An array of
+Docker CLI arguments (https://docs.docker.com/engine/reference/commandline/run/)that should be used when running the container. Defaults to
+[代码]
+[]
+[/代码]
+. For example, this allows ptrace based debuggers like C++ to work in the container:
+
+[代码]
+"runArgs": [ "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined" ]
+[/代码]
+.
+
+Docker Compose specific properties
+----------------------------------
+Property
+Type
+Description
+[代码]
+dockerComposeFile
+[/代码]
+string,
+
+array
+Required
+when using
+Docker Compose (https://docs.docker.com/compose/). Path or an ordered list of paths to Docker Compose files relative to the
+[代码]
+devcontainer.json
+[/代码]
+file. Using an array is useful
+when extending your Docker Compose configuration (https://docs.docker.com/compose/extends/#multiple-compose-files). The order of the array matters since the contents of later files can override values set in previous ones.
+
+The default
+[代码]
+.env
+[/代码]
+file is picked up from the root of the project, but you can use
+[代码]
+env_file
+[/代码]
+in your Docker Compose file to specify an alternate location.
+
+Note that the array syntax will execute the command without a shell. You can
+learn more (#formatting-string-vs-array-properties)about formatting string vs array properties.
+[代码]
+service
+[/代码]
+string
+Required
+when using
+Docker Compose (https://docs.docker.com/compose/). The name of the service
+[代码]
+devcontainer.json
+[/代码]
+supporting services / tools should connect to once running.
+[代码]
+runServices
+[/代码]
+array
+An array of services in your Docker Compose configuration that should be started by
+[代码]
+devcontainer.json
+[/代码]
+supporting services / tools. These will also be stopped when you disconnect unless
+[代码]
+"shutdownAction"
+[/代码]
+is
+[代码]
+"none"
+[/代码]
+. Defaults to all services.
+[代码]
+workspaceFolder
+[/代码]
+string
+Sets the default path that
+[代码]
+devcontainer.json
+[/代码]
+supporting services / tools should open when connecting to the container (which is often the path to a volume mount where the source code can be found in the container). Defaults to
+[代码]
+"/"
+[/代码]
+.
+
+Tool-specific properties
+------------------------
+While most properties apply to any devcontainer.json supporting tool or service, a few are specific to certain tools. You may explore this in the supporting tools and services document.
+
+
+Lifecycle scripts
+-----------------
+When creating or working with a dev container, you may need different commands to be run at different points in the container’s lifecycle. The table below lists a set of command properties you can use to update what the container’s contents in the order in which they are run (for example, onCreateCommand will run after initializeCommand). Each command property is an string or list of command arguments that should execute from the workspaceFolder.
+
+Property
+Type
+Description
+[代码]
+initializeCommand
+[/代码]
+string,
+
+array,
+
+object
+A command string or list of command arguments to run on the
+host machine
+during initialization, including during container creation and on subsequent starts. The command may run more than once during a given session.
+
+
+⚠️ The command is run wherever the source code is located on the host. For cloud services, this is in the cloud.
+
+
+Note that the array syntax will execute the command without a shell. You can
+learn more (#formatting-string-vs-array-properties)about formatting string vs array vs object properties.
+[代码]
+onCreateCommand
+[/代码]
+🏷️
+string,
+
+array,
+
+object
+This command is the first of three (along with
+[代码]
+updateContentCommand
+[/代码]
+and
+[代码]
+postCreateCommand
+[/代码]
+) that finalizes container setup when a dev container is created. It and subsequent commands execute
+inside
+the container immediately after it has started for the first time.
+
+
+Cloud services can use this command when caching or prebuilding a container. This means that it will not typically have access to user-scoped assets or secrets.
+
+
+Note that the array syntax will execute the command without a shell. You can
+learn more (#formatting-string-vs-array-properties)about formatting string vs array vs object properties.
+[代码]
+updateContentCommand
+[/代码]
+🏷️
+string,
+
+array,
+
+object
+This command is the second of three that finalizes container setup when a dev container is created. It executes inside the container after
+[代码]
+onCreateCommand
+[/代码]
+whenever new content is available in the source tree during the creation process.
+
+
+It will execute at least once, but cloud services will also periodically execute the command to refresh cached or prebuilt containers. Like cloud services using
+[代码]
+onCreateCommand
+[/代码]
+, it can only take advantage of repository and org scoped secrets or permissions.
+
+
+Note that the array syntax will execute the command without a shell. You can
+learn more (#formatting-string-vs-array-properties)about formatting string vs array vs object properties.
+[代码]
+postCreateCommand
+[/代码]
+🏷️
+string,
+
+array,
+
+object
+This command is the last of three that finalizes container setup when a dev container is created. It happens after
+[代码]
+updateContentCommand
+[/代码]
+and once the dev container has been assigned to a user for the first time.
+
+
+Cloud services can use this command to take advantage of user specific secrets and permissions.
+
+
+Note that the array syntax will execute the command without a shell. You can
+learn more (#formatting-string-vs-array-properties)about formatting string vs array vs object properties.
+[代码]
+postStartCommand
+[/代码]
+🏷️
+string,
+
+array,
+
+object
+A command to run each time the container is successfully started.
+
+
+Note that the array syntax will execute the command without a shell. You can
+learn more (#formatting-string-vs-array-properties)about formatting string vs array vs object properties.
+[代码]
+postAttachCommand
+[/代码]
+🏷️
+string,
+
+array,
+
+object
+A command to run each time a tool has successfully attached to the container.
+
+
+Note that the array syntax will execute the command without a shell. You can
+learn more (#formatting-string-vs-array-properties)about formatting string vs array vs object properties.
+[代码]
+waitFor
+[/代码]
+🏷️
+enum
+An enum that specifies the command any tool should wait for before connecting. Defaults to
+[代码]
+updateContentCommand
+[/代码]
+. This allows you to use
+[代码]
+onCreateCommand
+[/代码]
+or
+[代码]
+updateContentCommand
+[/代码]
+for steps that must happen before
+[代码]
+devcontainer.json
+[/代码]
+supporting tools connect while still using
+[代码]
+postCreateCommand
+[/代码]
+for steps that can happen behind the scenes afterwards.
+For each command property, if the value is a single string, it will be run in /bin/sh. Use && in a string to execute multiple commands. For example, "yarn install" or "apt-get update && apt-get install -y curl". The array syntax ["yarn", "install"] will invoke the command (in this case yarn) directly without using a shell. Each fires after your source code has been mounted, so you can also run shell scripts from your source tree. For example: bash scripts/install-dev-tools.sh.
+
+If one of the lifecycle scripts fails, any subsequent scripts will not be executed. For instance, if postCreateCommand fails, postStartCommand and any following scripts will be skipped.
+
+
+Minimum host requirements
+-------------------------
+While devcontainer.json does not focus on hardware or VM provisioning, it can be useful to know your container’s minimum RAM, CPU, and storage requirements. This is what the hostRequirements properties allow you to do. Cloud services can use these properties to automatically default to the best compute option available, while in other cases, you will be presented with a warning if the requirements are not met.
+
+Property
+Type
+Description
+[代码]
+hostRequirements.cpus
+[/代码]
+🏷️
+integer
+Indicates the minimum required number of CPUs / virtual CPUs / cores. For example:
+[代码]
+"hostRequirements": {"cpus": 2}
+[/代码]
+[代码]
+hostRequirements.memory
+[/代码]
+🏷️
+string
+A string indicating minimum memory requirements with a
+[代码]
+tb
+[/代码]
+,
+[代码]
+gb
+[/代码]
+,
+[代码]
+mb
+[/代码]
+, or
+[代码]
+kb
+[/代码]
+suffix. For example,
+[代码]
+"hostRequirements": {"memory": "4gb"}
+[/代码]
+[代码]
+hostRequirements.storage
+[/代码]
+🏷️
+string
+A string indicating minimum storage requirements with a
+[代码]
+tb
+[/代码]
+,
+[代码]
+gb
+[/代码]
+,
+[代码]
+mb
+[/代码]
+, or
+[代码]
+kb
+[/代码]
+suffix. For example,
+[代码]
+"hostRequirements": {"storage": "32gb"}
+[/代码]
+[代码]
+hostRequirements.gpu
+[/代码]
+🏷️
+boolean,
+
+string,
+
+object
+Indicates if any GPU is required. A boolean indicates if a GPU is required or not. The string
+[代码]
+"optional"
+[/代码]
+indicates that a GPU is used when available, but is not required.
+
+
+The object syntax specifies how much GPU resources are required. The
+[代码]
+cores
+[/代码]
+property indicates the minimum number of cores and the
+[代码]
+memory
+[/代码]
+property indicates minimum storage requirements with a
+[代码]
+tb
+[/代码]
+,
+[代码]
+gb
+[/代码]
+,
+[代码]
+mb
+[/代码]
+, or
+[代码]
+kb
+[/代码]
+suffix. For example,
+[代码]
+"gpu": { "cores": 1000, "storage": "32gb" }
+[/代码]
+
+Port attributes
+---------------
+The portsAttributes and otherPortsAttributes properties allow you to map default port options for one or more manually or automatically forwarded ports. The following is a list of options that can be set in the configuration object assigned to the property.
+
+Property
+Type
+Description
+[代码]
+label
+[/代码]
+🏷️
+string
+Display name for the port in the ports view. Defaults to not set.
+[代码]
+protocol
+[/代码]
+🏷️
+enum
+Controls protocol handling for forwarded ports. When not set, the port is assumed to be a raw TCP stream which, if forwarded to
+[代码]
+localhost
+[/代码]
+, supports any number of protocols. However, if the port is forwarded to a web URL (e.g. from a cloud service on the web), only HTTP ports in the container are supported. Setting this property to
+[代码]
+https
+[/代码]
+alters handling by ignoring any SSL/TLS certificates present when communicating on the port and using the correct certificate for the forwarded URL instead (e.g
+[代码]
+https://*.githubpreview.dev
+[/代码]
+). If set to
+[代码]
+http
+[/代码]
+, processing is the same as if the protocol is not set. Defaults to not set.
+[代码]
+onAutoForward
+[/代码]
+🏷️
+enum
+Controls what should happen when a port is auto-forwarded once you’ve connected to the container.
+[代码]
+notify
+[/代码]
+is the default, and a notification will appear when the port is auto-forwarded. If set to
+[代码]
+openBrowser
+[/代码]
+, the port will be opened in the system’s default browser. A value of
+[代码]
+openBrowserOnce
+[/代码]
+will open the browser only once.
+[代码]
+openPreview
+[/代码]
+will open the URL in
+[代码]
+devcontainer.json
+[/代码]
+supporting services’ / tools’ embedded preview browser. A value of
+[代码]
+silent
+[/代码]
+will forward the port, but take no further action. A value of
+[代码]
+ignore
+[/代码]
+means that this port should not be auto-forwarded at all.
+[代码]
+requireLocalPort
+[/代码]
+🏷️
+boolean
+Dictates when port forwarding is required to map the port in the container to the same port locally or not. If set to
+[代码]
+false
+[/代码]
+, the
+[代码]
+devcontainer.json
+[/代码]
+supporting services / tools will attempt to use the specified port forward to
+[代码]
+localhost
+[/代码]
+, and silently map to a different one if it is unavailable. If set to
+[代码]
+true
+[/代码]
+, you will be notified if it is not possible to use the same port. Defaults to
+[代码]
+false
+[/代码]
+.
+[代码]
+elevateIfNeeded
+[/代码]
+🏷️
+boolean
+Forwarding low ports like 22, 80, or 443 to
+[代码]
+localhost
+[/代码]
+on the same port from
+[代码]
+devcontainer.json
+[/代码]
+supporting services / tools may require elevated permissions on certain operating systems. Setting this property to
+[代码]
+true
+[/代码]
+will automatically try to elevate the
+[代码]
+devcontainer.json
+[/代码]
+supporting tool’s permissions in this situation. Defaults to
+[代码]
+false
+[/代码]
+.
+
+Formatting string vs. array properties
+--------------------------------------
+The format of certain properties will vary depending on the involvement of a shell.
+
+postCreateCommand, postStartCommand, postAttachCommand, and initializeCommand all have 3 types:
+
+• Array: Passed to the OS for execution without going through a shell
+• String: Goes through a shell (it needs to be parsed into command and arguments)
+• Object: All lifecycle scripts have been extended to support object types to allow for parallel execution
+runArgs only has the array type. Using runArgs via a typical command line, you’ll need single quotes if the shell runs into parameters with spaces. However, these single quotes aren’t passed on to the executable. Thus, in your devcontainer.json, you’d follow the array format and leave out the single quotes:
+
+[代码]
+"runArgs": ["--device-cgroup-rule=my rule here"]
+[/代码]
+Rather than:
+
+[代码]
+"runArgs": ["--device-cgroup-rule='my rule here'"]
+[/代码]
+We can compare the string, array, and object versions of postAttachCommand as well. You can use the following string format, which will remove the single quotes as part of the shell’s parsing:
+
+[代码]
+"postAttachCommand": "echo foo='bar'"
+[/代码]
+By contrast, the array format will keep the single quotes and write them to standard out (you can see the output in the dev container log):
+
+[代码]
+"postAttachCommand": ["echo", "foo='bar'"]
+[/代码]
+Finally, you may use an object format:
+
+[代码]
+{
+  "postAttachCommand": {
+    "server": "npm start",
+    "db": ["mysql", "-u", "root", "-p", "my database"]
+  }
+}
+[/代码]
+
+Variables in devcontainer.json
+------------------------------
+Variables can be referenced in certain string values in devcontainer.json in the following format: ${variableName}. The following is a list of available variables you can use.
+
+Variable
+Properties
+Description
+[代码]
+${localEnv:VARIABLE_NAME}
+[/代码]
+Any
+Value of an environment variable on the
+host machine
+(in the examples below, called
+[代码]
+VARIABLE_NAME
+[/代码]
+). Unset variables are left blank.
+
+
+⚠️ Clients (like VS Code) may need to be
+restarted
+to pick up newly set variables.
+
+
+⚠️ For a cloud service, the host is in the cloud rather than your local machine.
+
+
+Examples
+
+
+1.
+Set a variable containing your local home folder on Linux / macOS or the user folder on Windows:
+
+[代码]
+"remoteEnv": { "LOCAL_USER_PATH": "${localEnv:HOME}${localEnv:USERPROFILE}" }
+[/代码]
+.
+
+
+A default value for when the environment variable is not set can be given with
+[代码]
+${localEnv:VARIABLE_NAME:default_value}
+[/代码]
+.
+
+
+2.
+In modern versions of macOS, default configurations allow setting local variables with the command
+[代码]
+echo 'export VARIABLE_NAME=my-value' >> ~/.zshenv
+[/代码]
+.
+[代码]
+${containerEnv:VARIABLE_NAME}
+[/代码]
+[代码]
+remoteEnv
+[/代码]
+Value of an existing environment variable inside the container once it is up and running (in this case, called
+[代码]
+VARIABLE_NAME
+[/代码]
+). For example:
+
+[代码]
+"remoteEnv": { "PATH": "${containerEnv:PATH}:/some/other/path" }
+[/代码]
+
+
+A default value for when the environment variable is not set can be given with
+[代码]
+${containerEnv:VARIABLE_NAME:default_value}
+[/代码]
+.
+[代码]
+${localWorkspaceFolder}
+[/代码]
+Any
+Path of the local folder that was opened in the
+[代码]
+devcontainer.json
+[/代码]
+supporting service / tool (that contains
+[代码]
+.devcontainer/devcontainer.json
+[/代码]
+).
+[代码]
+${containerWorkspaceFolder}
+[/代码]
+Any
+The path that the workspaces files can be found in the container.
+[代码]
+${localWorkspaceFolderBasename}
+[/代码]
+Any
+Name of the local folder that was opened in the
+[代码]
+devcontainer.json
+[/代码]
+supporting service / tool (that contains
+[代码]
+.devcontainer/devcontainer.json
+[/代码]
+).
+[代码]
+${containerWorkspaceFolderBasename}
+[/代码]
+Any
+Name of the folder where the workspace files can be found in the container.
+[代码]
+${devcontainerId}
+[/代码]
+Any
+Allow Features to refer to an identifier that is unique to the dev container they are installed into and that is stable across rebuilds.
+
+The properties supporting it in devcontainer.json are:
+[代码]
+name
+[/代码]
+,
+[代码]
+runArgs
+[/代码]
+,
+[代码]
+initializeCommand
+[/代码]
+,
+[代码]
+onCreateCommand
+[/代码]
+,
+[代码]
+updateContentCommand
+[/代码]
+,
+[代码]
+postCreateCommand
+[/代码]
+,
+[代码]
+postStartCommand
+[/代码]
+,
+[代码]
+postAttachCommand
+[/代码]
+,
+[代码]
+workspaceFolder
+[/代码]
+,
+[代码]
+workspaceMount
+[/代码]
+,
+[代码]
+mounts
+[/代码]
+,
+[代码]
+containerEnv
+[/代码]
+,
+[代码]
+remoteEnv
+[/代码]
+,
+[代码]
+containerUser
+[/代码]
+,
+[代码]
+remoteUser
+[/代码]
+, and
+[代码]
+customizations
+[/代码]
+.
+
+Schema
+------
+You can see the dev container schema here.
+
+
+Publishing vs forwarding ports
+------------------------------
+Docker has the concept of “publishing” ports when the container is created. Published ports behave very much like ports you make available to your local network. If your application only accepts calls from localhost, it will reject connections from published ports just as your local machine would for network calls. Forwarded ports, on the other hand, actually look like localhost to the application.
+
+
+remoteUser
+----------
+A dev container configuration will inherit the remoteUser property from the base image it uses.
+
+Using the images and Templates part of the spec as an example: remoteUser in these images is set to a custom value - you may view an example in the C++ image. The C++ Template will then inherit the custom remoteUser value from its base C++ image.

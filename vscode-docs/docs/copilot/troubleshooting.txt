@@ -1,0 +1,91 @@
+Troubleshoot AI in Visual Studio Code
+=====================================
+
+Troubleshoot AI in Visual Studio Code
+This article covers diagnostic tools and techniques for troubleshooting AI-related issues in VS Code. Use these tools to identify problems with network connectivity, customization files, and AI responses.
+
+
+View logs for GitHub Copilot
+----------------------------
+The log files for the GitHub Copilot extension are stored in the standard log location for Visual Studio Code extensions. Use these logs to diagnose connection issues, extension errors, and unexpected behavior.
+
+To view detailed logs:
+
+• Open the Command Palette (⇧⌘P (Windows, Linux Ctrl+Shift+P)).
+• Run Developer: Set Log Level and set the value to Trace for the GitHub Copilot and GitHub Copilot Chat extensions.
+• Run Output: Show Output Channels and select either GitHub Copilot or GitHub Copilot Chat from the list.
+• In the Output panel, view the logs for the selected extension.
+To switch between output channels, select GitHub Copilot or GitHub Copilot Chat from the dropdown menu on the right side of the Output panel.
+
+
+Collect network diagnostics
+---------------------------
+If you encounter problems connecting to GitHub Copilot, collect network connectivity diagnostics to identify firewall, proxy, or VPN issues.
+
+• Open the Command Palette (⇧⌘P (Windows, Linux Ctrl+Shift+P)).
+• Run GitHub Copilot: Collect Diagnostics.
+• An editor tab opens with diagnostic information you can review and share when reporting issues.
+For more information about network configuration, see Network and firewall configuration for Copilot.
+
+
+Chat Debug view
+---------------
+The Chat Debug view shows the details of AI requests and responses, including the system prompt, user prompt, context sent to the language model, and tool invocations. Use this view to understand how the AI interprets your requests and what context it uses to generate responses.
+
+To open the Chat Debug view:
+
+• Select the overflow menu (...) in the Chat view.
+• Select Show Chat Debug View.
+Alternatively, run Developer: Show Chat Debug View from the Command Palette.
+
+Learn more about the Chat Debug view.
+
+
+Chat customization diagnostics
+------------------------------
+The chat customization diagnostics view shows all currently loaded custom agents, prompt files, instruction files, and skills. Use this view to troubleshoot issues with customization files that aren't being applied or are causing errors.
+
+To open the diagnostics view:
+
+• Right-click in the Chat view.
+• Select Diagnostics.
+This opens a markdown document listing:
+
+• All active customization files and their locations
+• Load status for each file (loaded, failed, or skipped)
+• Error messages for files that failed to load
+• The order in which instructions are applied
+Tip
+If a customization file isn't being applied, check the diagnostics view to verify it was loaded successfully and review any error messages.
+
+
+Troubleshoot MCP servers
+------------------------
+MCP servers extend chat capabilities by connecting to external services. If an MCP server isn't working correctly, you can view its logs and restart it.
+
+To troubleshoot MCP servers:
+
+• Open the Command Palette and run MCP: List Servers.
+• Select a server to view its status and available actions.
+• Select Show Output to view the server's logs.
+• Select Restart Server to restart a misbehaving server.
+Learn more about configuring and debugging MCP servers.
+
+
+Provide feedback
+----------------
+If you encounter issues that you can't resolve, report them to help improve GitHub Copilot:
+
+• Ghost text suggestions: Hover over a ghost text suggestion in the editor and select Send Copilot Completion Feedback.
+• Next edit suggestions: Select the Feedback action in the next edit suggestions menu in the editor gutter.
+• General issues: Open Help > Report Issue, select VS Code Extension, and choose GitHub Copilot Chat.
+When reporting issues, include relevant information from the Copilot logs to help diagnose the problem.
+
+
+Related resources
+-----------------
+• Chat Debug view
+• Custom instructions
+• MCP servers
+• GitHub Copilot FAQ
+02/04/2026

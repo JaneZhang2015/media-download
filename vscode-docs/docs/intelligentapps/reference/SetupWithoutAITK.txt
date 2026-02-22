@@ -1,0 +1,59 @@
+Setup model conversion environment manually
+===========================================
+
+Setup model conversion environment manually
+This article introduces how to manually set up Python environments for model conversion across different hardware targets, including CPU, QNN, AMD NPU, and Intel NPU.
+
+We recommend installing your environment in a Python virtual environment or a Conda environment.
+
+Note: if you want to do inference on NPU devices with QNN EP, we recommend using a Python virtual environment. The reason is because inference with some models might require the ARM version of Python, while Conda doesn't support creating an ARM version of Python virtual environments yet.
+
+• CPU: Setup CPU environment
+• QNN: Setup QNN environment
+• AMD NPU: Setup AMD NPU environment
+• Intel NPU: Setup Intel NPU environment
+
+Setup CPU environment
+---------------------
+Tips: you can directly setup NPU environment such as Setup QNN environment. It will fallback to CPU EP when running inference on a model.
+
+Alternatively, you can choose to setup a CPU environment.
+
+Python version: 3.12.9
+
+[代码]
+pip install requirements-CPU.txt
+[/代码]
+
+Setup QNN environment
+---------------------
+Python version: 3.12.9
+
+[代码]
+pip install requirements-QNN.txt
+[/代码]
+
+Setup AMD NPU environment
+-------------------------
+Python version: 3.10.9
+
+[代码]
+pip install requirements-AMDNPU.txt
+[/代码]
+
+Setup Intel NPU environment
+---------------------------
+Python version: 3.10.9
+
+[代码]
+pip install requirements-IntelNPU.txt
+[/代码]
+
+Install requirements for target project
+---------------------------------------
+Navigate to model project folder.
+
+[代码]
+pip install requirements.txt
+[/代码]
+05/13/2025

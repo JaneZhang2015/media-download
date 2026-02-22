@@ -1,0 +1,130 @@
+Integrated browser
+==================
+
+Integrated browser
+The integrated browser enables you to open and interact with web pages directly inside VS Code. Use it to preview web applications, test authentication flows, and select page elements to add as context to your AI chat prompts.
+
+
+
+Note
+The integrated browser is currently an experimental feature and may change in future releases.
+
+
+Open the browser
+----------------
+Run the Browser: Open Integrated Browser command from the Command Palette (⇧⌘P (Windows, Linux Ctrl+Shift+P)).
+
+You can open multiple browser instances simultaneously, each in its own editor tab.
+
+Enable the
+
+workbench.browser.openLocalhostLinks
+• Open in VS Code
+• Open in VS Code Insiders
+setting to automatically open
+[代码]
+localhost
+[/代码]
+URLs in the integrated browser instead of your default system browser.
+
+
+
+Navigation
+----------
+The browser supports http://, https://, and file:// URLs. Use the address bar to navigate to any URL, or use in-page links to navigate within a site.
+
+• Normal navigation and anchor links work as expected
+• Ctrl+click (Cmd+click on macOS) opens links in a new browser tab
+• Popups are blocked, but new tabs are allowed
+
+Developer Tools
+---------------
+Toggle the browser's Developer Tools from the browser toolbar to inspect elements, view console output, and debug page issues.
+
+
+Standalone window
+-----------------
+Move the browser to its own floating window by right-clicking the editor tab and selecting Move into New Window. Use Set Always on Top from the floating window's title bar to keep it visible.
+
+
+Add elements to AI chat
+-----------------------
+Select elements from a web page to add them as context to your chat prompt. This is useful for getting help with specific HTML elements, CSS styles, or debugging UI issues.
+
+• Open the integrated browser and navigate to your web app.
+• Select the Add Element to Chat button in the browser toolbar to enter selection mode.
+• Hover over elements and select to add them to your chat prompt.
+Configure what information is included:
+
+Setting
+Description
+chat.sendElementsToChat.attachCSS
+• Open in VS Code
+• Open in VS Code Insiders
+Include CSS styles for selected elements
+chat.sendElementsToChat.attachImages
+• Open in VS Code
+• Open in VS Code Insiders
+Include screenshots of selected elements
+Learn more about adding context to chat.
+
+
+Permissions
+-----------
+The browser automatically denies most permission requests (camera, microphone, geolocation) for security. Notifications, clipboard access, and file selection are allowed.
+
+
+Session storage
+---------------
+Control how the integrated browser stores session data such as cookies, logins, localStorage, and cache with the
+
+workbench.browser.dataStorage
+• Open in VS Code
+• Open in VS Code Insiders
+setting.
+
+
+Mode
+Description
+[代码]
+global
+[/代码]
+Data persists and is shared across all browser tabs and workspaces.
+[代码]
+workspace
+[/代码]
+Data persists within a workspace but is isolated between workspaces.
+[代码]
+ephemeral
+[/代码]
+Data is not shared between tabs or persisted. Similar to incognito mode.
+To clear stored data, select the menu in the browser toolbar and choose Clear Storage (Global) or Clear Storage (Workspace) depending on your current storage mode. Reload the browser tab after clearing storage to apply the changes.
+
+Note
+In untrusted workspaces, the browser always uses ephemeral mode regardless of the setting, to protect your data.
+
+
+Use as a default browser
+------------------------
+VS Code also has a built-in Simple Browser to preview web pages that has limited functionality compared to the integrated browser. If you want to use the integrated browser instead of the Simple Browser, enable the
+
+simpleBrowser.useIntegratedBrowser
+• Open in VS Code
+• Open in VS Code Insiders
+setting.
+
+
+The Live Preview extension can use the integrated browser for previewing web pages. Enable the
+
+livePreview.useIntegratedBrowser
+• Open in VS Code
+• Open in VS Code Insiders
+setting to use it as the default preview browser.
+
+
+
+Related
+-------
+• Add context to AI chat
+• Port forwarding
+02/04/2026
