@@ -141,3 +141,4 @@ Next steps
 • Best practices for using AI in VS Code
 • Set up Copilot in VS Code
 02/04/2026
+翻译中文

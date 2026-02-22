@@ -274,3 +274,4 @@ Related resources
 • Custom agents - Create your own AI agents
 • Chat sessions - Manage chat sessions in VS Code
 02/04/2026
+翻译中文

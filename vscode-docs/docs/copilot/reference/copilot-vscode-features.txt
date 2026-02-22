@@ -930,3 +930,4 @@ Next steps
 ----------
 • Tutorial: Get started with AI features in VS Code
 02/04/2026
+翻译中文

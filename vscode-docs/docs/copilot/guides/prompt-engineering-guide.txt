@@ -113,3 +113,4 @@ If you'd like to learn more about productively using GitHub Copilot, you can fol
 • Best practices for prompting GitHub Copilot in VS Code
 • How to use GitHub Copilot: Prompts, tips, and use cases
 02/04/2026
+翻译中文

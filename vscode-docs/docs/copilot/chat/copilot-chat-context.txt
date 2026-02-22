@@ -148,3 +148,4 @@ Related resources
 • Prompt engineering guide
 • Chat Debug view
 02/04/2026
+翻译中文

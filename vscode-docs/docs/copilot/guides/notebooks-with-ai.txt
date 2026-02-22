@@ -76,3 +76,4 @@ Next steps
 • Learn more about the AI features in VS Code
 • Learn more about chat in VS Code
 02/04/2026
+翻译中文

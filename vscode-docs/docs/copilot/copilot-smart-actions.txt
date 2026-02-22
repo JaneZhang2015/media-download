@@ -172,3 +172,4 @@ Related resources
 -----------------
 • Get started with the Copilot Quickstart.
 02/04/2026
+翻译中文

@@ -272,3 +272,4 @@ Related resources
 • Hooks: Execute custom commands at lifecycle events for automation and policy enforcement
 • Custom agents: Create your own AI agents and extensions.
 02/04/2026
+翻译中文

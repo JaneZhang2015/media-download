@@ -140,3 +140,4 @@ Related resources
 • Use MCP servers and tools
 • Use hooks for lifecycle automation
 02/04/2026
+翻译中文

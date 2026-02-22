@@ -1263,3 +1263,4 @@ Related resources
 -----------------
 • Get a quick overview of the Copilot features in VS Code
 02/04/2026
+翻译中文

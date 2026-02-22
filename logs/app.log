@@ -622,3 +622,17 @@ javax.net.ssl.SSLPeerUnverifiedException: Hostname api.mymemory.translated.net n
 2026-02-22 14:36:45 [WARN ] com.media.TextTranslator - 翻译API返回错误: 429
 2026-02-22 14:36:45 [WARN ] com.media.TextTranslator - 翻译API返回错误: 429
 2026-02-22 14:36:45 [WARN ] com.media.TextTranslator - 翻译API返回错误: 429
+2026-02-22 15:05:15 [INFO ] com.media.TranslatorMain - ===============================================
+2026-02-22 15:05:15 [INFO ] com.media.TranslatorMain - VS Code 文档翻译工具
+2026-02-22 15:05:15 [INFO ] com.media.TranslatorMain - ===============================================
+2026-02-22 15:05:15 [INFO ] com.media.TranslatorMain - 源目录: vscode-docs
+2026-02-22 15:05:15 [INFO ] com.media.TranslatorMain - 目标目录: vscode-docs-zh
+2026-02-22 15:05:15 [INFO ] com.media.TranslatorMain - 
+初始化翻译器...
+2026-02-22 15:05:15 [INFO ] com.media.TranslatorMain - 
+开始翻译文档...
+2026-02-22 15:05:15 [INFO ] com.media.VsCodeDocsTranslator - 开始翻译文件: vscode-docs\blogs.txt
+2026-02-22 15:05:15 [INFO ] com.media.VsCodeDocsTranslator - 文件翻译完成: vscode-docs-zh\blogs.txt
+2026-02-22 15:05:15 [INFO ] com.media.VsCodeDocsTranslator - 开始翻译文件: vscode-docs\docs\azure\aksextensions.txt
+2026-02-22 15:07:16 [INFO ] com.media.VsCodeDocsTranslator - 文件翻译完成: vscode-docs-zh\docs\azure\aksextensions.txt
+2026-02-22 15:07:16 [INFO ] com.media.VsCodeDocsTranslator - 开始翻译文件: vscode-docs\docs\azure\containers.txt

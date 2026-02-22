@@ -87,3 +87,4 @@ Next steps
 • Explore general testing features in VS Code.
 • Check out example prompts for generating unit tests
 02/04/2026
+翻译中文

@@ -515,3 +515,4 @@ Related resources
 • Model Context Protocol Server repository
 • Use agents in VS Code chat
 02/04/2026
+翻译中文

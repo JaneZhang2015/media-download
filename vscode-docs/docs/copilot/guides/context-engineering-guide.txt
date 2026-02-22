@@ -212,3 +212,4 @@ Learn more about customizing AI in VS Code:
 • Custom agents
 • Prompt files
 02/04/2026
+翻译中文

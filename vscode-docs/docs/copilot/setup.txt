@@ -102,3 +102,4 @@ Next steps
 ----------
 • Continue with the Quickstart for using AI to discover the key features for AI-powered development in VS Code.
 02/04/2026
+翻译中文

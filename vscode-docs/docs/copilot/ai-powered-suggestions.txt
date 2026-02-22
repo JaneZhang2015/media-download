@@ -193,3 +193,4 @@ Next steps
 • Use AI chat conversations with chat in VS Code.
 • Watch the videos in our VS Code Copilot Series on YouTube.
 02/04/2026
+翻译中文

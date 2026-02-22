@@ -149,3 +149,4 @@ Conceptually, both @workspace and #codebase enable you to ask questions about yo
 It's recommended to use #codebase in your chat prompts, as it provides more flexibility.
 
 02/04/2026
+翻译中文

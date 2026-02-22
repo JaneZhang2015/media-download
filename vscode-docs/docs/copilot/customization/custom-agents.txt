@@ -443,3 +443,4 @@ Related resources
 • Create reusable prompt files
 • Use tools in chat
 02/04/2026
+翻译中文

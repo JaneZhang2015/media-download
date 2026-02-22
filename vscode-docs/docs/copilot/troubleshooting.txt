@@ -89,3 +89,4 @@ Related resources
 • MCP servers
 • GitHub Copilot FAQ
 02/04/2026
+翻译中文

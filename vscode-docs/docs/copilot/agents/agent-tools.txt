@@ -405,3 +405,4 @@ Related resources
 • Agent hooks - Execute custom commands at tool lifecycle events
 • Security considerations for using AI in VS Code
 02/04/2026
+翻译中文

@@ -1,6 +1,12 @@
 com\media\TextTranslator$1.class
 com\media\MediaDownloader.class
-com\media\MediaDownloaderStandalone.class
-com\media\TextTranslator.class
+com\media\DoubaoTranslator.class
+com\media\VsCodeDocsTranslator$TranslationReport.class
 com\media\VSCodeDocumentDownloader.class
 com\media\MediaDownloaderPro.class
+com\media\AdvancedExample.class
+com\media\MediaDownloaderStandalone.class
+com\media\VsCodeDocsTranslator.class
+com\media\TextTranslator.class
+com\media\TranslatorMain.class
+com\media\TranslatorExample.class

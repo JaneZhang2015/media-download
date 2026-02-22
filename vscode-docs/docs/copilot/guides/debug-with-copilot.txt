@@ -64,3 +64,4 @@ Next steps
 • Explore general debugging features in VS Code.
 • Learn more about Copilot in VS Code.
 02/04/2026
+翻译中文

@@ -172,3 +172,4 @@ Related resources
 • Inline chat
 • Copilot Chat Cookbook in the GitHub documentation
 02/04/2026
+翻译中文
