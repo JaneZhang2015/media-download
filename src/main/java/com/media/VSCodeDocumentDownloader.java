@@ -10,11 +10,15 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.cert.X509Certificate;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
@@ -25,14 +29,52 @@ import java.util.regex.Pattern;
 public class VSCodeDocumentDownloader {
     private static final Logger logger = LoggerFactory.getLogger(VSCodeDocumentDownloader.class);
     private static final String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36";
-    private static final OkHttpClient client = new OkHttpClient.Builder()
-            .connectTimeout(30, TimeUnit.SECONDS)
-            .readTimeout(60, TimeUnit.SECONDS)
-            .writeTimeout(60, TimeUnit.SECONDS)
-            .build();
+    private static final OkHttpClient client = createUnsafeOkHttpClient();
 
     private static final Set<String> downloadedUrls = new HashSet<>();
     private static int fileCount = 0;
+
+    /**
+     * 创建不进行SSL验证的OkHttpClient（用于处理证书问题）
+     */
+    private static OkHttpClient createUnsafeOkHttpClient() {
+        try {
+            // 创建信任所有证书的TrustManager
+            TrustManager[] trustAllCerts = new TrustManager[]{
+                    new X509TrustManager() {
+                        @Override
+                        public void checkClientTrusted(X509Certificate[] chain, String authType) {}
+
+                        @Override
+                        public void checkServerTrusted(X509Certificate[] chain, String authType) {}
+
+                        @Override
+                        public X509Certificate[] getAcceptedIssuers() {
+                            return new X509Certificate[]{};
+                        }
+                    }
+            };
+
+            // 安装信任管理器
+            SSLContext sslContext = SSLContext.getInstance("SSL");
+            sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
+
+            return new OkHttpClient.Builder()
+                    .connectTimeout(30, TimeUnit.SECONDS)
+                    .readTimeout(60, TimeUnit.SECONDS)
+                    .writeTimeout(60, TimeUnit.SECONDS)
+                    .sslSocketFactory(sslContext.getSocketFactory(), (X509TrustManager) trustAllCerts[0])
+                    .hostnameVerifier((hostname, session) -> true)
+                    .build();
+        } catch (Exception e) {
+            logger.error("创建OkHttpClient失败，使用默认配置", e);
+            return new OkHttpClient.Builder()
+                    .connectTimeout(30, TimeUnit.SECONDS)
+                    .readTimeout(60, TimeUnit.SECONDS)
+                    .writeTimeout(60, TimeUnit.SECONDS)
+                    .build();
+        }
+    }
 
     public static void main(String[] args) {
         if (args.length == 0) {
@@ -42,21 +84,11 @@ public class VSCodeDocumentDownloader {
 
         String url = args[0];
         String outputDir = args.length > 1 ? args[1] : "./vscode-docs";
-        boolean downloadVideos = false;
-        boolean debugMode = false;
-
-        // 解析参数
-        for (int i = 2; i < args.length; i++) {
-            if (args[i].equalsIgnoreCase("--videos")) {
-                downloadVideos = true;
-            } else if (args[i].equalsIgnoreCase("--debug")) {
-                debugMode = true;
-            }
-        }
+        boolean downloadVideos = args.length > 2 && args[2].equalsIgnoreCase("--videos");
 
         try {
             if (downloadVideos) {
-                downloadVideos(url, outputDir, debugMode);
+                downloadVideos(url, outputDir);
             } else {
                 downloadDocumentation(url, outputDir);
             }
@@ -72,21 +104,11 @@ public class VSCodeDocumentDownloader {
      * 下载VS Code文档中的所有MP4视频
      */
     public static void downloadVideos(String startUrl, String outputDir) throws Exception {
-        downloadVideos(startUrl, outputDir, false);
-    }
-
-    /**
-     * 下载VS Code文档中的所有MP4视频（带debug选项）
-     */
-    public static void downloadVideos(String startUrl, String outputDir, boolean debugMode) throws Exception {
         System.out.println("╔══════════════════════════════════════════╗");
         System.out.println("║      VS Code 视频下载 v1.0               ║");
         System.out.println("╚══════════════════════════════════════════╝");
         System.out.println();
         System.out.println("开始爬取视频: " + startUrl);
-        if (debugMode) {
-            System.out.println("  [DEBUG 模式已启用]");
-        }
 
         // 创建输出目录
         Path outputPath = Paths.get(outputDir);
@@ -95,37 +117,18 @@ public class VSCodeDocumentDownloader {
         // 获取主页面
         String html = fetchPage(startUrl);
         if (html == null) {
-            System.out.println("⚠ 主页面获取失败，尝试扫描子页面...");
-            // 如果主页面失败，尝试获取文档列表页面
-            html = fetchPage(startUrl.replaceAll("/copilot.*", "/docs"));
-            if (html == null) {
-                throw new RuntimeException("无法获取页面内容");
-            }
-        }
-
-        // 从主页面提取视频链接
-        Set<String> mainPageVideos = extractVideoLinks(html, startUrl);
-        if (debugMode && !mainPageVideos.isEmpty()) {
-            System.out.println("  [主页面找到的视频]:");
-            mainPageVideos.forEach(v -> System.out.println("    - " + v));
-        }
-        if (!mainPageVideos.isEmpty()) {
-            System.out.println("✓ 主页面找到 " + mainPageVideos.size() + " 个视频");
+            throw new RuntimeException("无法获取主页面内容");
         }
 
         // 解析主页面，获取所有文档链接
         Document doc = Jsoup.parse(html);
         Set<String> docUrls = extractDocumentLinks(doc, startUrl);
 
-        System.out.println("✓ 找到 " + docUrls.size() + " 个子文档章节，开始扫描视频...");
+        System.out.println("✓ 找到 " + docUrls.size() + " 个文档章节，开始扫描视频...");
         System.out.println();
 
         // 扫描每个文档以找到视频
         Map<String, Set<String>> videosByPage = new HashMap<>();
-        if (!mainPageVideos.isEmpty()) {
-            videosByPage.put(startUrl, mainPageVideos);
-        }
-        
         int docCount = 1;
         for (String docUrl : docUrls) {
             try {
@@ -134,19 +137,13 @@ public class VSCodeDocumentDownloader {
                     Set<String> videos = extractVideoLinks(docHtml, docUrl);
                     if (!videos.isEmpty()) {
                         videosByPage.put(docUrl, videos);
-                        String pageTitle = extractPageTitle(docUrl);
-                        System.out.println("[" + docCount + "/" + docUrls.size() + "] " + pageTitle + 
+                        System.out.println("[" + docCount + "/" + docUrls.size() + "] " + docUrl + 
                                          " - 找到 " + videos.size() + " 个视频");
-                        if (debugMode) {
-                            videos.forEach(v -> System.out.println("      - " + v));
-                        }
                     }
                 }
                 docCount++;
             } catch (Exception e) {
-                if (debugMode) {
-                    logger.debug("扫描失败 (" + docUrl + "): " + e.getMessage());
-                }
+                System.err.println("✗ 扫描失败 (" + docUrl + "): " + e.getMessage());
             }
         }
 
@@ -155,32 +152,17 @@ public class VSCodeDocumentDownloader {
         System.out.println("✓ 总共找到 " + totalVideos + " 个MP4视频");
         System.out.println();
 
-        if (totalVideos == 0) {
-            System.out.println("⚠ 没有找到视频");
-            System.out.println("  可能原因:");
-            System.out.println("  1. 页面中没有包含MP4视频");
-            System.out.println("  2. 视频链接格式与当前解析器不匹配");
-            System.out.println("  3. 请尝试使用--debug标志查看详细日志");
-            return;
-        }
-
         // 下载视频
         int downloadCount = 1;
-        int successCount = 0;
-        int failCount = 0;
-        
         for (Map.Entry<String, Set<String>> entry : videosByPage.entrySet()) {
             String pageUrl = entry.getKey();
             for (String videoUrl : entry.getValue()) {
                 try {
-                    System.out.println("[" + downloadCount + "/" + totalVideos + "] " + extractFileNameFromUrl(videoUrl));
+                    System.out.println("[" + downloadCount + "/" + totalVideos + "] 下载视频...");
                     downloadVideoFile(videoUrl, pageUrl, outputPath);
                     downloadCount++;
-                    successCount++;
                 } catch (Exception e) {
                     System.err.println("✗ 下载失败: " + e.getMessage());
-                    failCount++;
-                    downloadCount++;
                 }
             }
         }
@@ -188,8 +170,6 @@ public class VSCodeDocumentDownloader {
         System.out.println();
         System.out.println("╔══════════════════════════════════════════╗");
         System.out.println("✓ 视频下载完成!");
-        System.out.println("  成功: " + successCount + "个");
-        System.out.println("  失败: " + failCount + "个");
         System.out.println("  保存路径: " + outputPath.toAbsolutePath());
         System.out.println("╚══════════════════════════════════════════╝");
     }
@@ -335,7 +315,7 @@ public class VSCodeDocumentDownloader {
                 extractVideoLinksFromJson(content, pageUrl, videoUrls);
             }
             
-            // 从HTML源代码直接提取所有/assets/下的MP4链接 (最重要!)
+            // 从HTML源直接提取所有/assets/下的MP4链接（补充正则表达式）
             extractVideoLinksFromHtmlSource(html, pageUrl, videoUrls);
             
         } catch (Exception e) {
@@ -346,16 +326,27 @@ public class VSCodeDocumentDownloader {
     }
 
     /**
+     * 从JSON数据中提取视频链接
+     */
+    private static void extractVideoLinksFromJson(String json, String pageUrl, Set<String> videoUrls) {
+        // 正则表达式匹配MP4链接
+        Pattern pattern = Pattern.compile("(https?://[^\"\\s]+\\.mp4[^\"\\s]*)");
+        var matcher = pattern.matcher(json);
+        while (matcher.find()) {
+            String url = matcher.group(1).replace("\\", "");
+            if (url.lastIndexOf("\"") > 0) {
+                url = url.substring(0, url.lastIndexOf("\""));
+            }
+            if (url.endsWith(".mp4")) {
+                videoUrls.add(url);
+            }
+        }
+    }
+
+    /**
      * 直接从HTML源代码中提取所有MP4视频链接（包括assets路径）
      */
     private static void extractVideoLinksFromHtmlSource(String html, String pageUrl, Set<String> videoUrls) {
-        // 匹配以下格式的MP4链接：
-        // https://code.visualstudio.com/assets/docs/.../*.mp4
-        // /assets/docs/.../*.mp4
-        // src="...*.mp4"
-        // data-src="...*.mp4"
-        // href="...*.mp4"
-        
         // 模式1：完整的https://code.visualstudio.com地址
         Pattern fullUrlPattern = Pattern.compile("https://code\\.visualstudio\\.com/[^\\s\"'<>]*\\.mp4");
         var matcher = fullUrlPattern.matcher(html);
@@ -363,7 +354,6 @@ public class VSCodeDocumentDownloader {
             String url = matcher.group(0);
             if (!videoUrls.contains(url)) {
                 videoUrls.add(url);
-                logger.debug("找到视频: " + url);
             }
         }
         
@@ -377,14 +367,13 @@ public class VSCodeDocumentDownloader {
                 String absoluteUrl = pageUrlObj.getProtocol() + "://" + pageUrlObj.getHost() + path;
                 if (!videoUrls.contains(absoluteUrl)) {
                     videoUrls.add(absoluteUrl);
-                    logger.debug("找到视频: " + absoluteUrl);
                 }
             } catch (Exception e) {
                 logger.debug("无法解析相对路径: " + path);
             }
         }
         
-        // 模式3：在属性中的任何 .mp4 (src=, data-src=, href= 等)
+        // 模式3：在属性中的 .mp4 (src=, data-src=, href= 等)
         Pattern attrPattern = Pattern.compile("(?:src|data-src|href|data-href)\\s*=\\s*[\"']([^\"']*\\.mp4[^\"]*)[\"\']");
         matcher = attrPattern.matcher(html);
         while (matcher.find()) {
@@ -393,7 +382,6 @@ public class VSCodeDocumentDownloader {
                 // 完整URL
                 if (!videoUrls.contains(urlOrPath)) {
                     videoUrls.add(urlOrPath);
-                    logger.debug("找到视频: " + urlOrPath);
                 }
             } else if (urlOrPath.startsWith("/")) {
                 // 相对路径
@@ -402,48 +390,10 @@ public class VSCodeDocumentDownloader {
                     String absoluteUrl = pageUrlObj.getProtocol() + "://" + pageUrlObj.getHost() + urlOrPath;
                     if (!videoUrls.contains(absoluteUrl)) {
                         videoUrls.add(absoluteUrl);
-                        logger.debug("找到视频: " + absoluteUrl);
                     }
                 } catch (Exception e) {
                     logger.debug("无法解析相对路径: " + urlOrPath);
                 }
-            }
-        }
-    }
-
-    /**
-     * 从JSON数据中提取视频链接
-     */
-    private static void extractVideoLinksFromJson(String json, String pageUrl, Set<String> videoUrls) {
-        // 正则表达式匹配多种MP4链接格式
-        
-        // 格式1: 完整URL
-        Pattern fullUrlPattern = Pattern.compile("https?://[^\\s\"'<>]*\\.mp4");
-        var matcher = fullUrlPattern.matcher(json);
-        while (matcher.find()) {
-            String url = matcher.group(0);
-            // 清理末尾的转义字符
-            if (url.endsWith("\\")) {
-                url = url.substring(0, url.length() - 1);
-            }
-            if (url.endsWith(".mp4") && !videoUrls.contains(url)) {
-                videoUrls.add(url);
-            }
-        }
-        
-        // 格式2: /assets/... 路径
-        Pattern assetPathPattern = Pattern.compile("/assets/[^\\s\"'<>]*\\.mp4");
-        matcher = assetPathPattern.matcher(json);
-        while (matcher.find()) {
-            String path = matcher.group(0);
-            try {
-                java.net.URL pageUrlObj = new java.net.URL(pageUrl);
-                String absoluteUrl = pageUrlObj.getProtocol() + "://" + pageUrlObj.getHost() + path;
-                if (!videoUrls.contains(absoluteUrl)) {
-                    videoUrls.add(absoluteUrl);
-                }
-            } catch (Exception e) {
-                // 忽略
             }
         }
     }
@@ -589,40 +539,6 @@ public class VSCodeDocumentDownloader {
         final String[] units = new String[]{"B", "KB", "MB", "GB"};
         int digitGroups = (int) (Math.log10(bytes) / Math.log10(1024));
         return String.format("%.2f %s", bytes / Math.pow(1024, digitGroups), units[digitGroups]);
-    }
-
-    /**
-     * 从URL提取页面标题
-     */
-    private static String extractPageTitle(String url) {
-        try {
-            String path = new java.net.URL(url).getPath();
-            String[] parts = path.split("/");
-            if (parts.length > 0) {
-                String last = parts[parts.length - 1];
-                if (!last.isEmpty() && !last.equals("docs")) {
-                    return last.replace("-", " ");
-                }
-            }
-        } catch (Exception e) {
-            // 忽略
-        }
-        return url;
-    }
-
-    /**
-     * 从URL提取文件名
-     */
-    private static String extractFileNameFromUrl(String url) {
-        try {
-            String filename = url.substring(url.lastIndexOf("/") + 1);
-            if (filename.contains("?")) {
-                filename = filename.substring(0, filename.indexOf("?"));
-            }
-            return filename;
-        } catch (Exception e) {
-            return "video.mp4";
-        }
     }
 
     /**
