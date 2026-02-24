@@ -378,4 +378,4 @@ Terms and policies
 (https://www.anthropic.com/legal/privacy) Privacy policy  (https://www.anthropic.com/responsible-disclosure-policy) Disclosure policy  (https://www.anthropic.com/legal/aup) Usage policy  (https://www.anthropic.com/legal/commercial-terms) Commercial terms  (https://www.anthropic.com/legal/consumer-terms) Consumer terms
 Assistant
 Responses are generated using AI and may contain mistakes.
-【中文】• 配置 Claude Code 设置，自定义允许的命令、钩子等。这些设置在扩展程序和 CLI 之间共享。
+翻译中文

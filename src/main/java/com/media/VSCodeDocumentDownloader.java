@@ -347,8 +347,14 @@ public class VSCodeDocumentDownloader {
      * 直接从HTML源代码中提取所有MP4视频链接（包括assets路径）
      */
     private static void extractVideoLinksFromHtmlSource(String html, String pageUrl, Set<String> videoUrls) {
-        // 模式1：完整的https://code.visualstudio.com地址
-        Pattern fullUrlPattern = Pattern.compile("https://code\\.visualstudio\\.com/[^\\s\"'<>]*\\.mp4");
+        // 模式1：完整的同域名地址
+        String escapedHost;
+        try {
+            escapedHost = java.util.regex.Pattern.quote(new java.net.URL(pageUrl).getHost());
+        } catch (Exception e) {
+            escapedHost = "code\\.visualstudio\\.com";
+        }
+        Pattern fullUrlPattern = Pattern.compile("https?://" + escapedHost + "/[^\\s\"'<>]*\\.mp4");
         var matcher = fullUrlPattern.matcher(html);
         while (matcher.find()) {
             String url = matcher.group(0);
@@ -550,9 +556,17 @@ public class VSCodeDocumentDownloader {
             return false;
         }
 
-        // 排除外部链接和特殊链接
-        if (href.startsWith("http") && !href.contains("code.visualstudio.com")) {
-            return false;
+        // 排除外部链接和特殊链接（只允许同域名链接）
+        if (href.startsWith("http")) {
+            try {
+                String baseHost = new java.net.URL(baseUrl).getHost();
+                String hrefHost = new java.net.URL(href).getHost();
+                if (!hrefHost.equals(baseHost)) {
+                    return false;
+                }
+            } catch (Exception e) {
+                return false;
+            }
         }
 
         // 排除锚点链接

@@ -276,4 +276,4 @@
 (/de-de/product/claude-code)
 (/fr-fr/product/claude-code)
 (/ko-kr/product/claude-code)
-【中文】逐周部署增长
+翻译中文
