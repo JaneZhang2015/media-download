@@ -1,0 +1,66 @@
+(#content-area) Skip to main content
+(/docs) Claude Code Docs home page
+English
+Search...
+⌘ K Ask AI
+(https://platform.claude.com/) Claude Developer Platform
+(https://claude.ai/code) Claude Code on the Web
+(https://claude.ai/code)
+Claude Code on the Web
+Search...
+Navigation
+Page Not Found
+(/docs/en/overview) Getting started
+(/docs/en/sub-agents) Build with Claude Code
+(/docs/en/third-party-integrations) Deployment
+(/docs/en/setup) Administration
+(/docs/en/settings) Configuration
+(/docs/en/cli-reference) Reference
+(/docs/en/legal-and-compliance) Resources
+Getting started
+(/docs/en/overview)
+Overview
+(/docs/en/quickstart)
+Quickstart
+(https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)
+Changelog
+Core concepts
+(/docs/en/how-claude-code-works)
+How Claude Code works
+(/docs/en/features-overview)
+Extend Claude Code
+(/docs/en/common-workflows)
+Common workflows
+(/docs/en/best-practices)
+Best practices
+Platforms and integrations
+(/docs/en/claude-code-on-the-web)
+Claude Code on the web
+Claude Code on desktop
+(/docs/en/chrome)
+Chrome extension (beta)
+(/docs/en/vs-code)
+Visual Studio Code
+(/docs/en/jetbrains)
+JetBrains IDEs
+(/docs/en/github-actions)
+GitHub Actions
+(/docs/en/gitlab-ci-cd)
+GitLab CI/CD
+(/docs/en/slack)
+Claude Code in Slack
+404
+Page Not Found
+We couldn't find the page.
+(/docs) Claude Code Docs home page
+(https://x.com/AnthropicAI) x  (https://www.linkedin.com/company/anthropicresearch) linkedin
+Company
+(https://www.anthropic.com/company) Anthropic  (https://www.anthropic.com/careers) Careers  (https://www.anthropic.com/economic-futures) Economic Futures  (https://www.anthropic.com/research) Research  (https://www.anthropic.com/news) News  (https://trust.anthropic.com/) Trust center  (https://www.anthropic.com/transparency) Transparency
+Help and security
+(https://www.anthropic.com/supported-countries) Availability  (https://status.anthropic.com/) Status  (https://support.claude.com/) Support center
+Learn
+(https://www.anthropic.com/learn) Courses  (https://claude.com/partners/mcp) MCP connectors  (https://www.claude.com/customers) Customer stories  (https://www.anthropic.com/engineering) Engineering blog  (https://www.anthropic.com/events) Events  (https://claude.com/partners/powered-by-claude) Powered by Claude  (https://claude.com/partners/services) Service partners  (https://claude.com/programs/startups) Startups program
+Terms and policies
+(https://www.anthropic.com/legal/privacy) Privacy policy  (https://www.anthropic.com/responsible-disclosure-policy) Disclosure policy  (https://www.anthropic.com/legal/aup) Usage policy  (https://www.anthropic.com/legal/commercial-terms) Commercial terms  (https://www.anthropic.com/legal/consumer-terms) Consumer terms
+Assistant
+Responses are generated using AI and may contain mistakes.

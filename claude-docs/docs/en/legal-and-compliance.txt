@@ -1,0 +1,90 @@
+(#content-area) Skip to main content
+(/docs) Claude Code Docs home page
+English
+Search...
+⌘ K Ask AI
+(https://platform.claude.com/) Claude Developer Platform
+(https://claude.ai/code) Claude Code on the Web
+(https://claude.ai/code)
+Claude Code on the Web
+Search...
+Navigation
+Resources
+Legal and compliance
+(/docs/en/overview) Getting started
+(/docs/en/sub-agents) Build with Claude Code
+(/docs/en/third-party-integrations) Deployment
+(/docs/en/setup) Administration
+(/docs/en/settings) Configuration
+(/docs/en/cli-reference) Reference
+(/docs/en/legal-and-compliance) Resources
+Resources
+(/docs/en/legal-and-compliance)
+Legal and compliance
+On this page
+(#legal-agreements) Legal agreements
+(#license) License
+(#commercial-agreements) Commercial agreements
+(#compliance) Compliance
+(#healthcare-compliance-baa) Healthcare compliance (BAA)
+(#usage-policy) Usage policy
+(#acceptable-use) Acceptable use
+(#authentication-and-credential-use) Authentication and credential use
+(#security-and-trust) Security and trust
+(#trust-and-safety) Trust and safety
+(#security-vulnerability-reporting) Security vulnerability reporting
+Resources
+Legal and compliance
+Copy page
+Legal agreements, compliance certifications, and security information for Claude Code.
+Copy page
+(#legal-agreements) ​
+Legal agreements
+(#license) ​
+License
+Your use of Claude Code is subject to:
+(https://www.anthropic.com/legal/commercial-terms) Commercial Terms - for Team, Enterprise, and Claude API users
+(https://www.anthropic.com/legal/consumer-terms) Consumer Terms of Service - for Free, Pro, and Max users
+(#commercial-agreements) ​
+Commercial agreements
+Whether you’re using the Claude API directly (1P) or accessing it through AWS Bedrock or Google Vertex (3P), your existing commercial agreement will apply to Claude Code usage, unless we’ve mutually agreed otherwise.
+(#compliance) ​
+Compliance
+(#healthcare-compliance-baa) ​
+Healthcare compliance (BAA)
+If a customer has a Business Associate Agreement (BAA) with us, and wants to use Claude Code, the BAA will automatically extend to cover Claude Code if the customer has executed a BAA and has Zero Data Retention (ZDR) activated. The BAA will be applicable to that customer’s API traffic flowing through Claude Code.
+(#usage-policy) ​
+Usage policy
+(#acceptable-use) ​
+Acceptable use
+Claude Code usage is subject to the  (https://www.anthropic.com/legal/aup) Anthropic Usage Policy . Advertised usage limits for Pro and Max plans assume ordinary, individual usage of Claude Code and the Agent SDK.
+(#authentication-and-credential-use) ​
+Authentication and credential use
+Claude Code authenticates with Anthropic’s servers using OAuth tokens or API keys. These authentication methods serve different purposes:
+OAuth authentication (used with Free, Pro, and Max plans) is intended exclusively for Claude Code and Claude.ai. Using OAuth tokens obtained through Claude Free, Pro, or Max accounts in any other product, tool, or service — including the  (https://platform.claude.com/docs/en/agent-sdk/overview) Agent SDK — is not permitted and constitutes a violation of the  (https://www.anthropic.com/legal/consumer-terms) Consumer Terms of Service .
+Developers building products or services that interact with Claude’s capabilities, including those using the  (https://platform.claude.com/docs/en/agent-sdk/overview) Agent SDK , should use API key authentication through  (https://platform.claude.com/) Claude Console or a supported cloud provider. Anthropic does not permit third-party developers to offer Claude.ai login or to route requests through Free, Pro, or Max plan credentials on behalf of their users.
+Anthropic reserves the right to take measures to enforce these restrictions and may do so without prior notice. For questions about permitted authentication methods for your use case, please  (https://www.anthropic.com/contact-sales) contact sales .
+(#security-and-trust) ​
+Security and trust
+(#trust-and-safety) ​
+Trust and safety
+You can find more information in the  (https://trust.anthropic.com) Anthropic Trust Center and  (https://www.anthropic.com/transparency) Transparency Hub .
+(#security-vulnerability-reporting) ​
+Security vulnerability reporting
+Anthropic manages our security program through HackerOne.  (https://hackerone.com/anthropic-vdp/reports/new?type=team&report_type=vulnerability) Use this form to report vulnerabilities .
+© Anthropic PBC. All rights reserved. Use is subject to applicable Anthropic Terms of Service.
+Was this page helpful?
+Yes No
+⌘ I
+(/docs) Claude Code Docs home page
+(https://x.com/AnthropicAI) x  (https://www.linkedin.com/company/anthropicresearch) linkedin
+Company
+(https://www.anthropic.com/company) Anthropic  (https://www.anthropic.com/careers) Careers  (https://www.anthropic.com/economic-futures) Economic Futures  (https://www.anthropic.com/research) Research  (https://www.anthropic.com/news) News  (https://trust.anthropic.com/) Trust center  (https://www.anthropic.com/transparency) Transparency
+Help and security
+(https://www.anthropic.com/supported-countries) Availability  (https://status.anthropic.com/) Status  (https://support.claude.com/) Support center
+Learn
+(https://www.anthropic.com/learn) Courses  (https://claude.com/partners/mcp) MCP connectors  (https://www.claude.com/customers) Customer stories  (https://www.anthropic.com/engineering) Engineering blog  (https://www.anthropic.com/events) Events  (https://claude.com/partners/powered-by-claude) Powered by Claude  (https://claude.com/partners/services) Service partners  (https://claude.com/programs/startups) Startups program
+Terms and policies
+(https://www.anthropic.com/legal/privacy) Privacy policy  (https://www.anthropic.com/responsible-disclosure-policy) Disclosure policy  (https://www.anthropic.com/legal/aup) Usage policy  (https://www.anthropic.com/legal/commercial-terms) Commercial terms  (https://www.anthropic.com/legal/consumer-terms) Consumer terms
+Assistant
+Responses are generated using AI and may contain mistakes.
